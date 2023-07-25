@@ -1,0 +1,22 @@
+.containerStyles {
+  min-height: 100vh;
+  padding: 106px 0 176px 0;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  color: #f5e101;
+}
+
+.alertText {
+  overflow-y: hidden;
+  text-align: center;
+}
+
+.spinnerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

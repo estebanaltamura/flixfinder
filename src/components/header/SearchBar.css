@@ -1,0 +1,57 @@
+/* Cambiar el fondo del autocompletado */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill-selected,
+input:-webkit-ligth-dark {
+  background-color: black !important;
+}
+
+/* Cambiar el color del texto en el autocompletado */
+input:-webkit-autofill {
+  -webkit-text-fill-color: black !important;
+}
+
+.seachBarContainer {
+  display: grid;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: black;
+  grid-template-columns: 1fr 48px;
+  grid-template-areas: "input icon";
+  height: 56px;
+  width: 100%;
+}
+
+.searchInput {
+  grid-area: input;
+  height: 56px;
+  width: 100%;
+  padding: 16px 16px 16px 12px;
+  margin: 0;
+  cursor: text;
+  border: none;
+  color: white;
+  font-family: roboto;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.searchInput:focus-visible {
+  border: none;
+  outline: none;
+}
+
+.closeSearchIcon {
+  grid-area: icon;
+  margin: auto;
+  color: white;
+  width: 24px;
+  height: 24px;
+  font-weight: 900;
+
+  cursor: pointer;
+}

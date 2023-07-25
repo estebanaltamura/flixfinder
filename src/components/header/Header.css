@@ -1,0 +1,42 @@
+.navMenu {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  background-color: black !important;
+  z-index: 1;
+  padding: 8px 0;
+  user-select: none;
+}
+
+.containerMenu {
+  width: 100%;
+  margin: 0;
+}
+
+.toggleMenu:focus {
+  box-shadow: none;
+}
+
+.navbar-toggler-icon {
+  color: white;
+}
+
+.searchIcon {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: calc(50% - 13px);
+  top: 13px;
+  color: white;
+  cursor: pointer;
+}
+
+.loginHeaderLabel {
+  position: absolute;
+  top: 14px;
+  right: 17px;
+  color: white;
+  font-weight: 400;
+  cursor: pointer;
+}

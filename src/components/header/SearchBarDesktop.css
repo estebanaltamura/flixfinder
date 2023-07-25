@@ -1,0 +1,42 @@
+.searchBarDesktopContainer {
+  display: grid;
+  position: absolute;
+  top: 14px;
+  right: calc(50% - 220px);
+  width: 440px;
+  height: 32px;
+  grid-template-columns: 400px 40px;
+  grid-template-areas: "input icon";
+  background-color: white;
+  border-radius: 4px;
+}
+
+.searchIconDesktop {
+  grid-area: icon;
+  margin: auto;
+  color: black;
+  width: 24px;
+  height: 24px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.searchInputDesktop {
+  grid-area: input;
+  height: 32px;
+  width: 100%;
+  padding: 6px 0px 6px 8px;
+  margin: 0;
+  cursor: text;
+  border: none;
+  color: black;
+  font-family: roboto;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.searchInputDesktop:focus-visible {
+  border: none;
+  outline: none;
+}

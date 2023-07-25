@@ -1,0 +1,132 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+.gridContainer {
+  display: flex;
+  position: relative;
+  padding-top: 55px;
+  justify-content: center;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.grid {
+  display: grid;
+  max-width: 840px;
+  height: fit-content;
+  border: 1px solid #929292;
+  border-radius: 7px;
+  box-shadow: 2px 2px 3px 1px #6c6c6c;
+}
+
+.poster {
+  grid-area: poster;
+  width: 100%;
+  height: fit-content;
+}
+
+.title {
+  grid-area: title;
+  margin: auto auto 0 auto;
+}
+
+.tagLine {
+  grid-area: tagLine;
+  margin: auto;
+}
+
+.descriptionLabel {
+  grid-area: descriptionLabel;
+  margin: auto auto 0 auto;
+  font-style: italic;
+}
+
+.descriptionText {
+  grid-area: descriptionText;
+  line-height: 25px;
+  margin: 0 20px;
+}
+
+.genders {
+  grid-area: genders;
+  text-align: center;
+  margin: auto 20px;
+}
+
+.budgetrevenue {
+  grid-area: budgetrevenue;
+  text-align: center;
+  margin: auto 20px;
+}
+
+.language {
+  grid-area: language;
+  text-align: center;
+  margin: auto 20px;
+}
+
+.poster,
+.title,
+.tagLine,
+.descriptionLabel,
+.descriptionText,
+.genders,
+.budgetrevenue,
+.language {
+  overflow-y: hidden;
+}
+
+@media screen and (min-width: 768px) {
+  .gridContainer {
+    height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .grid {
+    margin: 116px 20px 100px 20px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 60px 20px 20px 30px 20px 280px 50px 40px 40px 40px;
+    grid-template-areas:
+      "poster title"
+      "poster tagLine"
+      "poster empty1"
+      "poster descriptionLabel"
+      "poster empty2"
+      "poster descriptionText"
+      "poster productionCompanies"
+      "poster genders"
+      "poster budgetrevenue"
+      "poster language";
+  }
+
+  .poster {
+    height: 600px;
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .grid {
+    grid-template-columns: 20px 1fr 20px;
+    grid-template-rows: auto 50px 20px 60px 20px auto 30px 40px 40px 40px;
+    grid-template-areas:
+      "poster poster poster"
+      "empty1 title empty2"
+      "empty1 tagLine empty2"
+      "empty1 descriptionLabel empty2"
+      "empty1 empty3 empty2"
+      "empty1 descriptionText empty2"
+      "empty1 empty4 empty2"
+      "empty1 genders empty2"
+      "empty1 budgetrevenue empty2"
+      "empty1 language empty2";
+  }
+}
