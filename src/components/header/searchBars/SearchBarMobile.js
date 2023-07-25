@@ -1,12 +1,11 @@
 import { FiX } from "react-icons/fi";
-import { useContext, useRef, useEffect } from "react";
-import { headerSearchModeContext } from "../../context/headerSearchModeContext";
+import { useRef, useEffect } from "react";
+
 import { useNavigate } from "react-router-dom";
 
-import "./SearchBar.css";
+import "./SearchBarMobile.css";
 
-export const SearchBar = () => {
-  const { setHeaderSearchMode } = useContext(headerSearchModeContext);
+export const SearchBarMobile = () => {  
   const inputElement = useRef(null);
   const history = useNavigate();
 
@@ -20,8 +19,7 @@ export const SearchBar = () => {
   const itemListType = getContentType();
 
   const searchSubmitHandler = (e) => {
-    e.preventDefault();
-    setHeaderSearchMode(false);
+    e.preventDefault();   
     history(
       `/${itemListType == "tv-series" ? "tvSeries" : "movies"}/results/${
         e.target.input.value
@@ -45,8 +43,7 @@ export const SearchBar = () => {
         ></input>
       </form>
       <FiX
-        className="closeSearchIcon"
-        onClick={() => setHeaderSearchMode(false)}
+        className="closeSearchIcon"        
       />
     </div>
   );

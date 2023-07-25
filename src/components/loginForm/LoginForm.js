@@ -7,18 +7,18 @@ import { useLoginValidator } from "../useLoginValidator";
 export const LoginForm = () => {
   const { isLogged } = useContext(loginContext);
 
-  const { userNameAlert, passwordAlert, validateInputs, resetAlerts } =
-    useLoginValidator();
+  const { userNameAlert, passwordAlert, validateInputs, resetAlerts } = useLoginValidator();
   const history = useNavigate();
 
   useEffect(() => {
-    isLogged && history(-1);
-  }, []);
+    console.log("redereo login")
+    isLogged && history("/movies");
+  },[]);
 
   return (
     <>
       {!isLogged && (
-        <div className="loginContainer">
+       
           <div className="form-container">
             <form action="/action_page.php" onSubmit={validateInputs}>
               <span className="subtitle">USERNAME:</span>
@@ -32,7 +32,7 @@ export const LoginForm = () => {
               </button>
             </form>
           </div>
-        </div>
+       
       )}
     </>
   );

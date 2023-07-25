@@ -1,14 +1,9 @@
-.loginContainer {
-  padding-top: 56px;
-  height: 100vh;
-}
-
 .form-container {
   display: flex;
   margin: 60px auto;
-  width: 100vw;
+  width: 100%;
   max-width: 580px;
-  height: 340px;
+  height: 340px; 
   justify-content: center;
   align-items: center;
   padding: 40px;

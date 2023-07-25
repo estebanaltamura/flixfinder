@@ -1,0 +1,5 @@
+.homeContainer{
+  padding: 56px 20px 0 20px;
+  width: 100%;
+  height: calc(100vh - 120px);
+}

@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginContext } from "../../context/LoginContextProvider";
-import { headerSearchModeContext } from "../../context/headerSearchModeContext";
-import { BsSearch } from "react-icons/bs";
+import { loginContext } from "../../../context/LoginContextProvider";
+import { SearchBarDesktop } from "../searchBars/SearchBarDesktop";
 import { Navbar, Container, Nav } from "react-bootstrap";
 
-export const MobileMenu = () => {
+
+export const DesktopMenu = () => {
   const { isLogged, setIsLogged } = useContext(loginContext);
-  const { setHeaderSearchMode } = useContext(headerSearchModeContext);
+
   const history = useNavigate();
 
   const logoutHandler = () => {
@@ -26,20 +26,15 @@ export const MobileMenu = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/movies">Movies</Nav.Link>
-            <Nav.Link href="tvSeries">TV-Series</Nav.Link>
+            <Nav.Link href="/tvSeries">TV-Series</Nav.Link>
           </Nav>
         </Navbar.Collapse>
-        {isLogged && (
-          <BsSearch
-            className="searchIcon"
-            onClick={() => setHeaderSearchMode(true)}
-          />
-        )}
         {isLogged && (
           <span className="loginHeaderLabel" onClick={logoutHandler}>
             LogOut
           </span>
         )}
+        {isLogged && <SearchBarDesktop />}
       </Container>
     </Navbar>
   );
