@@ -9,36 +9,4 @@ header{
   user-select: none;
 }
 
-.toggleMenu{
-  width: 56px;
-  height: 40px;
-}
 
-
-
-.toggleMenu:focus {
-  box-shadow: none;
-}
-
-.navbar-toggler-icon {
-  color: white;
-}
-
-.searchIcon {
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  right: calc(50% - 13px);
-  top: 13px;
-  color: white;
-  cursor: pointer;
-}
-
-.loginHeaderLabel {
-  position: absolute;
-  top: 14px;
-  right: 17px;
-  color: white;
-  font-weight: 400;
-  cursor: pointer;
-}

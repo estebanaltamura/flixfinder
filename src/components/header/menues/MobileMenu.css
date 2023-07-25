@@ -1,8 +1,8 @@
-.menuMobileContainer{  
+.menuMobileContainer {
   background-color: black !important;
 }
 
-.togglerButtonContainer{
+.togglerButtonContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,10 +11,40 @@
   border: 1px solid #4c4c4c;
 }
 
-.hamburgerIcon{  
+.hamburgerIcon {
   width: 42px;
   height: 30px;
   color: white;
 }
 
+.menuOptionsContainer{
+  margin-top: 12px;
+  margin-bottom: 0px !important;
+}
 
+.menuOption{
+  color: white !important;
+}
+
+.nav-link{
+  color:aliceblue
+}
+
+.searchIcon {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: calc(50% - 13px);
+  top: 13px;
+  color: white;
+  cursor: pointer;
+}
+
+.loginHeaderLabel {
+  position: absolute;
+  top: 14px;
+  right: 17px;
+  color: white;
+  font-weight: 400;
+  cursor: pointer;
+}

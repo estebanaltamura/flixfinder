@@ -10,7 +10,7 @@ export const useGetToken = (e) => {
   const getToken = (userName, password) => {
     axios
       .post("http://challenge-react.alkemy.org", { email: userName, password })
-      .then((res) => {
+      .then((res) => {       
         sessionStorage.setItem("token", res.data.token);
         setIsLogged(true);
         history("/movies");

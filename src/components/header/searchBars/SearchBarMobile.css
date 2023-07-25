@@ -45,6 +45,14 @@ input:-webkit-autofill {
   outline: none;
 }
 
+.closeButtonSearchBarMobileContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 56px;
+}
+
 .closeSearchIcon {
   grid-area: icon;
   margin: auto;
@@ -52,6 +60,5 @@ input:-webkit-autofill {
   width: 24px;
   height: 24px;
   font-weight: 900;
-
   cursor: pointer;
 }

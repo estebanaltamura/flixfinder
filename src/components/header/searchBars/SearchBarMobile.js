@@ -34,7 +34,7 @@ export const SearchBarMobile = () => {
 
   return (
     <div className="seachBarContainer">
-      <form onSubmit={searchSubmitHandler} autoComplete="off">
+      <form onSubmit={searchSubmitHandler} autoComplete="off" className="form">
         <input
           name="input"
           ref={inputElement}
@@ -42,9 +42,11 @@ export const SearchBarMobile = () => {
           className="searchInput"
         ></input>
       </form>
-      <FiX
-        className="closeSearchIcon"        
-      />
+      <div className="closeButtonSearchBarMobileContainer" id="closeButtonSearchBarMobileContainer">
+        <FiX
+          className="closeSearchIcon" id="closeSearchIcon"      
+        />
+      </div>
     </div>
   );
 };

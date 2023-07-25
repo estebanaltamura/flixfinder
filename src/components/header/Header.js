@@ -4,15 +4,26 @@ import { SearchBarMobile } from "./searchBars/SearchBarMobile";
 import { DesktopMenu } from "./menues/DesktopMenu";
 import "./Header.css";
 
-export const Header = () => {  
-  const [currentWidth, setCurrentWidth]             = useState(window.innerWidth);
-  const [ isHeaderSearchMode, setIsHeaderSearchMode] = useState (false)
+export const Header = () => {
+  const [currentWidth, setCurrentWidth] = useState(window.innerWidth);
+  const [isHeaderSearchMode, setIsHeaderSearchMode] = useState(false);
 
-  const searchModeHandler = (event)=>{
-    //console.log(event.target.classList.value="searchIcon")
-    //event.target.classList.value="searchIcon" && setIsHeaderSearchMode(true)
-    //event.target.classList.value="closeSearchIcon" && setIsHeaderSearchMode(false)
-  }
+  const searchModeHandler = (event) => {
+    if (
+      event.target.id === "searchIcon" ||
+      event.target.parentElement.id === "searchIcon"
+    ) {
+      setIsHeaderSearchMode(true);
+    }
+
+    if (
+      event.target.id === "closeSearchIcon" ||
+      event.target.parentElement.id === "closeSearchIcon" ||
+      event.target.id === "closeButtonSearchBarMobileContainer"
+    ) {
+      setIsHeaderSearchMode(false);
+    }
+  };
 
   useEffect(() => {
     const setWidth = () => {
@@ -24,16 +35,17 @@ export const Header = () => {
     return () => window.removeEventListener("resize", setWidth);
   }, []);
 
-  return (<header isHeaderSearchMode={isHeaderSearchMode} onClick={searchModeHandler}>
-            {currentWidth < 768 ? 
-              
-                  isHeaderSearchMode === true     ?
-                    <SearchBarMobile />
-                                                  :
-                    <MobileMenu />
-                 
-                                : 
-              <DesktopMenu />
-            }
-          </header>);
+  return (
+    <header onClick={searchModeHandler}>
+      {currentWidth < 768 ? (
+        isHeaderSearchMode === true ? (
+          <SearchBarMobile />
+        ) : (
+          <MobileMenu />
+        )
+      ) : (
+        <DesktopMenu />
+      )}
+    </header>
+  );
 };

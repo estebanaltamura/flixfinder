@@ -1,5 +1,131 @@
-footer {
-  background-color: black;
-  width: 100%;
-  height: 120px;
+
+
+.line{
+  width: 100%;    
+  border-top: 1px solid #cccccc;
 }
+
+.footerContainer{ 
+  position: absolute;
+  bottom: 0;    
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  margin: 0 auto;
+  width: 100%;
+  height: 160px;
+  margin-top: 60px;
+  background-color: black;
+}
+
+.contactFooterGrid{
+  display: grid;
+  margin: auto;
+  align-items: center;
+  grid-template-columns: 254px;
+  grid-template-rows: 35px 35px 35px 35px;
+  grid-template-areas: "mail" "git" "linkedin" "cv";
+    
+}
+
+.footerContact{
+  background-color: black;
+  border: none;
+  display: flex;
+  align-items: center;
+  color: #d1d1d1;
+  margin: 0;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+  border-left: 1px solid #d1d1d1;    
+}
+
+
+
+.footerDivider{
+  display: none;
+}
+
+.footerMail{  
+  grid-area: mail;
+}
+
+.footerMailIcon{
+  display: flex;
+  width: 40px;
+  height: 20px;
+}
+
+.footerMailCopyIcon{
+  display: none;
+}
+
+.copiedMessage{
+  display: flex;
+  font-size: 16px;
+  margin: 0;
+  align-items:center ;
+  justify-content: center;
+  color: #d1d1d1;
+}
+
+.footerGitIcon{
+  width: 40px;
+  height: 20px;
+}
+
+.footerLinkedinIcon{
+  width: 43px;
+  height: 23px;
+}
+
+.footerCVIcon{
+  width: 40px;
+  height: 20px;
+}
+
+
+@media screen and (min-width: 1050px) {
+  .footerContainer{  
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    bottom: 0;
+    left: calc((100% - 1050px) / 2);   
+    margin: 0 auto;
+    width: 1050px;
+    height: 60px;
+    margin-top: 60px;    
+  } 
+
+  .contactFooterGrid{
+    display: grid;
+    margin: auto;
+    align-items: center;
+    grid-template-columns: 240px 20px 240px 20px 240px 20px 240px;
+    grid-template-rows: 60px;
+    grid-template-areas: "mail . git . linkedin . cv";
+  }
+
+  .footerDivider{
+    display: flex;
+    margin: auto;
+    color:#d1d1d1;
+    font-size: 30px;
+  }
+
+  .footerContact{
+    margin: auto;  
+    border-left: none;   
+  }
+
+  .footerMailCopyIcon{
+    display: flex;
+  }
+
+  .footerMailIcon{
+    display: none;        
+  }
+}
+
