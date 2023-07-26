@@ -1,44 +1,89 @@
 .form-container {
   display: flex;
-  margin: 60px auto;
+  position: relative;
+  flex-flow: column;
+  overflow: visible;
+  margin: 120px auto;
   width: 100%;
-  max-width: 580px;
-  height: 340px; 
+  max-width: 570px;
+  height: 420px; 
+  justify-content: center;
+  align-items: center;  
+  user-select: none;
+  border-radius: 50px;
+  background-color: #C2B9CC;
+  padding: 0 60px;
+  box-shadow: 3px 3px 8px 0px #395173;
+}
+
+.formMainIconContainer{
+  position: absolute;
+  display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px;
-  border-radius: 12px;
-  background: #1f1f1f;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.199);
-  user-select: none;
+  background-color: #00264D;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  top: -100px;
 }
+
+.formMainIcon{
+  color: white;
+  width: 100px;
+  height: 100px;
+}
+
 
 form {
   width: 100%;
-  height: 100%;
+  height: fit-content;
   border: none;
 }
 
-.subtitle {
-  display: block;
-  font-size: 11px;
-  color: rgba(177, 177, 177, 0.3);
-  margin-bottom: 5px;
+.inputContainer{
+  display: flex;
+  flex-direction: row;
+  height: 70px;
+  width: 100%;
+  border-radius: 8px;  
+}
+
+.inputContainerUserName{
+  margin-top: 100px;
+}
+
+.inputIconContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  width: 70px;
+  height: 100%;
+  background-color:#00264D;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 
 input {
   display: block;
-  border: none;
-  border-bottom: solid rgb(143, 143, 143) 1px;
+  border: none;  
   background: none;
-  color: rgba(255, 255, 255, 0.555);
-  height: 35px;
-  width: calc(100% - 2px);
-  margin-bottom: 5px;
+  background-color: #395173;
+  color: white;  
+  width: 100%;
+  height: 100%;
+  font-size: 27px;
+  font-weight: 300;
+  padding-left: 25px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
-input:focus-visible {
-  outline: none;
+.inputIcon{
+  margin: auto;
+  color: white;
+  width: 50px;
+  height: 50px;  
 }
 
 .inputAlerts {
@@ -46,26 +91,92 @@ input:focus-visible {
   align-items: flex-start;
   color: #ff0400;
   font-size: 14px;
-  height: 30px;
-  width: 100%;
-  margin-bottom: 20px;
+  height: 23px;
+  width: 100%;  
 }
 
 .submit-btn {
   display: block;
   cursor: pointer;
   border: none;
-  border-radius: 8px;
-  box-shadow: 2px 2px 7px #38d39f70;
-  background: #5e916f;
-  color: rgba(255, 255, 255, 0.8);
-  margin: 0 30px;
-  width: calc(100% - 60px);
-  height: 35px;
-  transition: all 1s;
+  margin: auto;
+  width:  100%;
+  height: 70px;
+  border-radius: 20px;  
+  background: #395173;
+  color: rgba(255, 255, 255, 0.8);  
+  font-size: 27px;
+  font-weight: 300; 
 }
 
-.submit-btn:hover {
-  color: rgb(255, 255, 255);
-  box-shadow: none;
+input:focus-visible {
+  outline: none;
+}
+
+input::placeholder{
+  color:#c2c2c2;
+} 
+
+.createAccountLink{
+  text-decoration: underline;
+  font-size: 19px;
+  margin-top: 10px;
+  color:#967026;
+}
+
+.createAccountLink:visited{
+  color:rgba(255, 255, 255, 0.8);
+}
+
+
+@media screen and (max-width: 570px) {
+  .form-container{
+    padding: 0 20px;
+    height: 300px;
+  }
+
+  .inputContainer{
+    height: 45px;
+    
+  }
+
+  .inputIconContainer{
+    width: 45px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
+  .inputIcon{
+    width: 30px;
+    height: 30px;
+  }
+
+  input{
+    font-size: 20px;
+    padding-left: 10px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  .formMainIconContainer{
+    top: -50px;
+    width: 90px;
+    height: 90px;
+  }
+
+  .formMainIcon{
+    width: 50px;
+    height: 50px;
+  }
+
+  .submit-btn{
+    height: 45px;
+    border-radius: 8px;
+  }
+
+  .inputContainerUserName{
+    margin-top: 55px;  
+  }
+
+
 }

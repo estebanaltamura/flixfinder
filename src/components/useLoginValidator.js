@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { useGetToken } from "./useGetToken";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
+
+
 import "./useLoginValidator.css";
 
-export const useLoginValidator = (e) => {
-  const MySwal = withReactContent(Swal);
+export const useLoginValidator = (e) => {  
 
   const [userNameAlert, setUserNameAlert] = useState("");
   const [passwordAlert, setPasswordAlert] = useState("");
@@ -53,19 +52,10 @@ export const useLoginValidator = (e) => {
       setUserNameAlert("");
     }
 
-    if (password == "") {
-      setPasswordAlert("Ingrese su password");
-      return;
-    }
-
-    if (userName !== "challenge@alkemy.org" || password !== "react") {
-      MySwal(
-        <div className="alertContainer">
-          <h1>Nombre de usario y/o contraseña incorrectos</h1>
-        </div>
-      );
-      return;
-    }
+    // if (password == "") {
+    //   setPasswordAlert("Ingrese su password");
+    //   return;
+    // }   
 
     return true;
   };
