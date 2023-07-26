@@ -41,7 +41,10 @@ export const MobileMenu = () => {
       className="navbar navbar-expand-lg bg-body-tertiary menuMobileContainer navMenu"
       onBlur={onBlurHandler}
     >
-      <img src={logo} className="logo" />
+      {
+        isLogged && <img src={logo} className="logo" />
+      }
+      
       {
         isLogged &&
         <div className="container-fluid">

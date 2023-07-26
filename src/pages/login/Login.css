@@ -1,0 +1,43 @@
+.loginContainer{  
+  padding: 56px 20px 0 20px;
+  width: 100%;
+  height: calc(100vh - 160px);
+  overflow-y: scroll;
+}
+
+.brandingContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 70px;  
+  width: fit-content;
+  margin: 20px auto 0 auto;
+}
+
+.brandingTitle{
+  font-family: Montserrat;
+  font-size: 36px;
+  color: #505050; 
+}
+
+.greetingsLogin{
+  height: 50px;
+  color: #505050;
+  text-align: center;
+  margin: 30px auto 0 auto;
+  font-family: Montserrat;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+
+@media screen and (min-width: 1050px) {
+  .loginContainer{    
+    height: calc(100vh - 60px);
+  }
+
+  .greetingsLogin{    
+    font-size: 36px;    
+  }
+}

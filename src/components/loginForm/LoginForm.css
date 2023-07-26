@@ -3,15 +3,15 @@
   position: relative;
   flex-flow: column;
   overflow: visible;
-  margin: 120px auto;
+  margin: 120px auto 40px auto;
   width: 100%;
   max-width: 570px;
-  height: 420px; 
+  height: 360px; 
   justify-content: center;
   align-items: center;  
   user-select: none;
-  border-radius: 50px;
-  background-color: #C2B9CC;
+  border-radius: 50px;  
+  background-color: #fcec04;
   padding: 0 60px;
   box-shadow: 3px 3px 8px 0px #395173;
 }
@@ -22,16 +22,16 @@
   justify-content: center;
   align-items: center;
   background-color: #00264D;
-  width: 180px;
-  height: 180px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   top: -100px;
 }
 
 .formMainIcon{
   color: white;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
 }
 
 
@@ -44,20 +44,20 @@ form {
 .inputContainer{
   display: flex;
   flex-direction: row;
-  height: 70px;
+  height: 60px;
   width: 100%;
   border-radius: 8px;  
 }
 
 .inputContainerUserName{
-  margin-top: 100px;
+  margin-top: 70px;
 }
 
 .inputIconContainer{
   display: flex;
   justify-content: center;
   align-items: center;  
-  width: 70px;
+  width: 60px;
   height: 100%;
   background-color:#00264D;
   border-top-left-radius: 8px;
@@ -82,8 +82,8 @@ input {
 .inputIcon{
   margin: auto;
   color: white;
-  width: 50px;
-  height: 50px;  
+  width: 40px;
+  height: 40px;  
 }
 
 .inputAlerts {
@@ -101,7 +101,7 @@ input {
   border: none;
   margin: auto;
   width:  100%;
-  height: 70px;
+  height: 60px;
   border-radius: 20px;  
   background: #395173;
   color: rgba(255, 255, 255, 0.8);  
@@ -121,18 +121,24 @@ input::placeholder{
   text-decoration: underline;
   font-size: 19px;
   margin-top: 10px;
-  color:#967026;
+  color: #395173;
+  cursor: pointer;
 }
 
 .createAccountLink:visited{
-  color:rgba(255, 255, 255, 0.8);
+  color:#395173;
 }
 
+.createAccountLink:hover{
+  color:#395173;
+}
 
-@media screen and (max-width: 570px) {
+@media screen and (max-width: 1650px) {
   .form-container{
     padding: 0 20px;
     height: 300px;
+    max-width: 440px;
+    margin: 50px auto 20px auto;
   }
 
   .inputContainer{
@@ -180,3 +186,61 @@ input::placeholder{
 
 
 }
+
+@media screen and (max-width: 768px) {
+  .form-container{
+    padding: 0 20px;
+    height: 260px;
+    max-width: 440px;
+    margin: 50px auto 20px auto;
+  }
+
+  .inputContainer{
+    height: 35px;
+    
+  }
+
+  .inputIconContainer{
+    width: 35px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
+  .inputIcon{
+    width: 20px;
+    height: 20px;
+  }
+
+  input{
+    font-size: 18px;
+    padding-left: 10px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  .formMainIconContainer{
+    top: -40px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .formMainIcon{
+    width: 40px;
+    height: 40px;
+  }
+
+  .submit-btn{
+    height: 35px;
+    border-radius: 8px;
+    font-size: 20px;
+  }
+
+  .inputContainerUserName{
+    margin-top: 55px;  
+  }
+
+  .createAccountLink{    
+    font-size: 16px;    
+  }
+}
+

@@ -1,6 +1,8 @@
 
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import { Home } from "./pages/home/Home";
+import { Login } from "./pages/login/Login";
+import { CreateAccount } from "./pages/createAccount/CreateAccount";
+
 import { Header } from "./components/header/Header";
 import { Footer } from "./components/footer/Footer";
 import { ItemsListContainer } from "./pages/moviesAndTvSeriesList/ItemsListContainer";
@@ -17,7 +19,8 @@ function App() {
           <Header />          
           <Routes>
             <Route path="*"                           element={<Navigate to="/login" />} />           
-            <Route path="/login"                      element={<Home />} />
+            <Route path="/login"                      element={<Login />} />
+            <Route path="/createAccoun"               element={<CreateAccount />} />
             <Route path="/movies"                     element={<ItemsListContainer />} />
             <Route path="/tvSeries"                   element={<ItemsListContainer />} />
             {/* <Route path="/movies/:contentId"        element={<ItemDetails />} />

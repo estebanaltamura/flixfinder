@@ -19,7 +19,9 @@ export const DesktopMenu = () => {
 
   return (
     <Navbar className="navMenu" bg="dark" variant="dark" expand="lg">
-      <img src={logo} className="logo" />
+      {
+        isLogged && <img src={logo} className="logo" />
+      }
       {
         isLogged && 
         <Container className="containerMenu">
