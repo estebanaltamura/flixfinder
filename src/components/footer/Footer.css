@@ -4,16 +4,26 @@
 }
 
 .footerContainer{ 
-  position: absolute;
-  bottom: 0;    
+  position: relative;    
   display: flex;
   flex-direction: column;
   justify-content: center;  
   margin: 0 auto;
   width: 100%;
   height: 160px;  
-  background-color: black;
-  
+  background-color: black;  
+}
+
+.footerLoginRegister{
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  margin: 0 auto;
+  width: 100%;
+  height: 160px;  
+  background-color: black;  
 }
 
 .contactFooterGrid{
@@ -92,10 +102,19 @@
     bottom: 0;      
     margin: 0 auto;
     width: 100%;
-    height: 60px;
-    
-       
+    height: 60px;       
   } 
+
+  .footerLoginRegister{
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    bottom: 0;      
+    margin: 0 auto;
+    width: 100%;
+    height: 60px;       
+  }
 
   .contactFooterGrid{
     display: grid;
