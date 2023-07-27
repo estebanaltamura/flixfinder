@@ -2,13 +2,13 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { Login } from "./pages/login/Login";
 import { RegisterAccount } from "./pages/createAccount/RegisterAccount";
+import { MoviesAndTvSeriesDashboard } from "./pages/moviesAndTvSeriesDashboard/MoviesAndTvSeriesDashboard";
 
 
 
 
 import { Header } from "./components/header/Header";
 import { Footer } from "./components/footer/Footer";
-import { ItemsListContainer } from "./pages/moviesAndTvSeriesList/ItemsListContainer";
 import { ItemDetails } from "./components/ItemDetails";
 
 import { Results } from "./components/Results";
@@ -24,8 +24,8 @@ function App() {
             <Route path="*"                             element={<Navigate to="/login" />} />           
             <Route path="/login"                        element={<Login />} />
             <Route path="/registerAccount"              element={<RegisterAccount />} />
-            <Route path="/movies"                       element={<ItemsListContainer />} />
-            <Route path="/tvSeries"                     element={<ItemsListContainer />} />
+            <Route path="/movies"                       element={<MoviesAndTvSeriesDashboard />} />
+            <Route path="/tvSeries"                     element={<MoviesAndTvSeriesDashboard />} />
             {/* <Route path="/movies/:contentId"        element={<ItemDetails />} />
             <Route path="/tvSeries/:contentId"      element={<ItemDetails />} /> */}
             {/* <Route path="/movies/results/:query"    element={<Results />} />

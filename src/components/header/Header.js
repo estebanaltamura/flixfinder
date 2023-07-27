@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { loginContext } from "../../context/LoginContextProvider";
+import { LoginContext } from "../../contexts/LoginContextProvider"
 import { MobileMenu } from "./menues/MobileMenu";
 import { SearchBarMobile } from "./searchBars/SearchBarMobile";
 import { DesktopMenu } from "./menues/DesktopMenu";
@@ -7,7 +7,7 @@ import "./Header.css";
 
 export const Header = () => {
   const [currentWidth, setCurrentWidth] = useState(window.innerWidth);
-  const { isLogged } = useContext(loginContext);
+  const { isLogged } = useContext(LoginContext);
   const [isHeaderSearchMode, setIsHeaderSearchMode] = useState(false);
 
   const searchModeHandler = (event) => {
@@ -40,7 +40,7 @@ export const Header = () => {
   return (
     isLogged &&
     <header onClick={searchModeHandler}>
-      {currentWidth < 768 ? (
+      {currentWidth < 992 ? (
         isHeaderSearchMode === true ? (
           <SearchBarMobile />
         ) : (

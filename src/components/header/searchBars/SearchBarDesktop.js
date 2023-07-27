@@ -40,13 +40,13 @@ export const SearchBarDesktop = () => {
   };
 
   return (
-    <div className="searchBarDesktopContainer">
+    <div className="searchBarDesktopContainer">  
       <form onSubmit={searchSubmitHandler} autoComplete="off">
         <input
           ref={inputElement}
           name="input"
           placeholder={`Search ${itemListType}`}
-          className="searchInputDesktop"
+          className="searchInputDesktop"          
         ></input>
       </form>
       <BsSearch className="searchIconDesktop" onClick={searchIconCickHandler} />

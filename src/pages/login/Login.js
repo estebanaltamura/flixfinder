@@ -1,4 +1,4 @@
-import { LoginRegisterForm } from "../../components/loginForm/LoginRegisterForm"
+import { LoginAndRegisterForm } from "../../components/LoginAndRegisterForm/LoginAndRegisterForm"
 import logo from '../../assets/logo.png'
 import './Login.css'
 
@@ -11,7 +11,7 @@ export const Login = ()=>{
         <h1 className="brandingTitleLogo">FlixFinder</h1>
       </div>
       <h2 className="greetingsLogin">Good to see you again</h2>
-      <LoginRegisterForm />
+      <LoginAndRegisterForm />
     </div>
   )
 }  

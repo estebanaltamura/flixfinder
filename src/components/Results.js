@@ -2,13 +2,13 @@ import "./Results.css";
 import { useEffect, useState, useContext } from "react";
 import { Item } from "./Item";
 import { Navigate, useParams } from "react-router-dom";
-import { loginContext } from "../context/LoginContextProvider";
+import { LoginContext } from "../contexts/LoginContextProvider";
 import Spinner from "react-bootstrap/Spinner";
 
 export const Results = () => {
   const [RequestResults, setRequestResults] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { isLogged } = useContext(loginContext);
+  const { isLogged } = useContext(LoginContext);
   const { query } = useParams();
 
   useEffect(() => {

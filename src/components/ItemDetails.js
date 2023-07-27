@@ -1,7 +1,7 @@
 import "./ItemDetails.css";
 import { useParams, Navigate } from "react-router-dom";
 import { useState, useEffect, useRef, useContext } from "react";
-import { loginContext } from "../context/LoginContextProvider";
+import { LoginContext } from "../contexts/LoginContextProvider";
 import Spinner from "react-bootstrap/Spinner";
 
 export const ItemDetails = () => {
@@ -9,7 +9,7 @@ export const ItemDetails = () => {
   const img = useRef();
   const [content, setContent] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const { isLogged } = useContext(loginContext);
+  const { isLogged } = useContext(LoginContext);
 
   const imageErrorHandler = () => {
     img.current.src = "https://i.postimg.cc/BZNQgg6T/noImage.jpg";

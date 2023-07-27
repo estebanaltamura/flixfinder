@@ -2,12 +2,23 @@
   background-color: black !important;
 }
 
-.logo{
-  position: absolute;  
-  left: calc(50% - 25px);
-  top: 3px;  
+.logoDesktop{
+  position: relative;  
+    
   width: 50px;
   height: 50px;
+}
+
+.menuItemsDesktop{
+  display: flex;
+  align-items: center;  
+}
+
+.menuOptionsDesktop{
+  display: flex;
+  justify-content: center;
+  width: 100px;
+  color: #c2c2c2 !important;
 }
 
 .navMenu{
@@ -31,12 +42,12 @@
   color: white;
 }
 
-.menuOptionsContainer{
+.menuOptionsMobileContainer{
   margin-top: 12px;
   margin-bottom: 0px !important;
 }
 
-.menuOption{
+.menuOptionMobile{
   color: white !important;
 }
 

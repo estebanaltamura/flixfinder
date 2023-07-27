@@ -1,15 +1,52 @@
 import { useState } from "react";
-import { useGetToken } from "./useGetToken";
 
-
-import "./useLoginValidator.css";
-
-export const useLoginValidator = (e) => {  
-
+export const useLoginValidator = () => {  
   const [userNameAlert, setUserNameAlert] = useState("");
   const [passwordAlert, setPasswordAlert] = useState("");
-  const { getToken } = useGetToken();
+  
 
+  const areValidEntries = (event) => {    
+    const userName = event.target.username.value;
+    const password = event.target.password.value;
+
+    if (userName == "" && password == "") {      
+      return false;
+    }
+
+    if (userName == "") {      
+      return false;
+    }
+
+    const twoDotsRegExp = /\.{2,}/;
+    if (twoDotsRegExp.test(userName)) {     
+      return false;
+    }
+
+    const dotAtStart = /^\.{1}/;
+    const dotAtEnd = /\.{1}@{1}/;
+    if (dotAtStart.test(userName) || dotAtEnd.test(userName)) {     
+      return false;
+    }
+
+    const multiplesAt = /@.*@/;
+    if (multiplesAt.test(userName)) {     
+      return false;
+    }
+
+    const regExpUserName =
+      /[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}/;
+    if (!regExpUserName.test(userName)) {      
+      return false;
+    } 
+
+    if (password == "") {      
+      return false;
+    }   
+    
+    else {      
+      return true;
+    }   
+  };
 
   const setAlerts = (event) => {
     const userName = event.target.username.value;
@@ -63,50 +100,7 @@ export const useLoginValidator = (e) => {
       setUserNameAlert("");
       return;
     }    
-  };
-
-  const areValidEntries = (event) => {    
-    const userName = event.target.username.value;
-    const password = event.target.password.value;
-
-    if (userName == "" && password == "") {      
-      return false;
-    }
-
-    if (userName == "") {      
-      return false;
-    }
-
-    const twoDotsRegExp = /\.{2,}/;
-    if (twoDotsRegExp.test(userName)) {     
-      return false;
-    }
-
-    const dotAtStart = /^\.{1}/;
-    const dotAtEnd = /\.{1}@{1}/;
-    if (dotAtStart.test(userName) || dotAtEnd.test(userName)) {     
-      return false;
-    }
-
-    const multiplesAt = /@.*@/;
-    if (multiplesAt.test(userName)) {     
-      return false;
-    }
-
-    const regExpUserName =
-      /[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}/;
-    if (!regExpUserName.test(userName)) {      
-      return false;
-    } 
-
-    if (password == "") {      
-      return false;
-    }   
-    
-    else {      
-      return true;
-    }   
-  };
+  };  
 
   const resetAlerts = () => {
     setUserNameAlert("");

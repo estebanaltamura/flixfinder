@@ -4,11 +4,38 @@
   background-color: black !important;
 }
 
-.logo{
-  position: absolute;  
-  left: calc(50% - 25px);
-  top: 3px;  
+.menuItemsDesktop{
+  display: flex;
+  align-items: center;  
+}
+
+.logoDesktop{
+  position: relative;      
   width: 50px;
   height: 50px;
 }
+
+.menuOptionsDesktop{
+  display: flex;
+  justify-content: center;
+  width: 100px;
+  color: #c2c2c2 !important;
+}
+
+.loginHeaderLabel {
+  position: relative;
+  z-index: 1;
+  width: fit-content;
+  height: fit-content;
+  top: 0px;
+  right: 0;
+  color: #c2c2c2;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+
+
+
+
 

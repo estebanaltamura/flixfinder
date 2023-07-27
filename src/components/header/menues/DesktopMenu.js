@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginContext } from "../../../context/LoginContextProvider";
+import { LoginContext } from "../../../contexts/LoginContextProvider";
 import { SearchBarDesktop } from "../searchBars/SearchBarDesktop";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from '../../../assets/logo.png'
 import './DesktopMenu.css'
 
 export const DesktopMenu = () => {
-  const { isLogged, setIsLogged } = useContext(loginContext);
+  const { isLogged, setIsLogged } = useContext(LoginContext);
 
   const history = useNavigate();
 
@@ -18,28 +18,24 @@ export const DesktopMenu = () => {
   };
 
   return (
-    <Navbar className="navMenu" bg="dark" variant="dark" expand="lg">
-      {
-        isLogged && <img src={logo} className="logo" />
-      }
+    <Navbar className="navMenu" bg="dark" variant="dark" expand="lg">      
       {
         isLogged && 
-        <Container className="containerMenu">
-          <Navbar.Toggle
-            className="toggleMenu"
-            aria-controls="basic-navbar-nav"
-          />
+        <Container>          
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="/movies">Movies</Nav.Link>
-              <Nav.Link href="/tvSeries">TV-Series</Nav.Link>
+            <Nav className="me-auto menuItemsDesktop">
+              <img src={logo} className="logoDesktop" />
+              <Nav.Link href="/movies" className="menuOptionsDesktop">Movies</Nav.Link>
+              <Nav.Link href="/tvSeries" className="menuOptionsDesktop">TV-Series</Nav.Link>
+              
             </Nav>
+            
           </Navbar.Collapse>
-          {isLogged && (
-            <span className="loginHeaderLabel" onClick={logoutHandler}>
-              LogOut
-            </span>
-          )}
+            {isLogged && (
+                <span className="loginHeaderLabel" onClick={logoutHandler}>
+                  LogOut
+                </span>
+              )}
           {isLogged && <SearchBarDesktop />}
         </Container>
       }

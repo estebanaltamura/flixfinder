@@ -1,15 +1,15 @@
 import { useEffect, useState, useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { loginContext } from "../../context/LoginContextProvider";
+import { LoginContext } from "../../contexts/LoginContextProvider";
 import Spinner from "react-bootstrap/Spinner";
 import { Item } from '../../components/Item'
 
-import "./ItemsListContainer.css";
+import "./MoviesAndTvSeriesDashboard.css";
 
-export const ItemsListContainer = () => {
+export const MoviesAndTvSeriesDashboard = () => {
   const [movieData, setMovieData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { isLogged } = useContext(loginContext);
+  const { isLogged } = useContext(LoginContext);
   // const { itemListType } = useParams();
 
   const url = useLocation()

@@ -1,5 +1,5 @@
 import { useContext, useRef } from "react";
-import { loginContext } from "../../../context/LoginContextProvider";
+import { LoginContext } from "../../../contexts/LoginContextProvider";
 import { useNavigate } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -9,7 +9,7 @@ import logo from '../../../assets/logo.png'
 import "./MobileMenu.css";
 
 export const MobileMenu = () => {
-  const { isLogged, setIsLogged } = useContext(loginContext);
+  const { isLogged, setIsLogged } = useContext(LoginContext);
   const history = useNavigate();
   const togglerButtonRef = useRef();
 
@@ -40,11 +40,7 @@ export const MobileMenu = () => {
     <nav
       className="navbar navbar-expand-lg bg-body-tertiary menuMobileContainer navMenu"
       onBlur={onBlurHandler}
-    >
-      {
-        isLogged && <img src={logo} className="logo" />
-      }
-      
+    >      
       {
         isLogged &&
         <div className="container-fluid">
@@ -62,16 +58,16 @@ export const MobileMenu = () => {
           </button>
   
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0 menuOptionsContainer">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0 menuOptionsMobileContainer">
               
               <li className="nav-item">
-                <a className="nav-link active menuOption" aria-current="page" href="/movies">
+                <a className="nav-link active menuOptionMobile" aria-current="page" href="/movies">
                   Movies
                 </a>
               </li>
   
               <li className="nav-item">
-                <a className="nav-link menuOption" href="/tvSeries">
+                <a className="nav-link menuOptionMobile" href="/tvSeries">
                   TV-Series
                 </a>
               </li>
