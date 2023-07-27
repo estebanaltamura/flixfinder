@@ -10,7 +10,11 @@ export const useLoginValidator = (e) => {
   const [passwordAlert, setPasswordAlert] = useState("");
   const { getToken } = useGetToken();
 
-  const setAlerts = (userName, password) => {
+
+  const setAlerts = (event) => {
+    const userName = event.target.username.value;
+    const password = event.target.password.value;
+
     if (userName == "" && password == "") {
       setUserNameAlert("Ingrese un correo electronico");
       setPasswordAlert("Ingrese su password");
@@ -48,25 +52,60 @@ export const useLoginValidator = (e) => {
     if (!regExpUserName.test(userName)) {
       setUserNameAlert("Ingresar una direccion de email valida");
       return;
-    } else {
+    } 
+
+    if (password == "") {
+      setPasswordAlert("Ingrese su password");
+      return;
+    }   
+    
+    else {
       setUserNameAlert("");
-    }
-
-    // if (password == "") {
-    //   setPasswordAlert("Ingrese su password");
-    //   return;
-    // }   
-
-    return true;
+      return;
+    }    
   };
 
-  const validateInputs = (e) => {
-    e.preventDefault();
-    const userName = e.target.username.value;
-    const password = e.target.password.value;
+  const areValidEntries = (event) => {    
+    const userName = event.target.username.value;
+    const password = event.target.password.value;
 
-    setAlerts(userName, password);
-    setAlerts(userName, password) && getToken(userName, password);
+    if (userName == "" && password == "") {      
+      return false;
+    }
+
+    if (userName == "") {      
+      return false;
+    }
+
+    const twoDotsRegExp = /\.{2,}/;
+    if (twoDotsRegExp.test(userName)) {     
+      return false;
+    }
+
+    const dotAtStart = /^\.{1}/;
+    const dotAtEnd = /\.{1}@{1}/;
+    if (dotAtStart.test(userName) || dotAtEnd.test(userName)) {     
+      return false;
+    }
+
+    const multiplesAt = /@.*@/;
+    if (multiplesAt.test(userName)) {     
+      return false;
+    }
+
+    const regExpUserName =
+      /[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}/;
+    if (!regExpUserName.test(userName)) {      
+      return false;
+    } 
+
+    if (password == "") {      
+      return false;
+    }   
+    
+    else {      
+      return true;
+    }   
   };
 
   const resetAlerts = () => {
@@ -74,5 +113,5 @@ export const useLoginValidator = (e) => {
     setPasswordAlert("");
   };
 
-  return { userNameAlert, passwordAlert, validateInputs, resetAlerts };
+  return { userNameAlert, passwordAlert, areValidEntries, setAlerts, resetAlerts };
 };
