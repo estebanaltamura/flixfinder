@@ -49,9 +49,8 @@ export const LoginRegisterForm = () => {
   }
 
   const loginRegisterFormSubmitClickHandler = (event)=>{
-    event.preventDefault()
-    const urlInParts = url.pathname.split("/")
-    
+    event.preventDefault()    
+    const urlInParts = url.pathname.split("/")    
 
     if(areValidEntries(event) && urlInParts.includes("login")){    
       console.log("todo ok para pedir token")  
@@ -63,8 +62,7 @@ export const LoginRegisterForm = () => {
       console.log("todo ok para pedir registro")    
       //pedir registrar usuario
     }
-    else setAlerts(event)
-    
+    else setAlerts(event)    
   }
 
   useEffect(() => {    
@@ -84,6 +82,8 @@ export const LoginRegisterForm = () => {
     isLogged && history("/movies");
   },[]);
 
+  
+
   return (
     <>
       {!isLogged && (
@@ -92,13 +92,13 @@ export const LoginRegisterForm = () => {
             <div className="formMainIconContainer"><HiOutlineUser className="formMainIcon" /></div>
             <form action="/action_page.php" onSubmit={loginRegisterFormSubmitClickHandler}>        
               
-              <div className="inputContainer inputContainerUserName">
+              <div className={userNameAlert === "" ? "inputContainer inputContainerUserName" : "inputContainer inputContainerUserName shake"}>                
                 <div className="inputIconContainer"><GoPersonFill className="inputIcon" /></div>
                 <input type="text" name="username" autoComplete="off" placeholder="User name" />
               </div>      
               <span className="inputAlerts">{userNameAlert}</span>       
               
-              <div className="inputContainer">
+              <div className={passwordAlert === "" ? "inputContainer" : "inputContainer shake"}>
                 <div className="inputIconContainer"><BiSolidLock className="inputIcon" /></div>
                 <input type="password" name="password" autoComplete="off" placeholder="Password" />
               </div>       

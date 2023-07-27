@@ -4,7 +4,7 @@
   margin: 0 auto 40px auto;
   width: 100%;
   max-width: 440px;
-  height: 260px; 
+  height: 255px; 
   justify-content: center;
   align-items: center;  
   user-select: none;
@@ -70,7 +70,7 @@ input {
   border: none;  
   background: none;
   background-color: #395173;
-  color: white;  
+  color: #c2c2c2;  
   width: calc(100% - 60px);
   height: 100%;
   font-size: 20px;
@@ -138,10 +138,29 @@ input::placeholder{
   color:#395173;
 }
 
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.shake {
+  animation: shake 0.5s;
+  animation-iteration-count: 2;
+}
+
 @media screen and (min-width: 1650px) {
   .form-container{
     padding: 0 20px;
-    height: 360px;
+    height: 330px;
     max-width: 570px;
     margin: 0 auto 20px auto;
   }
