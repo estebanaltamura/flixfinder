@@ -21,6 +21,7 @@ export const LoginRegisterForm = () => {
   const history = useNavigate();
   const url = useLocation()
   const [ linkToRedirectToLoginOrRegisterAccountText, setLinkToRedirectToLoginOrRegisterAccountText ] = useState(null)
+  const [ textSubmitButton, setTextSubmitButton ] = useState(null)
 
 
 
@@ -67,28 +68,17 @@ export const LoginRegisterForm = () => {
   }
 
   useEffect(() => {    
-
-    window.addEventListener('DOMContentLoaded', (event) => {
-      // Obtén todos los inputs en el formulario
-      var inputs = document.querySelectorAll('input');
-      inputs.forEach(input => {
-          // Añade un event listener para el evento 'focus'
-          input.addEventListener('focus', (event) => {
-              // Mueve la ventana de visualización hacia el input
-              window.scrollTo(0, input.offsetTop);
-          });
-      });
-  });
-
   
     const urlInParts = url.pathname.split("/")
 
     if(urlInParts.includes("login")){      
       setLinkToRedirectToLoginOrRegisterAccountText("Create an account")
+      setTextSubmitButton("Login")
     }
 
     if(urlInParts.includes("registerAccount")){      
       setLinkToRedirectToLoginOrRegisterAccountText("Already have an account? Login here")
+      setTextSubmitButton("Create account")
     }
     
     isLogged && history("/movies");
@@ -114,8 +104,8 @@ export const LoginRegisterForm = () => {
               </div>       
               <span className="inputAlerts">{passwordAlert}</span>
               
-              <button type="submit" className="submit-btn">
-                LOGIN
+              <button type="submit" className="submitButton">
+                {textSubmitButton}
               </button>              
             </form>
             <a className="createAccountLink" onClick={redirectToLoginOrRegister}>{linkToRedirectToLoginOrRegisterAccountText}</a>

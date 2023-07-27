@@ -1,11 +1,10 @@
 .loginContainer{  
   padding: 0 20px;
   width: 100%;
-  height: calc(100vh - 160px);
-  
+  height: calc(100vh - 160px);  
 }
 
-.brandingContainer{
+.brandingContainerLogo{
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -16,20 +15,20 @@
   padding-top: 20px;
 }
 
-.brandingTitle{
+.brandingTitleLogo{
   font-family: Montserrat;
   font-size: 36px;
   color: #505050; 
 }
 
 .greetingsLogin{
-  height: 50px;
+  height: fit-content;
   color: #505050;
   text-align: center;
-  margin: 30px auto 0 auto;
+  margin: 50px auto 40px auto;
   font-family: Montserrat;
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 17px;
+  font-weight: 700;
 }
 
 
@@ -41,6 +40,7 @@
 
 @media screen and (min-width: 1650px) {
   .greetingsLogin{    
-    font-size: 36px;    
+    margin: 80px auto 130px auto;
+    font-size: 22px;    
   }  
 }

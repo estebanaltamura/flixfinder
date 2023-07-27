@@ -1,0 +1,49 @@
+.registerAccountContainer{  
+  padding: 0 20px;
+  width: 100%;
+  height: calc(100vh - 160px);
+  
+}
+
+.brandingContainerRegisterAccount{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;  
+  width: fit-content;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+.brandingTitleRegisterAccount{
+  font-family: Montserrat;
+  font-size: 36px;
+  color: #505050; 
+}
+
+.registerAccountMessage{
+  height: fit-content;
+  color: #505050;
+  text-align: center;
+  margin: 50px auto 70px auto;
+  font-family: Montserrat;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+
+@media screen and (min-width: 1050px) {
+  .registerAccountContainer{    
+    height: calc(100vh - 60px);
+  }  
+}
+
+@media screen and (min-width: 1650px) {
+
+  .registerAccountMessage{   
+    margin: 80px auto 130px auto;   
+    font-size: 22px; 
+  }
+  
+}
