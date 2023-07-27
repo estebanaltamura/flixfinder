@@ -1,4 +1,4 @@
-.form-container {  
+.form-container {    
   position: relative; 
   overflow: visible;
   margin: 40px auto 40px auto;
@@ -35,6 +35,7 @@
 
 
 form {
+  position: relative;
   width: 100%;
   height: fit-content;
   border: none; 
@@ -43,6 +44,7 @@ form {
 .inputContainer{
   display: flex;
   flex-direction: row;
+  
   height: 45px;
   width: 100%;
   border-radius: 8px;  
@@ -69,7 +71,7 @@ input {
   background: none;
   background-color: #395173;
   color: white;  
-  width: 100%;
+  width: calc(100% - 60px);
   height: 100%;
   font-size: 20px;
   font-weight: 300;
@@ -91,8 +93,9 @@ input {
   color: #ff0400;
   font-size: 14px;
   height: 23px;
-  width: 100%;  
-  margin-left: 52px;
+  width: calc(100% - 60px);  
+  margin-left: 60px;
+  padding-left: 3px;
 }
 
 .submit-btn {
@@ -170,6 +173,7 @@ input::placeholder{
 
   .formMainIconContainer{
     top: -100px;
+    left: calc(50% - 75px);
     width: 150px;
     height: 150px;
   }
