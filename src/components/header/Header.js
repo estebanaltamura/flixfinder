@@ -38,7 +38,7 @@ export const Header = () => {
   }, []);
 
   return (
-    
+    isLogged &&
     <header onClick={searchModeHandler}>
       {currentWidth < 768 ? (
         isHeaderSearchMode === true ? (
