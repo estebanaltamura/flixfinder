@@ -67,6 +67,20 @@ export const LoginRegisterForm = () => {
   }
 
   useEffect(() => {    
+
+    window.addEventListener('DOMContentLoaded', (event) => {
+      // Obtén todos los inputs en el formulario
+      var inputs = document.querySelectorAll('input');
+      inputs.forEach(input => {
+          // Añade un event listener para el evento 'focus'
+          input.addEventListener('focus', (event) => {
+              // Mueve la ventana de visualización hacia el input
+              window.scrollTo(0, input.offsetTop);
+          });
+      });
+  });
+
+  
     const urlInParts = url.pathname.split("/")
 
     if(urlInParts.includes("login")){      
