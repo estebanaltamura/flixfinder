@@ -25,12 +25,17 @@
   height: fit-content;
   color: #505050;
   text-align: center;
-  margin: 50px auto 40px auto;
+  margin: 50px auto 91px auto;
   font-family: Montserrat;
   font-size: 17px;
   font-weight: 700;
 }
 
+@media screen and (min-width: 550px) {
+  .greetingsLogin{    
+    margin: 50px auto 70px auto;    
+  }
+}
 
 @media screen and (min-width: 1050px) {
   .loginContainer{    
