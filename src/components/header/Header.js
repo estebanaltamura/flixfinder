@@ -29,6 +29,10 @@ export const Header = () => {
     }
   };
 
+  const onSubmitHandler = ()=>{
+    setIsHeaderSearchMode(false);
+  }
+
   useEffect(() => {
     const setWidth = () => {
       setCurrentWidth(window.innerWidth);
@@ -41,7 +45,7 @@ export const Header = () => {
 
   return (
     isLogged &&
-    <header onClick={searchModeHandler}>
+    <header onClick={searchModeHandler} onSubmit={onSubmitHandler}>
       {currentWidth < 992 ? (
         isHeaderSearchMode === true ? (
           <SearchBarMobile />
