@@ -33,6 +33,10 @@ export const SearchBarMobile = () => {
         setPlaceholderText("Search tv-series")
     }        
   },[url])
+
+  useEffect(()=>{
+    inputElement.current.focus()
+  },[url])
  
 
   return (
