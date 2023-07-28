@@ -101,11 +101,12 @@ export const LoginAndRegisterForm = () => {
               }
             >
               <div className="inputIconContainer">
-                <GoPersonFill className="inputIcon" />
+                <GoPersonFill className="inputIcon" /> 
               </div>
               <input
                 type="text"
                 name="username"
+                className="inputForm"
                 autoComplete="off"
                 placeholder="Insert a valid e-mail"
               />
@@ -123,6 +124,7 @@ export const LoginAndRegisterForm = () => {
               <input
                 type="password"
                 name="password"
+                className="inputForm"
                 autoComplete="off"
                 placeholder="Password"
               />
