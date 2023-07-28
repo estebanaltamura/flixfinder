@@ -43,7 +43,7 @@ export const MobileMenu = () => {
     >      
       {
         isLogged &&
-        <div className="container-fluid">
+        <div className="container-fluid dropdownMenu">
           <button
             ref={togglerButtonRef}
             className="navbar-toggler togglerButtonContainer"
