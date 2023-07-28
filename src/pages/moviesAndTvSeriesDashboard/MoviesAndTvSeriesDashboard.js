@@ -66,14 +66,14 @@ export const MoviesAndTvSeriesDashboard = () => {
 
           {
             (!isLoadingRequest && movieData.length === 0) &&
-              <div className={isLoading === true ? "hidden" : "container containerStyles"}>
+              <div className={isLoading === true ? "hidden" : "container containerMoviesAndTvSeriesDashboard"}>
                 <h3 className="alertText">{`No results`}</h3>
               </div>
           } 
 
           {
             (!isLoadingRequest && movieData.length > 0) &&
-              <div className={isLoading === true ? "hidden" : "container containerStyles"} onLoad={imgItemLoadHandler}>
+              <div className={isLoading === true ? "hidden" : "container containerMoviesAndTvSeriesDashboard"} onLoad={imgItemLoadHandler}>
                 <div className="row rowStyles">
                   {movieData.map((content, index) => {
                     return <Item content={content} key={index} index={index + 1} />;
