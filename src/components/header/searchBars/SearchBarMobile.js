@@ -47,7 +47,7 @@ export const SearchBarMobile = () => {
       </form>
       <div className="closeButtonSearchBarMobileContainer" id="closeButtonSearchBarMobileContainer">
         <FiX
-          className="closeSearchIconMobile" id="closeSearchIcon"      
+          className="closeSearchIconMobile" id="closeSearchIconMobile"      
         />
       </div>
     </div>

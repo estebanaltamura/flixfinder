@@ -11,6 +11,8 @@ export const Header = () => {
   const [isHeaderSearchMode, setIsHeaderSearchMode] = useState(false);
 
   const searchModeHandler = (event) => {
+    //console.log("deberia cerrar search mode", "id: ", event.target.id, "parent id: ", event.target.parentElement.id, "clases : ", event.target.classList.value)
+
     if (
       event.target.id === "searchIcon" ||
       event.target.parentElement.id === "searchIcon"
@@ -22,7 +24,7 @@ export const Header = () => {
       event.target.id === "closeSearchIconMobile" ||
       event.target.parentElement.id === "closeSearchIconMobile" ||
       event.target.id === "closeButtonSearchBarMobileContainer"
-    ) {
+    ) {      
       setIsHeaderSearchMode(false);
     }
   };
