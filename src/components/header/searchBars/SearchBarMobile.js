@@ -25,7 +25,7 @@ export const SearchBarMobile = () => {
     
     if((urlInParts.includes("searchResults") && urlInParts.includes("movie")) || urlInParts.includes("movies")){      
         setContentType("movie")
-        setPlaceholderText("Search movies")
+        setPlaceholderText("Search movies") 
     } 
 
     if((urlInParts.includes("searchResults") && urlInParts.includes("tv")) || urlInParts.includes("tvSeries")){

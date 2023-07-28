@@ -16,11 +16,11 @@ export const Header = () => {
       event.target.parentElement.id === "searchIcon"
     ) {
       setIsHeaderSearchMode(true);
-    }
+    } 
 
     if (
-      event.target.id === "closeSearchIcon" ||
-      event.target.parentElement.id === "closeSearchIcon" ||
+      event.target.id === "closeSearchIconMobile" ||
+      event.target.parentElement.id === "closeSearchIconMobile" ||
       event.target.id === "closeButtonSearchBarMobileContainer"
     ) {
       setIsHeaderSearchMode(false);
