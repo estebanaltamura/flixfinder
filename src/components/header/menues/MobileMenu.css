@@ -38,14 +38,14 @@
   width: 25px;
   height: 25px;
   right: calc(50% - 13px);
-  top: 16px;
+  top: 18px;
   color: white;
   cursor: pointer;
 }
 
 .loginHeaderLabelMobile {
   position: absolute;
-  top: 14px;
+  top: 16px;
   right: 17px;
   color: white;
   font-weight: 400;
