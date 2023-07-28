@@ -78,7 +78,7 @@ export const MobileMenu = () => {
           {isLogged && <BsSearch className="searchIconMobile" id="searchIcon" />}
   
           {isLogged && (
-            <span className="loginHeaderLabelMbile" onClick={logoutHandler}>
+            <span className="loginHeaderLabelMobile" onClick={logoutHandler}>
               LogOut
             </span>
           )}
