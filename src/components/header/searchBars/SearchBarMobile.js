@@ -36,7 +36,7 @@ export const SearchBarMobile = () => {
 
   useEffect(()=>{
     inputElement.current.focus()
-  },[url])
+  },[])
  
 
   return (
