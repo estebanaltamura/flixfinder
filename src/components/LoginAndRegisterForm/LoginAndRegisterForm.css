@@ -65,7 +65,7 @@ form {
   border-bottom-left-radius: 8px;
 }
 
-input {
+.inputForm {
   display: block;
   border: none;  
   background: none;
@@ -112,11 +112,11 @@ input {
   font-weight: 300; 
 }
 
-input:focus-visible {
+.inputForm:focus-visible {
   outline: none;
 }
 
-input::placeholder{
+.inputForm::placeholder{
   color:#c2c2c2;
 } 
 
@@ -181,7 +181,7 @@ input::placeholder{
     height: 30px;
   }
 
-  input{
+  .inputForm{
     font-size: 27px;
     padding-left: 25px;
     border-top-right-radius: 8px;

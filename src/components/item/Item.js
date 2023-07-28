@@ -11,9 +11,7 @@ export const Item = ({ content, index }) => {
     img.current.src = "https://i.postimg.cc/BZNQgg6T/noImage.jpg";
   };
 
-  const onLoadHandler = () => {
-    card.current.classList.add("show");
-  };
+ 
 
   return (
     <>
@@ -27,9 +25,9 @@ export const Item = ({ content, index }) => {
               ref={img}
               src={`https://image.tmdb.org/t/p/original${content.poster_path}`}
               className="card-img-top cardImg"
+              id={index}
               alt="..."
-              onError={imageErrorHandler}
-              onLoad={onLoadHandler}
+              onError={imageErrorHandler}              
             />
             <div className="card-body cardBodyStyles">
               <h5 className="card-title cardStyles">
@@ -55,9 +53,9 @@ export const Item = ({ content, index }) => {
               ref={img}
               src={`https://image.tmdb.org/t/p/original${content.poster_path}`}
               className="card-img-top cardImg"
+              id={index}
               alt="..."
-              onError={imageErrorHandler}
-              onLoad={onLoadHandler}
+              onError={imageErrorHandler}              
             />
             <div className="card-body cardBodyStyles">
               <h5 className="card-title cardStyles">

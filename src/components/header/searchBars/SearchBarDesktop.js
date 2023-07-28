@@ -1,55 +1,53 @@
-import "./SearchBarDesktop.css";
+import { useState, useEffect, useRef } from 'react'
+import { useNavigate, useLocation } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
-import { useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import "./SearchBarDesktop.css";
 
 export const SearchBarDesktop = () => {
   const inputElement = useRef(null);
+  const [ contentType, setContentType ] = useState("")
+  const [ placeHoldertext, setPlaceholderText ] = useState("")
   const history = useNavigate();
+  const url = useLocation()
 
-  const getContentType = () => {
-    if (window.location.toString().toLowerCase().includes("movie"))
-      return "movies";
-    if (window.location.toString().toLowerCase().includes("serie"))
-      return "tv-series";
-  };
-
-  const itemListType = getContentType();
-
-  useEffect(() => {
-    inputElement.current.focus();
-  }, []);
-
+   
   const searchSubmitHandler = (e) => {
-    e.preventDefault();
-    history(
-      `/${itemListType == "tv-series" ? "tvSeries" : "movies"}/results/${
-        e.target.input.value
-      }`
-    );
-    inputElement.current.value = "";
-  };
+    e.preventDefault();   
+    const query = inputElement.current.value  
+    history(`/searchResults/${contentType}/${query}`) 
 
-  const searchIconCickHandler = (e) => {
-    history(
-      `/${itemListType == "tv-series" ? "tvSeries" : "movies"}/results/${
-        e.target.previousElementSibling.childNodes[0].value
-      }`
-    );
-    inputElement.current.value = "";
-  };
+    inputElement.current.value = "";  
+    inputElement.current.blur()
+  };  
+ 
 
+  useEffect(()=>{
+    const urlInParts = url.pathname.split("/")
+    
+    if((urlInParts.includes("searchResults") && urlInParts.includes("movie")) || urlInParts.includes("movies")){      
+        setContentType("movie")
+        setPlaceholderText("Search movies")
+    } 
+
+    if((urlInParts.includes("searchResults") && urlInParts.includes("tv")) || urlInParts.includes("tvSeries")){
+        setContentType("tv")
+        setPlaceholderText("Search tv-series")
+    }        
+  },[url])
+
+  
+    
   return (
     <div className="searchBarDesktopContainer">  
       <form onSubmit={searchSubmitHandler} autoComplete="off">
         <input
           ref={inputElement}
           name="input"
-          placeholder={`Search ${itemListType}`}
+          placeholder={placeHoldertext}
           className="searchInputDesktop"          
         ></input>
       </form>
-      <BsSearch className="searchIconDesktop" onClick={searchIconCickHandler} />
+      <BsSearch className="searchIconDesktop" onClick={searchSubmitHandler} />
     </div>
   );
 };

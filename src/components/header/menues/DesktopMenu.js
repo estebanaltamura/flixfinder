@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { LoginContext } from "../../../contexts/LoginContextProvider";
 import { SearchBarDesktop } from "../searchBars/SearchBarDesktop";
 import { Navbar, Container, Nav } from "react-bootstrap";
@@ -12,7 +12,7 @@ export const DesktopMenu = () => {
   const history = useNavigate();
 
   const logoutHandler = () => {
-    sessionStorage.removeItem("token");
+    localStorage.removeItem("token");
     setIsLogged(false);
     history("/");
   };
@@ -25,14 +25,14 @@ export const DesktopMenu = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto menuItemsDesktop">
               <img src={logo} className="logoDesktop" />
-              <Nav.Link href="/movies" className="menuOptionsDesktop">Movies</Nav.Link>
-              <Nav.Link href="/tvSeries" className="menuOptionsDesktop">TV-Series</Nav.Link>
+              <NavLink  to="/movies" className="menuOptionsDesktop">Movies</NavLink>
+              <NavLink  to="/tvSeries" className="menuOptionsDesktop">TV-Series</NavLink>
               
             </Nav>
             
           </Navbar.Collapse>
             {isLogged && (
-                <span className="loginHeaderLabel" onClick={logoutHandler}>
+                <span className="loginHeaderLabelDesktop" onClick={logoutHandler}>
                   LogOut
                 </span>
               )}

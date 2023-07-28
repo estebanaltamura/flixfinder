@@ -22,7 +22,7 @@
   color: #c2c2c2 !important;
 }
 
-.loginHeaderLabel {
+.loginHeaderLabelDesktop {
   position: relative;
   z-index: 1;
   width: fit-content;

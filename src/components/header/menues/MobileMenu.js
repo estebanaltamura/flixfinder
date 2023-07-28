@@ -14,7 +14,7 @@ export const MobileMenu = () => {
   const togglerButtonRef = useRef();
 
   const logoutHandler = () => {
-    sessionStorage.removeItem("token");
+    localStorage.removeItem("token");
     setIsLogged(false);
     history("/login");
   };
@@ -75,10 +75,10 @@ export const MobileMenu = () => {
             </ul>
           </div>
   
-          {isLogged && <BsSearch className="searchIcon" id="searchIcon" />}
+          {isLogged && <BsSearch className="searchIconMobile" id="searchIcon" />}
   
           {isLogged && (
-            <span className="loginHeaderLabel" onClick={logoutHandler}>
+            <span className="loginHeaderLabelMbile" onClick={logoutHandler}>
               LogOut
             </span>
           )}

@@ -15,6 +15,7 @@ export const useLogin = () => {
   const getToken = async (userName, password) => {
     const projectCollection = 'movie-and-tv-series-browser-users'
     const req = { projectCollection, userName, password }
+    console.log(req)
     
     try{
       const res = await axios.post("https://encrypted-chat-backend.online:3100/login", req)
@@ -29,9 +30,13 @@ export const useLogin = () => {
         title: 'ERROR',
         text: error?.response?.data?.message,
         icon: 'success',
-        heightAuto: false
+        heightAuto: false,
+        customClass: {
+          "swal2-container": 'my-popup-class'         
+        }
+        
       });
-      console.log(error.response.data.message)
+      console.log(error?.response?.data?.message)
     }
   
   };
