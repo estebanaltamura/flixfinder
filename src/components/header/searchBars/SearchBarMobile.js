@@ -14,16 +14,18 @@ export const SearchBarMobile = () => {
   const searchSubmitHandler = (e) => {
     e.preventDefault();   
     const query = inputElement.current.value  
-    history(`/searchResults/${contentType}/${query}`) 
 
-    inputElement.current.value = "";  
-    inputElement.current.blur()
+    if(query !== ""){
+      history(`/searchResults/${contentType}/${query}`) 
+      inputElement.current.value = "";  
+      inputElement.current.blur()
+    }    
   };  
 
   useEffect(()=>{
     const urlInParts = url.pathname.split("/")
     
-    if((urlInParts.includes("searchResults") && urlInParts.includes("movie")) || urlInParts.includes("movies")){      
+    if((urlInParts.includes("searchResults") && urlInParts.includes("movie")) || urlInParts.includes("movies") || urlInParts.includes("contentDetails")){      
         setContentType("movie")
         setPlaceholderText("Search movies") 
     } 
@@ -31,7 +33,7 @@ export const SearchBarMobile = () => {
     if((urlInParts.includes("searchResults") && urlInParts.includes("tv")) || urlInParts.includes("tvSeries")){
         setContentType("tv")
         setPlaceholderText("Search tv-series")
-    }        
+    }     
   },[url])
 
   useEffect(()=>{

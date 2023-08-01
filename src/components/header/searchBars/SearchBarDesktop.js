@@ -14,10 +14,12 @@ export const SearchBarDesktop = () => {
   const searchSubmitHandler = (e) => {
     e.preventDefault();   
     const query = inputElement.current.value  
-    history(`/searchResults/${contentType}/${query}`) 
-
-    inputElement.current.value = "";  
-    inputElement.current.blur()
+    
+    if(query !== ""){
+      history(`/searchResults/${contentType}/${query}`) 
+      inputElement.current.value = "";  
+      inputElement.current.blur()
+    }    
   };  
  
 

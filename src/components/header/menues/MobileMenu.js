@@ -1,6 +1,6 @@
 import { useContext, useRef } from "react";
+import { useNavigate, NavLink } from "react-router-dom";
 import { LoginContext } from "../../../contexts/LoginContextProvider";
-import { useNavigate } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import { RxHamburgerMenu } from "react-icons/rx";
 import logo from '../../../assets/logo.png'
@@ -61,15 +61,15 @@ export const MobileMenu = () => {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 menuOptionsMobileContainer">
               
               <li className="nav-item">
-                <a className="nav-link active menuOptionMobile" aria-current="page" href="/movies">
+                <NavLink className="nav-link active menuOptionMobile" aria-current="page" to="/movies">
                   Movies
-                </a>
+                </NavLink>
               </li>
   
               <li className="nav-item">
-                <a className="nav-link menuOptionMobile" href="/tvSeries">
+                <NavLink className="nav-link menuOptionMobile" to="/tvSeries">
                   TV-Series
-                </a>
+                </NavLink>
               </li>
   
             </ul>

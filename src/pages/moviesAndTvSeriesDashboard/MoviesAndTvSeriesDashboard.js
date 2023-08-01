@@ -7,7 +7,7 @@ import { Item } from '../../components/item/Item'
 import "./MoviesAndTvSeriesDashboard.css";
 
 export const MoviesAndTvSeriesDashboard = () => {
-  const [movieData, setMovieData] = useState([]);  
+  const [ movieData, setMovieData ] = useState([]);  
   const [ isLoadingRequest, setIsLoadingRequest ] = useState(true);
   const [ isLoading, setIsLoading ] = useState(true)
   const { isLogged } = useContext(LoginContext);
@@ -53,6 +53,7 @@ export const MoviesAndTvSeriesDashboard = () => {
         setMovieData(res.results)
         setIsLoadingRequest(false)
         res.results.length === 0 && setIsLoading(false)
+        console.log(res.results)
       })    
   }, [url]);
 

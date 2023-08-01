@@ -8,6 +8,7 @@ header{
   background-color: black !important;
   z-index: 1;  
   user-select: none;
+  overflow-y: hidden;
 }
 
  

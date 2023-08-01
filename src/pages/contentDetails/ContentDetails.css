@@ -12,7 +12,7 @@ p {
 .gridContainer {
   display: flex;
   position: relative;
-  padding-top: 55px;
+  padding-top: 56px;
   justify-content: center;
   margin: 0 auto;
   min-height: 100vh;
@@ -22,8 +22,7 @@ p {
   display: grid;
   max-width: 840px;
   height: fit-content;
-  border: 1px solid #929292;
-  border-radius: 7px;
+  border: 1px solid #929292;  
   box-shadow: 2px 2px 3px 1px #6c6c6c;
 }
 
@@ -91,6 +90,7 @@ p {
   }
 
   .grid {
+    border-radius: 7px;
     margin: 116px 20px 100px 20px;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 60px 20px 20px 30px 20px 280px 50px 40px 40px 40px;

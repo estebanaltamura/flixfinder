@@ -1,24 +1,17 @@
 
 import { useEffect } from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { Header } from "./components/header/Header";
 import { Login } from "./pages/login/Login";
 import { RegisterAccount } from "./pages/createAccount/RegisterAccount";
 import { MoviesAndTvSeriesDashboard } from "./pages/moviesAndTvSeriesDashboard/MoviesAndTvSeriesDashboard";
 import { SearchResults } from "./pages/searchResults/SearchResults";
-
-
-
-
-
-import { Header } from "./components/header/Header";
+import { ContentDetails } from "./pages/contentDetails/ContentDetails";
 import { Footer } from "./components/footer/Footer";
-import { ItemDetails } from "./components/ItemDetails";
-
-
 import "./App.css";
 
-function App() {  
 
+function App() { 
   return (
     <>
       <BrowserRouter>        
@@ -30,10 +23,7 @@ function App() {
             <Route path="/movies"                             element={<MoviesAndTvSeriesDashboard key="moviesDashboard"    />} />
             <Route path="/tvSeries"                           element={<MoviesAndTvSeriesDashboard key="tvSeriesDashboard" />} />
             <Route path="/searchResults/:typeContent/:query"  element={<SearchResults />} />
-            {/* <Route path="/movies/:contentId"        element={<ItemDetails />} />
-            <Route path="/tvSeries/:contentId"      element={<ItemDetails />} /> */}
-            {/* <Route path="/movies/results/:query"    element={<Results />} />
-            <Route path="/tvSeries/results/:query"  element={<Results />} /> */}
+            <Route path="/contentDetails/:contentId"          element={<ContentDetails />} />          
           </Routes>
           <Footer />        
       </BrowserRouter>

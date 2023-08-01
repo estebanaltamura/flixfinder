@@ -1,17 +1,14 @@
 import "./Item.css";
-import { Link, useParams } from "react-router-dom";
-import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import { useRef } from "react";
 
 export const Item = ({ content, index }) => {
   const img = useRef();
-  const card = useRef();
-  const { itemListType } = useParams();
+  const card = useRef();  
 
   const imageErrorHandler = () => {
     img.current.src = "https://i.postimg.cc/BZNQgg6T/noImage.jpg";
-  };
-
- 
+  }; 
 
   return (
     <>
@@ -37,7 +34,7 @@ export const Item = ({ content, index }) => {
             </div>
             <Link
               className="detailsButton"
-              to={`/${itemListType}/${content.id}`}
+              to={`/contentDetails/${content.id}`}
             >
               See Details
             </Link>
@@ -65,7 +62,7 @@ export const Item = ({ content, index }) => {
             </div>
             <Link
               className="detailsButton"
-              to={`/${itemListType}/${content.id}`}
+              to={`/contentDetails/${content.id}`}
             >
               See Details
             </Link>
