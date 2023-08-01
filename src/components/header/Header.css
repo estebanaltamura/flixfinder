@@ -7,8 +7,7 @@ header{
   height: 56px;
   background-color: black !important;
   z-index: 1;  
-  user-select: none;
-  overflow-y: hidden;
+  user-select: none;  
 }
 
  

@@ -38,7 +38,7 @@ export const MobileMenu = () => {
 
   return (
     <nav
-      className="navbar navbar-expand-lg bg-body-tertiary menuMobileContainer navMenu"
+      className="navbar navbar-expand-lg bg-body-tertiary menuMobileContainer navMenuMobile"
       onBlur={onBlurHandler}
     >      
       {
@@ -57,7 +57,7 @@ export const MobileMenu = () => {
             <RxHamburgerMenu className="hamburgerIcon" />
           </button>
   
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <div className="collapse navbar-collapse navBarDesplegable" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 menuOptionsMobileContainer">
               
               <li className="nav-item">

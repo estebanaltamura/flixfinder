@@ -18,27 +18,40 @@ export const DesktopMenu = () => {
   };
 
   return (
-    <Navbar className="navMenu" bg="dark" variant="dark" expand="lg">      
-      {
-        isLogged && 
-        <Container>          
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto menuItemsDesktop">
-              <img src={logo} className="logoDesktop" />
-              <NavLink  to="/movies" className="menuOptionsDesktop">Movies</NavLink>
-              <NavLink  to="/tvSeries" className="menuOptionsDesktop">TV-Series</NavLink>
-              
-            </Nav>
-            
-          </Navbar.Collapse>
-            {isLogged && (
-                <span className="loginHeaderLabelDesktop" onClick={logoutHandler}>
-                  LogOut
-                </span>
-              )}
-          {isLogged && <SearchBarDesktop />}
-        </Container>
-      }
-    </Navbar>
+    <Container>
+      <div className="desktopItemsMenuContainer">
+        <div className="locoContainer">
+          <img src={logo} className="logoDesktop" />
+        </div>
+        <NavLink  to="/movies" className="menuItem1 menuOptions">Movies</NavLink>
+        <NavLink  to="/tvSeries" className="menuItem2 menuOptions">TV-Series</NavLink>
+        {isLogged && (
+          <span className="loginHeaderLabelDesktop" onClick={logoutHandler}>LogOut</span>
+        )}
+        {isLogged && <SearchBarDesktop />}
+      </div>
+    </Container>
+    // <div className="desktopMenuContainer">
+    //  
+    // </div>
+         
+      
+        
+     
+    
   );
 };
+
+
+// isLogged && 
+//         <Container>          
+//           <Navbar.Collapse id="basic-navbar-nav">
+//             <Nav className="me-auto menuItemsDesktop">
+//               
+              
+//             </Nav>
+            
+//           </Navbar.Collapse>
+//             
+//           
+//         </Container>

@@ -1,42 +1,45 @@
-.navMenu{
+.desktopItemsMenuContainer{
+  display:grid;
   width: 100%;
   height: 100%;
-  background-color: black !important;
-  overflow-y: hidden;
+  grid-template-columns: 70px 100px 100px 1fr auto;
+  grid-template-areas: "logo menuItem1 menuItem2 . logOutLink";  
 }
 
-.menuItemsDesktop{
+.menuItem1{
+  grid-area: menuItem1;
+}
+
+.menuItem2{
+  grid-area: menuItem2;
+}
+
+.locoContainer{
   display: flex;
-  align-items: center;  
+  width: 70px;
+  height: 56px;
+  justify-content: center;
+  align-items: center;
+  grid-area: logo;
 }
 
-.logoDesktop{
-  position: relative;      
+.logoDesktop{  
   width: 50px;
   height: 50px;
 }
 
-.menuOptionsDesktop{
+.menuOptions{
   display: flex;
+  align-items: center;
   justify-content: center;
-  width: 100px;
-  color: #c2c2c2 !important;
+  color: #c2c2c2
 }
 
-.loginHeaderLabelDesktop {
-  position: relative;
-  z-index: 1;
-  width: fit-content;
-  height: fit-content;
-  top: 0px;
-  right: 0;
+.loginHeaderLabelDesktop{  
+  position: block;  
+  margin: auto; 
   color: #c2c2c2;
   font-weight: 400;
   cursor: pointer;
+  grid-area: logOutLink;
 }
-
-
-
-
-
-

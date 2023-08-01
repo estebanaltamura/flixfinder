@@ -1,8 +1,16 @@
 .menuMobileContainer {
-  background-color: black !important;
+  display: flex;
   width: 100%;
   height: 100%;
-  background-color: black !important;
+  background-color: black !important;  
+
+}
+
+.navMenuMobile{
+  display: flex;
+  
+  background-color: black !important; 
+  
 }
 
 .togglerButtonContainer {
@@ -15,8 +23,15 @@
 }
 
 .dropdownMenu{
-  background-color: black !important;
+  background-color: black !important;  
+  
 }
+
+.navBarDesplegable{
+  
+  background-color: black;
+}
+
 
 .hamburgerIcon {
   width: 42px;
