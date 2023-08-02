@@ -1,16 +1,19 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { Navigate } from "react-router-dom"
 import { LoginContext } from "../../contexts/LoginContextProvider"
+import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider"
 import { LoginAndRegisterForm } from "../../components/LoginAndRegisterForm/LoginAndRegisterForm"
 import logo from '../../assets/logo.png'
 import './Login.css'
 
 
-export const Login = ()=>{
-
-  
+export const Login = ()=>{  
   const { isLogged } = useContext(LoginContext)
+  const { setIsLoading } = useContext(IsLoadingContext)
   
+  useEffect(()=>{
+    setIsLoading(false)
+  },[])
 
   return(
     isLogged ?

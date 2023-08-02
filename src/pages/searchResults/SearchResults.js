@@ -2,7 +2,8 @@ import { useEffect, useState, useContext, useRef } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { LoginContext } from "../../contexts/LoginContextProvider";
 import { Item } from "../../components/item/Item";
-import Spinner from "react-bootstrap/Spinner";
+import Lottie from 'react-lottie-player'
+import spinner from '../../assets/spinnerMoviesJSON.json'
 import "./SearchResults.css";
 
 export const SearchResults = () => {
@@ -49,7 +50,13 @@ export const SearchResults = () => {
       {isLogged ? 
         <>
           <div className={isLoading === true ? "spinnerContainer" : "hidden"}>
-            <Spinner animation="border" role="status" className="spinner"></Spinner>
+            <Lottie 
+              animationData={spinner}
+              style= {{"width": "160px", "height": "160px"}}
+              className={isLoading === true ? "spinnerHome" : "hidden"}
+              play
+              loop        
+            />        
           </div>
 
           {

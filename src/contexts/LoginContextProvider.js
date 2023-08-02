@@ -1,11 +1,14 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const LoginContext = createContext();
 
 export const LoginContextProvider = (props) => {
-  const isThereToken = localStorage.getItem("token") ? true : false;
+  const [ isLogged, setIsLogged ] = useState(null);
 
-  const [isLogged, setIsLogged] = useState(isThereToken);
+  useEffect(()=>{
+    const isThereToken = localStorage.getItem("token") ? true : false;
+    setIsLogged(isThereToken)
+  },[])
 
   return (
     <LoginContext.Provider value={{ isLogged, setIsLogged }}>

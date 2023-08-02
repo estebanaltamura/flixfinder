@@ -3,14 +3,11 @@
   width: 100%;
   height: 100%;
   background-color: black !important;  
-
 }
 
 .navMenuMobile{
-  display: flex;
-  
-  background-color: black !important; 
-  
+  display: flex;  
+  background-color: black !important;   
 }
 
 .togglerButtonContainer {
@@ -27,11 +24,13 @@
   
 }
 
-.navBarDesplegable{
-  
+.navBarDesplegable{  
   background-color: black;
 }
 
+header li{
+  height: 45px;
+}
 
 .hamburgerIcon {
   width: 42px;

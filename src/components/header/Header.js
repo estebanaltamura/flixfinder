@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import { LoginContext } from "../../contexts/LoginContextProvider"
-import { MobileMenu } from "./menues/MobileMenu";
+import { MobileMenu } from "./menus/MobileMenu";
 import { SearchBarMobile } from "./searchBars/SearchBarMobile";
-import { DesktopMenu } from "./menues/DesktopMenu";
+import { DesktopMenu } from "./menus/DesktopMenu";
 import "./Header.css";
 
 export const Header = () => {

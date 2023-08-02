@@ -1,6 +1,7 @@
 
-import { useEffect } from "react";
+import { useContext } from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { IsLoadingContext } from "./contexts/IsLoadingContextProvider";
 import { Header } from "./components/header/Header";
 import { Login } from "./pages/login/Login";
 import { RegisterAccount } from "./pages/createAccount/RegisterAccount";
@@ -12,6 +13,8 @@ import "./App.css";
 
 
 function App() { 
+
+  const { isLoading } = useContext(IsLoadingContext)
   return (
     <>
       <BrowserRouter>        
@@ -25,7 +28,7 @@ function App() {
             <Route path="/searchResults/:typeContent/:query"  element={<SearchResults />} />
             <Route path="/contentDetails/:contentId"          element={<ContentDetails />} />          
           </Routes>
-          <Footer />        
+          {!isLoading && <Footer />}        
       </BrowserRouter>
     </>
   );

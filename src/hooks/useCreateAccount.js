@@ -1,16 +1,11 @@
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { LoginContext } from "../contexts/LoginContextProvider";
 
 
-export const useCreateAccount = () => {
-  
-  const MySwal = withReactContent(Swal);
-  const history = useNavigate();
-  
+
+export const useCreateAccount = () => {  
+  const MySwal = withReactContent(Swal);  
 
   const createAccount = async (userName, password) => {
     const projectCollection = 'movie-and-tv-series-browser-users'
@@ -24,7 +19,7 @@ export const useCreateAccount = () => {
         icon: 'success',
         heightAuto: false
       });          
-      history("/login");       
+      return true    
     }
 
     catch (error){
@@ -35,6 +30,7 @@ export const useCreateAccount = () => {
         heightAuto: false
       });
       console.log(error.response.data.message)
+      return false
     }
   
   };

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { LoginContext } from "../../contexts/LoginContextProvider";
 import { useLoginValidator } from "../../hooks/useLoginValidator";
@@ -31,22 +31,48 @@ export const LoginAndRegisterForm = () => {
   const history = useNavigate();
   const url = useLocation();
 
-  const loginRegisterFormSubmitClickHandler = (event) => {
+  const userNameInput = useRef()
+  const passwordInput = useRef()
+  const submitButton = useRef()
+
+  const loginRegisterFormSubmitClickHandler = async(event) => {
     event.preventDefault();
     const urlInParts = url.pathname.split("/");
 
     const userName = event.target.username.value;
     const password = event.target.password.value;
     const userNameHandled = userName.trim().toLowerCase()
-        
+    
+    if(!areValidEntries(event)){
+      setAlerts(event);
+    }
+    
+    else if (urlInParts.includes("login")) {
+      submitButton.current.textContent = "WAITING..."
+      const wasSuccessfullTheLogin = await getToken(userNameHandled, password);
+      if(wasSuccessfullTheLogin){
+        history("/movies");
+      }
+      else{
+        userNameInput.current.value=""
+        passwordInput.current.value=""
+        submitButton.current.textContent="LOGIN"
+      }
+    }    
 
-    if (areValidEntries(event) && urlInParts.includes("login")) {
-      getToken(userNameHandled, password);
-    } else setAlerts(event);
-
-    if (areValidEntries(event) && urlInParts.includes("registerAccount")) {
-      createAccount(userNameHandled, password);
-    } else setAlerts(event);
+    else if (urlInParts.includes("registerAccount")) {
+      submitButton.current.textContent = "WAITING..."
+      const wasSuccessfullTheLogin = await createAccount(userNameHandled, password);
+      if(wasSuccessfullTheLogin){
+        history("/login");
+      }
+      else{
+        userNameInput.current.value=""
+        passwordInput.current.value=""
+        submitButton.current.textContent="LOGIN"
+      }
+      
+    } 
   };
 
   const redirectToLoginOrRegister = () => {
@@ -68,6 +94,7 @@ export const LoginAndRegisterForm = () => {
     const urlInParts = url.pathname.split("/");
 
     if (urlInParts.includes("login")) {
+
       setLinkToRedirectToLoginOrRegisterAccountText("Create an account");
       setTextSubmitButton("Login");
     }
@@ -106,6 +133,7 @@ export const LoginAndRegisterForm = () => {
               <input
                 type="text"
                 name="username"
+                ref={userNameInput}
                 className="inputForm"
                 autoComplete="off"
                 placeholder="Insert a valid e-mail"
@@ -124,6 +152,7 @@ export const LoginAndRegisterForm = () => {
               <input
                 type="password"
                 name="password"
+                ref={passwordInput}
                 className="inputForm"
                 autoComplete="off"
                 placeholder="Password"
@@ -131,8 +160,11 @@ export const LoginAndRegisterForm = () => {
             </div>
             <span className="inputAlerts">{passwordAlert}</span>
 
-            <button type="submit" className="submitButton">
-              {textSubmitButton}
+            <button 
+              type="submit" 
+              className="submitButton"
+              ref={submitButton}>
+                {textSubmitButton}
             </button>
           </form>
           <a className="createAccountLink" onClick={redirectToLoginOrRegister}>

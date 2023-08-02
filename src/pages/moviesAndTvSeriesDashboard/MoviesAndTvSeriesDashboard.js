@@ -1,16 +1,18 @@
 import { useEffect, useState, useContext, useRef } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { LoginContext } from "../../contexts/LoginContextProvider";
-import Spinner from "react-bootstrap/Spinner";
+import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
 import { Item } from '../../components/item/Item'
+import Lottie from 'react-lottie-player'
+import spinner from '../../assets/spinnerMoviesJSON.json'
 
 import "./MoviesAndTvSeriesDashboard.css";
 
 export const MoviesAndTvSeriesDashboard = () => {
-  const [ movieData, setMovieData ] = useState([]);  
-  const [ isLoadingRequest, setIsLoadingRequest ] = useState(true);
-  const [ isLoading, setIsLoading ] = useState(true)
+  const { isLoading, setIsLoading } = useContext(IsLoadingContext)
   const { isLogged } = useContext(LoginContext);
+  const [ isLoadingRequest, setIsLoadingRequest ] = useState(true);
+  const [ movieData, setMovieData ] = useState([]);  
   const imagesLoadedCounter = useRef(0)
   
 
@@ -52,8 +54,7 @@ export const MoviesAndTvSeriesDashboard = () => {
       .then((res) => {        
         setMovieData(res.results)
         setIsLoadingRequest(false)
-        res.results.length === 0 && setIsLoading(false)
-        console.log(res.results)
+        res.results.length === 0 && setIsLoading(false)        
       })    
   }, [url]);
 
@@ -62,7 +63,13 @@ export const MoviesAndTvSeriesDashboard = () => {
       {isLogged ? 
         <>
           <div className={isLoading === true ? "spinnerContainer" : "hidden"}>
-            <Spinner animation="border" role="status" className="spinner"></Spinner>
+            <Lottie 
+              animationData={spinner}
+              style= {{"width": "160px", "height": "160px"}}
+              className={isLoading === true ? "spinnerHome" : "hidden"}
+              play
+              loop        
+            />        
           </div>
 
           {
