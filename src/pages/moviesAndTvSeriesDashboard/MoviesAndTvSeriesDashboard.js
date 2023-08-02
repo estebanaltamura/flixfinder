@@ -13,7 +13,10 @@ export const MoviesAndTvSeriesDashboard = () => {
   const { isLogged } = useContext(LoginContext);
   const [ isLoadingRequest, setIsLoadingRequest ] = useState(true);
   const [ movieData, setMovieData ] = useState([]);  
+ 
   const imagesLoadedCounter = useRef(0)
+
+  const contentType = useRef()
   
 
   const url = useLocation()  
@@ -37,22 +40,22 @@ export const MoviesAndTvSeriesDashboard = () => {
   useEffect(() => {
     window.scrollTo(0, 0);  
     setIsLoadingRequest(true);
-    setIsLoading(true)   
-
-    let typeContent
+    setIsLoading(true)  
+    
     const urlInParts = url.pathname.split("/")
 
     if(urlInParts.includes("movies")){
-      typeContent = "movie"      
+      contentType.current = "movie"       
     } 
     if(urlInParts.includes("tvSeries")){
-      typeContent = "tv"     
+      contentType.current = "tv"      
     }            
 
-    fetch(`https://api.themoviedb.org/3/discover/${typeContent}?api_key=d3c0215c2ca34a0fad2322c5e5f70ab4&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`)
+    fetch(`https://api.themoviedb.org/3/discover/${contentType.current}?api_key=d3c0215c2ca34a0fad2322c5e5f70ab4&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`)
       .then((res) => res.json())
-      .then((res) => {        
-        setMovieData(res.results)
+      .then((res) => {   
+        const contentWithPoster = res.results.filter((content)=>content.poster_path !== null && content)         
+        setMovieData(contentWithPoster)
         setIsLoadingRequest(false)
         res.results.length === 0 && setIsLoading(false)        
       })    
@@ -84,7 +87,7 @@ export const MoviesAndTvSeriesDashboard = () => {
               <div className={isLoading === true ? "hidden" : "container containerMoviesAndTvSeriesDashboard"} onLoad={imgItemLoadHandler}>
                 <div className="row rowStyles">
                   {movieData.map((content, index) => {
-                    return <Item content={content} key={index} index={index + 1} />;
+                    return <Item content={content} contentType={contentType.current} key={index} index={index + 1} />;
                   })}
                 </div>
               </div>

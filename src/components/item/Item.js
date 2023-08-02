@@ -2,7 +2,7 @@ import "./Item.css";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 
-export const Item = ({ content, index }) => {
+export const Item = ({ content, contentType, index }) => {  
   const img = useRef();
   const card = useRef();  
 
@@ -33,8 +33,8 @@ export const Item = ({ content, index }) => {
               <p className="textStyles card-text ">{content.overview}</p>
             </div>
             <Link
-              className="detailsButton"
-              to={`/contentDetails/${content.id}`}
+              className="detailsButton"              
+              to={`/contentDetails/${contentType}/${content.id}`}
             >
               See Details
             </Link>
@@ -62,7 +62,7 @@ export const Item = ({ content, index }) => {
             </div>
             <Link
               className="detailsButton"
-              to={`/contentDetails/${content.id}`}
+              to={`/contentDetails/${contentType}/${content.id}`}
             >
               See Details
             </Link>

@@ -46,7 +46,7 @@ export const Header = () => {
   return (
     isLogged &&
     <header onClick={searchModeHandler} onSubmit={onSubmitHandler}>
-      {currentWidth < 992 ? (
+      {currentWidth < 1200 ? (
         isHeaderSearchMode === true ? (
           <SearchBarMobile />
         ) : (

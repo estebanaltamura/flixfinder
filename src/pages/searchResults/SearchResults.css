@@ -1,6 +1,6 @@
 .containerStyles {
-  min-height: 100vh;
-  padding: 106px 0 176px 0;
+  min-height: calc(100vh - 160px);
+  padding: 106px 0 50px 0;
 }
 
 .spinner {
@@ -20,3 +20,11 @@
   align-items: center;
   height: 100vh;
 }
+
+
+@media screen and (min-width: 1050px) {
+  .containerStyles {
+    min-height: calc(100vh - 60px);    
+  }
+}
+

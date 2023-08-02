@@ -7,7 +7,7 @@
   margin: 0;
   box-sizing: border-box;
   user-select: none;  
-  overflow-x: auto;
+  overflow-x: visible;
 }
 
 .hidden{
@@ -16,20 +16,6 @@
 
 .my-popup-class {
   overflow-y: hidden;
-}
-
-
-@media screen and (max-width: 767px) {
-  * {
-    overflow-x: visible;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  * {
-    
-    overflow-x: hidden;
-  }
 }
 
 a {
