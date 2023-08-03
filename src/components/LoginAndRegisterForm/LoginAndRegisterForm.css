@@ -1,19 +1,17 @@
-.form-container {    
-  position: relative; 
-  overflow: visible;
-  margin: 0 auto 40px auto;
+.form-container{
+  position: relative;
   width: 100%;
   max-width: 440px;
-  height: 300px; 
+  height: fit-content; 
   justify-content: center;
   align-items: center;  
   user-select: none;
   border-radius: 30px;  
-  background-color: #D9D9D9;
-  padding: 25px 40px 0 40px;
-  margin-top: 80px;
+  background-color: #D9D9D9;  
   box-shadow: 3px 3px 8px 0px #395173;
+  margin: 80px auto 0 auto;
 }
+
 
 .formMainIconContainer{
   position: absolute;
@@ -25,7 +23,7 @@
   height: 92px;
   border-radius: 50%;
   top: -65px;
-  left: calc(50% - 40px);
+  left: calc(50% - 46px);
 }
 
 .formMainIcon{
@@ -39,6 +37,8 @@ form {
   width: 100%;
   height: fit-content;
   border: none; 
+  position: relative;   
+  padding: 0 20px; 
 }
 
 .inputContainer{
@@ -50,9 +50,10 @@ form {
 }
 
 .formTitle{
-  position: absolute;
+  
+  width: 100%;
   left: 0px;
-  height: fit-content;
+  height: fit-content;  
   padding: 0 20px;
   font-family: Poppins;
   font-size: 17px;
@@ -60,12 +61,10 @@ form {
   line-height: 26px;
   letter-spacing: 0em;
   text-align: center;
-  margin-top: 15px;
+  padding-top: 35px;
 }
 
-.inputContainerUserName{
-  margin-top: 80px;
-}
+
 
 .inputIconContainer{
   display: flex;
@@ -145,6 +144,7 @@ form {
   margin-top: 5px;
   color: black;
   cursor: pointer;
+  padding-bottom: 15px;
 }
 
 .createAccountLink:visited{

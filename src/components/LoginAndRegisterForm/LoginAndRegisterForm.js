@@ -127,9 +127,7 @@ export const LoginAndRegisterForm = () => {
           >
             <div
               className={
-                userNameAlert === ""
-                  ? "inputContainer inputContainerUserName"
-                  : "inputContainer inputContainerUserName shake"
+                userNameAlert === "" ? "inputContainer" : "inputContainer shake"                 
               }
             >
               <div className="inputIconContainer">
