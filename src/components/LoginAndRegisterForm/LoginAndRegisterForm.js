@@ -45,11 +45,11 @@ export const LoginAndRegisterForm = () => {
     }
     
     else if (urlInParts.includes("login")) {
+      submitButton.current.classList.add("waiting")
       submitButton.current.textContent = "WAITING..."
       userNameInput.current.disabled= true
       passwordInput.current.disabled= true
       submitButton.current.disabled= true
-      submitButton.current.classList.add("waiting")
       const wasSuccessfullTheLogin = await getToken(userNameHandled, password);
       if(wasSuccessfullTheLogin){
         history("/movies");
@@ -66,6 +66,7 @@ export const LoginAndRegisterForm = () => {
     }    
 
     else if (urlInParts.includes("registerAccount")) {
+      submitButton.current.classList.add("waiting")
       submitButton.current.textContent = "WAITING..."
       userNameInput.current.disabled= true
       passwordInput.current.disabled= true
@@ -78,6 +79,7 @@ export const LoginAndRegisterForm = () => {
         userNameInput.current.disabled= false
         passwordInput.current.disabled= false
         submitButton.current.disabled= false
+        submitButton.current.classList.remove("waiting")
         userNameInput.current.value=""
         passwordInput.current.value=""
         submitButton.current.textContent="CREATE ACCOUNT"
