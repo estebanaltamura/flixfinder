@@ -121,7 +121,7 @@ export const LoginAndRegisterForm = () => {
     <>
       {!isLogged && (
         <div className="form-container" onClick={resetAlertWhenFocusInInput}>
-          <div className="formMainIconContainer">
+          <div className={section === "login" ? "formMainIconContainer" : "formMainIconContainer formMainIconContainerRegisterAccount"} >
             <img src={userIcon} />
           </div>
           <h3 className="formTitle">{section === "login" ? "Good to see you again!" : "Insert user name and password to create an account"}</h3>
@@ -169,7 +169,7 @@ export const LoginAndRegisterForm = () => {
 
             <button 
               type="submit" 
-              className="submitButton"
+              className={section === "login" ? "submitButton" : "submitButton submitButtonRegisterAccount"}
               ref={submitButton}>
                 {section === "login" ? "LOGIN" : "CREATE ACCOUNT"}
             </button>
