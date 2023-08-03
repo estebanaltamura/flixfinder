@@ -12,7 +12,7 @@ export const useCreateAccount = () => {
     const req = { projectCollection, userName, password }
     
     try{
-      const res = await axios.post("https://encrypted-chat-backend.online:3100/registerUser", req)      
+      const res = await axios.post("https://encrypted-chat-backend.online:3100/registerUser", req, {timeout: 5000})    
       MySwal.fire({
         title: 'USER CREATED',
         text: 'Please login with your user',

@@ -13,7 +13,7 @@ export const useLogin = () => {
     const req = { projectCollection, userName, password }    
     
     try{
-      const res = await axios.post("https://encrypted-chat-backend.online:3100/login", req)
+      const res = await axios.post("https://encrypted-chat-backend.online:3100/login", req, {timeout: 5000})
       const response = res.data
       localStorage.setItem("token", response.token);      
       setIsLogged(true);      
