@@ -128,6 +128,7 @@ export const LoginAndRegisterForm = () => {
           <form
             action="/action_page.php"
             onSubmit={loginRegisterFormSubmitClickHandler}
+            className="loginAndRegisterForm"
           >
             <div
               className={

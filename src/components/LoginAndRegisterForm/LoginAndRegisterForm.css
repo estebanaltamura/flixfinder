@@ -30,9 +30,7 @@
   background-color: #496787;
 }
 
-
-
-form {
+.loginAndRegisterForm {
   position: relative;
   width: 100%;
   height: fit-content;
@@ -62,8 +60,6 @@ form {
   text-align: center;
   padding-top: 35px;
 }
-
-
 
 .inputIconContainer{
   display: flex;
