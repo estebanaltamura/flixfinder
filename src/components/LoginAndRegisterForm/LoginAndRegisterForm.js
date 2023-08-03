@@ -141,7 +141,7 @@ export const LoginAndRegisterForm = () => {
                 type="text"
                 name="username"
                 ref={userNameInput}
-                className="inputForm"
+                className="inputForm inputFormUserName"
                 autoComplete="off"
                 placeholder="E-mail"
               />

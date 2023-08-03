@@ -89,7 +89,10 @@ form {
   font-size: 14px;
   font-weight: 300;  
   border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;  
+  border-bottom-right-radius: 10px;    
+}
+
+.inputFormUserName{
   text-transform:lowercase
 }
 
