@@ -25,11 +25,11 @@ export const useCreateAccount = () => {
     catch (error){
       MySwal.fire({
         title: 'ERROR',
-        text: error.response.data.message,
+        text: error?.response?.data?.message,
         icon: 'success',
         heightAuto: false
       });
-      console.log(error.response.data.message)
+      console.log(error?.response?.data?.message)
       return false
     }
   

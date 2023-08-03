@@ -4,19 +4,14 @@ import { LoginContext } from "../../contexts/LoginContextProvider";
 import { useLoginValidator } from "../../hooks/useLoginValidator";
 import { useLogin } from "../../hooks/useLogin";
 import { useCreateAccount } from "../../hooks/useCreateAccount";
-import { BiSolidLock } from "react-icons/bi";
-import { GoPersonFill } from "react-icons/go";
-import { HiOutlineUser } from "react-icons/hi";
+import mailIcon from '../../assets/mailIcon.svg'
+import passwordIcon from '../../assets/passwordIcon.svg'
+import userIcon from '../../assets/userIcon.svg'
 import "./LoginAndRegisterForm.css";
 
 export const LoginAndRegisterForm = () => {
   const { isLogged } = useContext(LoginContext);
-
-  const [
-    linkToRedirectToLoginOrRegisterAccountText,
-    setLinkToRedirectToLoginOrRegisterAccountText,
-  ] = useState(null);
-  const [textSubmitButton, setTextSubmitButton] = useState(null);
+  const [section, setSection ] = useState(null) 
 
   const {
     userNameAlert,
@@ -25,6 +20,7 @@ export const LoginAndRegisterForm = () => {
     setAlerts,
     resetAlerts,
   } = useLoginValidator();
+
   const { getToken } = useLogin();
   const { createAccount } = useCreateAccount();
 
@@ -34,6 +30,7 @@ export const LoginAndRegisterForm = () => {
   const userNameInput = useRef()
   const passwordInput = useRef()
   const submitButton = useRef()
+
 
   const loginRegisterFormSubmitClickHandler = async(event) => {
     event.preventDefault();
@@ -49,11 +46,17 @@ export const LoginAndRegisterForm = () => {
     
     else if (urlInParts.includes("login")) {
       submitButton.current.textContent = "WAITING..."
+      userNameInput.current.disabled= true
+      passwordInput.current.disabled= true
+      submitButton.current.disabled= true
       const wasSuccessfullTheLogin = await getToken(userNameHandled, password);
       if(wasSuccessfullTheLogin){
         history("/movies");
       }
       else{
+        userNameInput.current.disabled= false
+        passwordInput.current.disabled= false
+        submitButton.current.disabled= false
         userNameInput.current.value=""
         passwordInput.current.value=""
         submitButton.current.textContent="LOGIN"
@@ -62,21 +65,27 @@ export const LoginAndRegisterForm = () => {
 
     else if (urlInParts.includes("registerAccount")) {
       submitButton.current.textContent = "WAITING..."
+      userNameInput.current.disabled= true
+      passwordInput.current.disabled= true
+      submitButton.current.disabled= true
       const wasSuccessfullTheLogin = await createAccount(userNameHandled, password);
       if(wasSuccessfullTheLogin){
         history("/login");
       }
       else{
+        userNameInput.current.disabled= false
+        passwordInput.current.disabled= false
+        submitButton.current.disabled= false
         userNameInput.current.value=""
         passwordInput.current.value=""
-        submitButton.current.textContent="LOGIN"
+        submitButton.current.textContent="CREATE ACCOUNT"
       }
       
     } 
   };
 
   const redirectToLoginOrRegister = () => {
-    const urlInParts = url.pathname.split("/");
+    const urlInParts = url.pathname.split("/");   
 
     if (urlInParts.includes("login")) {
       history("/registerAccount");
@@ -92,30 +101,26 @@ export const LoginAndRegisterForm = () => {
 
   useEffect(() => {
     const urlInParts = url.pathname.split("/");
-
+    
     if (urlInParts.includes("login")) {
-
-      setLinkToRedirectToLoginOrRegisterAccountText("Create an account");
-      setTextSubmitButton("Login");
+      setSection("login")
     }
 
     if (urlInParts.includes("registerAccount")) {
-      setLinkToRedirectToLoginOrRegisterAccountText(
-        "Already have an account? Login here"
-      );
-      setTextSubmitButton("Create account");
-    }
+      setSection("registerAccount")
+    }        
+  }, [url]);
 
-    isLogged && history("/movies");
-  }, []);
+  useEffect(()=>{isLogged && history("/movies");},[])
 
   return (
     <>
       {!isLogged && (
         <div className="form-container" onClick={resetAlertWhenFocusInInput}>
           <div className="formMainIconContainer">
-            <HiOutlineUser className="formMainIcon" />
+            <img src={userIcon} />
           </div>
+          <h3 className="formTitle">{section === "login" ? "Good to see you again!" : "Insert user name and password to create an account"}</h3>
           <form
             action="/action_page.php"
             onSubmit={loginRegisterFormSubmitClickHandler}
@@ -128,7 +133,7 @@ export const LoginAndRegisterForm = () => {
               }
             >
               <div className="inputIconContainer">
-                <GoPersonFill className="inputIcon" /> 
+                <img src={mailIcon} className="inputIcon"/>                
               </div>
               <input
                 type="text"
@@ -136,7 +141,7 @@ export const LoginAndRegisterForm = () => {
                 ref={userNameInput}
                 className="inputForm"
                 autoComplete="off"
-                placeholder="Insert a valid e-mail"
+                placeholder="E-mail"
               />
             </div>
             <span className="inputAlerts">{userNameAlert}</span>
@@ -147,7 +152,7 @@ export const LoginAndRegisterForm = () => {
               }
             >
               <div className="inputIconContainer">
-                <BiSolidLock className="inputIcon" />
+                <img src={passwordIcon} className="inputIcon"/>              
               </div>
               <input
                 type="password"
@@ -164,11 +169,11 @@ export const LoginAndRegisterForm = () => {
               type="submit" 
               className="submitButton"
               ref={submitButton}>
-                {textSubmitButton}
+                {section === "login" ? "LOGIN" : "CREATE ACCOUNT"}
             </button>
           </form>
           <a className="createAccountLink" onClick={redirectToLoginOrRegister}>
-            {linkToRedirectToLoginOrRegisterAccountText}
+            {section === "login" ? "Create an account" : "Already have an account?"}
           </a>
         </div>
       )}

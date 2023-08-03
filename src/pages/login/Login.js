@@ -23,8 +23,7 @@ export const Login = ()=>{
         <div className="brandingContainerLogo">
           <img src={logo} />
           <h1 className="brandingTitleLogo">FlixFinder</h1>
-        </div>
-        <h2 className="greetingsLogin">Good to see you again</h2>
+        </div>       
         <LoginAndRegisterForm />
       </div>            
   )
