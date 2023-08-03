@@ -49,6 +49,7 @@ export const LoginAndRegisterForm = () => {
       userNameInput.current.disabled= true
       passwordInput.current.disabled= true
       submitButton.current.disabled= true
+      submitButton.current.classList.add("waiting")
       const wasSuccessfullTheLogin = await getToken(userNameHandled, password);
       if(wasSuccessfullTheLogin){
         history("/movies");
@@ -57,6 +58,7 @@ export const LoginAndRegisterForm = () => {
         userNameInput.current.disabled= false
         passwordInput.current.disabled= false
         submitButton.current.disabled= false
+        submitButton.current.classList.remove("waiting")
         userNameInput.current.value=""
         passwordInput.current.value=""
         submitButton.current.textContent="LOGIN"
