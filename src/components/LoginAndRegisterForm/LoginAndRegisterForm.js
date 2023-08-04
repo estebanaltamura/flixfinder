@@ -4,14 +4,17 @@ import { LoginContext } from "../../contexts/LoginContextProvider";
 import { useLoginValidator } from "../../hooks/useLoginValidator";
 import { useLogin } from "../../hooks/useLogin";
 import { useCreateAccount } from "../../hooks/useCreateAccount";
+import { useFormElementsBehavior } from "../../hooks/useFormElementsBehavior";
 import mailIcon from '../../assets/mailIcon.svg'
 import passwordIcon from '../../assets/passwordIcon.svg'
 import userIcon from '../../assets/userIcon.svg'
 import "./LoginAndRegisterForm.css";
+import { AiFillEye, AiFillEyeInvisible} from "react-icons/ai";
 
 export const LoginAndRegisterForm = () => {
   const { isLogged } = useContext(LoginContext);
   const [section, setSection ] = useState(null) 
+  const [ showPassword, setShowPassword ] = useState(false)
 
   const {
     userNameAlert,
@@ -19,7 +22,13 @@ export const LoginAndRegisterForm = () => {
     areValidEntries,
     setAlerts,
     resetAlerts,
-  } = useLoginValidator();
+        } = useLoginValidator();
+
+  const {
+    setStylesElementsWaiting,
+    setStylesElementsLoginRejected,
+    setStylesElementsRegisterRejected
+        } = useFormElementsBehavior()
 
   const { getToken } = useLogin();
   const { createAccount } = useCreateAccount();
@@ -37,52 +46,35 @@ export const LoginAndRegisterForm = () => {
     const urlInParts = url.pathname.split("/");
 
     const userName = event.target.username.value;
-    const password = event.target.password.value;
     const userNameHandled = userName.trim().toLowerCase()
+    const password = event.target.password.value;
     
     if(!areValidEntries(event)){
       setAlerts(event);
     }
     
-    else if (urlInParts.includes("login")) {
-      submitButton.current.classList.add("waiting")
-      submitButton.current.textContent = "WAITING..."
-      userNameInput.current.disabled= true
-      passwordInput.current.disabled= true
-      submitButton.current.disabled= true
+    else if (urlInParts.includes("login")) {      
+      setStylesElementsWaiting(userNameInput.current, passwordInput.current, submitButton.current)
+
       const wasSuccessfullTheLogin = await getToken(userNameHandled, password);
+
       if(wasSuccessfullTheLogin){
         history("/movies");
-      }
+      }      
       else{
-        userNameInput.current.disabled= false
-        passwordInput.current.disabled= false
-        submitButton.current.disabled= false
-        submitButton.current.classList.remove("waiting")
-        userNameInput.current.value=""
-        passwordInput.current.value=""
-        submitButton.current.textContent="LOGIN"
+        setStylesElementsLoginRejected(userNameInput.current, passwordInput.current, submitButton.current)        
       }
     }    
 
     else if (urlInParts.includes("registerAccount")) {
-      submitButton.current.classList.add("waiting")
-      submitButton.current.textContent = "WAITING..."
-      userNameInput.current.disabled= true
-      passwordInput.current.disabled= true
-      submitButton.current.disabled= true
+      setStylesElementsWaiting(userNameInput.current, passwordInput.current, submitButton.current)   
+
       const wasSuccessfullTheLogin = await createAccount(userNameHandled, password);
       if(wasSuccessfullTheLogin){
         history("/login");
       }
       else{
-        userNameInput.current.disabled= false
-        passwordInput.current.disabled= false
-        submitButton.current.disabled= false
-        submitButton.current.classList.remove("waiting")
-        userNameInput.current.value=""
-        passwordInput.current.value=""
-        submitButton.current.textContent="CREATE ACCOUNT"
+        setStylesElementsRegisterRejected(userNameInput.current, passwordInput.current, submitButton.current)        
       }
       
     } 
@@ -102,6 +94,10 @@ export const LoginAndRegisterForm = () => {
   const resetAlertWhenFocusInInput = (event) => {
     event.target.nodeName === "INPUT" && resetAlerts();
   };
+
+  const showpasswordClickHandler = ()=>{
+    setShowPassword(!showPassword)
+  }
 
   useEffect(() => {
     const urlInParts = url.pathname.split("/");
@@ -124,7 +120,7 @@ export const LoginAndRegisterForm = () => {
           <div className={section === "login" ? "formMainIconContainer" : "formMainIconContainer formMainIconContainerRegisterAccount"} >
             <img src={userIcon} />
           </div>
-          <h3 className="formTitle">{section === "login" ? "Good to see you again!" : "Insert user name and password to create an account"}</h3>
+          <h3 className="formTitle">{section === "login" ? "Good to see you again!" : "Create your account"}</h3>
           <form
             action="/action_page.php"
             onSubmit={loginRegisterFormSubmitClickHandler}
@@ -158,13 +154,18 @@ export const LoginAndRegisterForm = () => {
                 <img src={passwordIcon} className="inputIcon"/>              
               </div>
               <input
-                type="password"
+                type={showPassword ? "text" :  "password"}
                 name="password"
                 ref={passwordInput}
                 className="inputForm"
                 autoComplete="off"
                 placeholder="Password"
               />
+              <>
+                {
+                  showPassword ?<AiFillEyeInvisible className="showPasswordIcon" onClick={showpasswordClickHandler} /> : <AiFillEye className="showPasswordIcon" onClick={showpasswordClickHandler}/> 
+                }
+              </>
             </div>
             <span className="inputAlerts">{passwordAlert}</span>
 

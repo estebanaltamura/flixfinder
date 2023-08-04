@@ -9,7 +9,7 @@
   border-radius: 30px;  
   background-color: #D9D9D9;  
   box-shadow: 3px 3px 8px 0px #395173;
-  margin: 80px auto 0 auto;
+  margin: 110px auto 0 auto;
 }
 
 
@@ -40,6 +40,7 @@
 }
 
 .inputContainer{
+  position: relative;
   display: flex;
   flex-direction: row;  
   height: 38px;
@@ -61,7 +62,7 @@
   padding-top: 35px;
 }
 
-.inputIconContainer{
+.inputIconContainer{  
   display: flex;
   justify-content: center; 
   align-items: center;  
@@ -85,6 +86,14 @@
   font-weight: 300;  
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;    
+}
+
+.showPasswordIcon{
+  position: absolute;
+  top: 8px;
+  right: 15px;
+  width: 22px;
+  height: 22px;
 }
 
 .inputFormUserName{

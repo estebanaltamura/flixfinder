@@ -1,67 +1,99 @@
-import { useState, useEffect, useRef, useContext } from "react";
-import { useParams, Navigate } from "react-router-dom";
+import { useEffect, useRef, useContext } from "react";
+import { useParams, Navigate, Link, useNavigate } from "react-router-dom";
 import { LoginContext } from "../../contexts/LoginContextProvider";
 import { IsLoadingContext } from '../../contexts/IsLoadingContextProvider'
-import Lottie from 'react-lottie-player'
-import spinner from '../../assets/spinnerMoviesJSON.json'
+import { useContentDetailsHelper } from "../../hooks/useContentDetailsHelper";
+import { useGetDataContentDetails } from "../../services/useGetDataContentDetails";
+import { Spinner } from "../../components/spinner/Spinner";
+import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
+import { HiOutlineChevronLeft } from "react-icons/hi";
+import ratingIcon from '../../assets/ratingIcon.svg'
+import { BsShareFill } from "react-icons/bs";
 import "./ContentDetails.css";
 
 export const ContentDetails = () => {
+  
+  const { isLoading, setIsLoading } = useContext(IsLoadingContext); 
+  const { isLogged } = useContext(LoginContext);   
+  const {
+    setCardContent,
+    setTextDescriptionOverflowBehavior,
+    titleText,
+    releaseYear,
+    rating,
+    genresText,
+    imgSrc,
+    description } = useContentDetailsHelper()
+  const { getData, content } = useGetDataContentDetails() 
   const { contentType, contentId } = useParams();
   const img = useRef();
-  const [content, setContent] = useState({});
-  const { isLoading, setIsLoading } = useContext(IsLoadingContext);
-  const { isLogged } = useContext(LoginContext);
+  const descriptionTextRef = useRef()
+  const history = useNavigate()
 
-  const imageErrorHandler = ()=> {
-    img.current.src = "https://i.postimg.cc/BZNQgg6T/noImage.jpg";
+  
+  const imageErrorHandler = ()=> {   
+    img.current.src = "https://i.postimg.cc/BZNQgg6T/noImage.jpg" 
+    setIsLoading(false)   
   };
 
   const onLoadImgHandler = ()=>{
     setIsLoading(false)
   }
 
-  useEffect(() => {
-    setIsLoading(true);
+  const backButtonOnClick = ()=>{
+    history(-1)
+  }
+
+  useEffect(() => {    
     window.scrollTo(0, 0);
-    const endPoint = `https://api.themoviedb.org/3/${contentType}/${contentId}?api_key=d3c0215c2ca34a0fad2322c5e5f70ab4&language=en-US`;
-    fetch(endPoint)
-      .then((res) => res.json())
-      .then((res) => {
-        setContent(res)        
-      })      
+    getData(contentType, contentId)
   }, []);
+
+  useEffect(()=>{
+    setCardContent(content, contentType)    
+  },[content])
+
+  useEffect(()=>{    
+    setTextDescriptionOverflowBehavior(description, descriptionTextRef.current)    
+  })  
 
   return (
     <>
       {isLogged ? 
         <>
-          <div className={isLoading === true ? "spinnerContainer" : "hidden"}>
-            <Lottie 
-              animationData={spinner}
-              style= {{"width": "160px", "height": "160px"}}
-              className={isLoading === true ? "spinnerHome" : "hidden"}
-              play
-              loop        
-            />        
-          </div>
-        
-          <div className={isLoading === true ? "hidden" : "gridContainer"}>
-              <div className="grid">
-                <img
-                  className="poster"
-                  ref={img}
-                  src={`https://image.tmdb.org/t/p/original${content.poster_path}`}
-                  alt="..."
-                  onError={imageErrorHandler}
-                  onLoad={onLoadImgHandler}
-                />
-                <h2 className="title">{content.original_title}</h2>
-                <p className="tagLine">{content.tagline}</p>
-                <h3 className="descriptionLabel">Description</h3>
-                <p className="descriptionText">{content.status}</p>                
+          <Spinner />        
+          
+          <div className={isLoading === true ? "hidden" : "contentDetailsContainer"}>
+            <div className="contentDetailsGrid">
+              <img
+                className="poster"
+                ref={img}
+                src={imgSrc}
+                alt={`Poster of ${titleText}`}
+                onError={imageErrorHandler}
+                onLoad={onLoadImgHandler}
+              />
+              <h2 className="title">{titleText}</h2>
+              
+              <div className="yearReleaseAndRating"> 
+                <p className="yearReleaseText">{releaseYear}</p>
+                <img src={ratingIcon} className="ratingIcon"/>
+                <p className="ratingText">{rating}</p>
               </div>
-            </div>          
+              
+              <p className="genres">{genresText}</p>   
+
+              <p className="descriptionText" ref={descriptionTextRef}>{description}</p> 
+
+              <BsShareFill className="shareContentDetails"/>    
+
+              <AiOutlineHeart className="likeContentDetails"/>
+            </div>
+            <Link className="backButtonContainer" onClick={backButtonOnClick}>
+              <HiOutlineChevronLeft className="backButtonIcon"/>
+              <span className="backButtonText">go back</span>
+            </Link>
+          </div>        
         </>    
               :
               

@@ -23,7 +23,7 @@ export const useLogin = () => {
       MySwal.fire({
         title: 'ERROR',
         text: error?.response?.data?.message,
-        icon: 'success',
+        icon: 'error',
         heightAuto: false,
         customClass: {
           "swal2-container": 'my-popup-class'         

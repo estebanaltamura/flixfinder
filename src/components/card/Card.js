@@ -1,20 +1,22 @@
-import "./Item.css";
+import { useContext, useRef } from "react";
 import { Link } from "react-router-dom";
-import { useRef } from "react";
-import { FcLikePlaceholder, FcLike } from "react-icons/fc";
+import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
+import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
 import ratingIcon from '../../assets/ratingIcon.svg'
+import "./Card.css";
 
-
-
-export const Item = ({ content, contentType, index }) => {  
+export const Card = ({ content, contentType, index }) => {  
+  const { setIsLoading } = useContext(IsLoadingContext)
   const img = useRef();
-  const card = useRef();  
-  
+  const card = useRef();    
   
   const imageErrorHandler = () => {
-    img.current.src = "https://i.postimg.cc/BZNQgg6T/noImage.jpg";
-    
+    img.current.src = "https://i.postimg.cc/BZNQgg6T/noImage.jpg";    
   }; 
+
+  const onClickHandler = ()=>{
+    setIsLoading(true)
+  }
 
   return (
     <div
@@ -35,13 +37,9 @@ export const Item = ({ content, contentType, index }) => {
           <div className="cardBodyRatingContainer">
             <img className="cardBodyRatingIcon" src={ratingIcon} />
             <span className="cardBodyRatingText">{content.vote_average.toFixed(1)}</span>
-          </div>
+          </div>          
 
-          
-
-          <FcLikePlaceholder className="cardBodyLike" />
-
-          
+          <AiOutlineHeart className="cardBodyLike" />          
 
           <h5 className="cardBodyTitle">
             {contentType === "movie" ? content.original_title: content.name}
@@ -49,14 +47,12 @@ export const Item = ({ content, contentType, index }) => {
         </div>
            
         <Link
-        className="detailsButton"              
+        className="detailsButton"
+        onClick={onClickHandler}              
         to={`/contentDetails/${contentType}/${content.id}`}>
           See Details
         </Link>
-
       </div>
     </div>
   ) 
-    
-
 };

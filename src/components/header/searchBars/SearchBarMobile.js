@@ -8,8 +8,7 @@ export const SearchBarMobile = () => {
   const [ placeHoldertext, setPlaceholderText ] = useState("")
   const inputElement = useRef(null);
   const history = useNavigate();
-  const url = useLocation()
- 
+  const url = useLocation() 
 
   const searchSubmitHandler = (e) => {
     e.preventDefault();   
@@ -38,8 +37,7 @@ export const SearchBarMobile = () => {
 
   useEffect(()=>{
     inputElement.current.focus()
-  },[])
- 
+  },[]) 
 
   return (
     <div className="seachBarMobileContainer">

@@ -35,7 +35,7 @@
   font-size: 16px;
   font-weight: 400;
   letter-spacing: 0.5px;
-  background-color: #395173;
+  background-color: #007A78;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
@@ -44,3 +44,8 @@
   border: none;
   outline: none;
 }
+
+.searchInputDesktop::placeholder {
+  color: #c2c2c2;
+}
+

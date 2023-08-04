@@ -26,7 +26,7 @@ export const useCreateAccount = () => {
       MySwal.fire({
         title: 'ERROR',
         text: error?.response?.data?.message,
-        icon: 'success',
+        icon: 'error',
         heightAuto: false
       });
       console.log(error?.response?.data?.message)

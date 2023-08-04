@@ -9,7 +9,6 @@ export const SearchBarDesktop = () => {
   const [ placeHoldertext, setPlaceholderText ] = useState("")
   const history = useNavigate();
   const url = useLocation()
-
    
   const searchSubmitHandler = (e) => {
     e.preventDefault();   
@@ -20,8 +19,7 @@ export const SearchBarDesktop = () => {
       inputElement.current.value = "";  
       inputElement.current.blur()
     }    
-  };  
- 
+  };   
 
   useEffect(()=>{
     const urlInParts = url.pathname.split("/")
@@ -35,9 +33,7 @@ export const SearchBarDesktop = () => {
         setContentType("tv")
         setPlaceholderText("Search tv-series")
     }        
-  },[url])
-
-  
+  },[url])  
     
   return (
     <div className="searchBarDesktopContainer">  

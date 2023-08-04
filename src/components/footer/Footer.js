@@ -7,12 +7,10 @@ import { AiOutlineLinkedin } from "react-icons/ai";
 import { FiFileText } from "react-icons/fi";
 import "./Footer.css"
 
-export const Footer = ()=>{
- 
+export const Footer = ()=>{ 
   const [ isCopyingEmailFooter, setIsCopyingEmailFooter ] = useState(false)
   const [ isLoginRegisterPage, setIsLoginRegisterPage ] = useState(false)
-  const url = useLocation()
-  const urlInParts = url.pathname.split("/")
+  const url = useLocation()  
 
   const copyEmailAddressClickHandler = ()=>{        
     setIsCopyingEmailFooter(true)
@@ -51,8 +49,7 @@ export const Footer = ()=>{
               </CopyToClipboard>
                                           :
               <p className="copiedMessage">Copied!</p>
-          }
-                  
+          }               
 
             <span className="footerDivider">|</span>
 

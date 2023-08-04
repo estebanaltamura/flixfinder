@@ -2,23 +2,25 @@ import { useEffect, useState, useContext, useRef } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { LoginContext } from "../../contexts/LoginContextProvider";
 import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
-import { Item } from "../../components/item/Item";
-import Lottie from 'react-lottie-player'
-import spinner from '../../assets/spinnerMoviesJSON.json'
+import { useGetDataSearchResults } from "../../services/useGetDataSearchResults";
+import { Card } from "../../components/card/Card";
+
 import "./SearchResults.css";
+import { Spinner } from "../../components/spinner/Spinner";
 
 export const SearchResults = () => {
   const { isLogged } = useContext(LoginContext);
-  const { isLoading, setIsLoading } = useContext(IsLoadingContext)
-  const [ RequestResults, setRequestResults ] = useState([]);
+  const { isLoading, setIsLoading } = useContext(IsLoadingContext)  
   const [ isLoadingRequest, setIsLoadingRequest ] = useState(true);
   const { contentType, query } = useParams();
   const imagesLoadedCounter = useRef(0)
+
+  const { getData, content } = useGetDataSearchResults()
   
 
   const imgItemLoadHandler = (event)=>{
-    const lengthResults = RequestResults.length
-    const quantityImgsToLoadBeforeIsLoadingFalse = lengthResults >= 8 ? 8 : lengthResults
+    const lengthResults = content.length
+    const quantityImgsToLoadBeforeIsLoadingFalse = lengthResults >= 6 ? 6 : lengthResults
     const imgClasses = event.target.classList.value
     
     if(imgClasses.includes("cardImg")){
@@ -32,49 +34,32 @@ export const SearchResults = () => {
     }
   }
 
-  useEffect(() => {    
+  useEffect(() => {        
     setIsLoadingRequest(true);
     setIsLoading(true)
-    window.scrollTo(0, 0);    
-
-    fetch(`https://api.themoviedb.org/3/search/${contentType}?api_key=d3c0215c2ca34a0fad2322c5e5f70ab4&query=${query}`)
-          .then((res) => res.json())
-          .then((res) => {               
-            const contentWithPoster = res.results.filter((content)=>content.poster_path !== null && content)             
-            setRequestResults(contentWithPoster)
-            setIsLoadingRequest(false)
-            res.results.length === 0 && setIsLoading(false)
-          })
-          
+    window.scrollTo(0, 0);  
+    getData(contentType, query, setIsLoadingRequest)          
   }, [query]);
 
   return (
     <>
       {isLogged ? 
         <>
-          <div className={isLoading === true ? "spinnerContainer" : "hidden"}>
-            <Lottie 
-              animationData={spinner}
-              style= {{"width": "160px", "height": "160px"}}
-              className={isLoading === true ? "spinnerHome" : "hidden"}
-              play
-              loop        
-            />        
-          </div>
+          <Spinner />
 
           {
-            (!isLoadingRequest && RequestResults.length === 0) &&
+            (!isLoadingRequest && content.length === 0) &&
               <div className={isLoading === true ? "hidden" : "container containerStyles"}>
                 <h3 className="alertText">{`No results for ${query}`}</h3>
               </div>
           } 
 
           {
-            (!isLoadingRequest && RequestResults.length > 0) &&
+            (!isLoadingRequest && content.length > 0) &&
               <div className={isLoading === true ? "hidden" : "container containerStyles"} onLoad={imgItemLoadHandler}>
                 <div className="row rowStyles">
-                  {RequestResults.map((content, index) => {
-                    return <Item content={content} contentType={contentType} key={index} index={index + 1} />;
+                  {content.map((content, index) => {
+                    return <Card content={content} contentType={contentType} key={index} index={index + 1} />;
                   })}
                 </div>
               </div>

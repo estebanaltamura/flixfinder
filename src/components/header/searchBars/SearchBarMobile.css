@@ -18,7 +18,7 @@ input:-webkit-autofill {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #313131;
+  background-color: #007A78;
   grid-template-columns: 1fr 56px; 
   grid-template-areas: "input icon";
   height: 56px;
@@ -34,7 +34,7 @@ input:-webkit-autofill {
   cursor: text;
   border: none;
   color: #c2c2c2;
-  background-color: #395173;
+  background-color: #007A78;
   font-family: roboto;
   font-size: 18px;
   font-weight: 400;
@@ -44,6 +44,10 @@ input:-webkit-autofill {
 .searchInputMobile:focus-visible {
   border: none;
   outline: none;
+}
+
+.searchInputMobile::placeholder {
+  color: #c2c2c2;
 }
 
 .closeButtonSearchBarMobileContainer{

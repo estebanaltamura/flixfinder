@@ -3,9 +3,6 @@ import { useNavigate, NavLink } from "react-router-dom";
 import { LoginContext } from "../../../contexts/LoginContextProvider";
 import { BsSearch } from "react-icons/bs";
 import { RxHamburgerMenu } from "react-icons/rx";
-import logo from '../../../assets/logo.png'
-
-
 import "./MobileMenu.css";
 
 export const MobileMenu = () => {
@@ -79,7 +76,7 @@ export const MobileMenu = () => {
   
           {isLogged && (
             <span className="loginHeaderLabelMobile" onClick={logoutHandler}>
-              LogOut
+              Logout
             </span>
           )}
         </div>

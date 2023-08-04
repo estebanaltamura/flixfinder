@@ -26,32 +26,10 @@ export const DesktopMenu = () => {
         <NavLink  to="/movies" className="menuItem1 menuOptions">Movies</NavLink>
         <NavLink  to="/tvSeries" className="menuItem2 menuOptions">TV-Series</NavLink>
         {isLogged && (
-          <span className="loginHeaderLabelDesktop" onClick={logoutHandler}>LogOut</span>
+          <span className="loginHeaderLabelDesktop" onClick={logoutHandler}>Logout</span>
         )}
         {isLogged && <SearchBarDesktop />}
       </div>
-    </Container>
-    // <div className="desktopMenuContainer">
-    //  
-    // </div>
-         
-      
-        
-     
-    
+    </Container> 
   );
 };
-
-
-// isLogged && 
-//         <Container>          
-//           <Navbar.Collapse id="basic-navbar-nav">
-//             <Nav className="me-auto menuItemsDesktop">
-//               
-              
-//             </Nav>
-            
-//           </Navbar.Collapse>
-//             
-//           
-//         </Container>
