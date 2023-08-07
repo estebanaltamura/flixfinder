@@ -13,7 +13,7 @@ export const Login = ()=>{
   
   useEffect(()=>{
     setIsLoading(false)
-  },[])
+  },[]) 
 
   return(
     isLogged ?

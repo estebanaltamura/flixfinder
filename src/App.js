@@ -11,10 +11,9 @@ import { ContentDetails } from "./pages/contentDetails/ContentDetails";
 import { Footer } from "./components/footer/Footer";
 import "./App.css";
 
-
 function App() { 
-
   const { isLoading } = useContext(IsLoadingContext)
+  
   return (
     <>
       <BrowserRouter>        

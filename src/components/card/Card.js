@@ -32,16 +32,14 @@ export const Card = ({ content, contentType, index }) => {
           onError={imageErrorHandler}              
         />
         
-        <div className="cardBodyContainer">
-
-          
+        <div className="cardBodyContainer">         
             
-              <div className="cardBodyRatingContainer">
-                <img className="cardBodyRatingIcon" src={ratingIcon} />               
-                <span className={content.vote_average > 0 ? "cardBodyRatingNumber" : "cardBodyRatingText"}>{content.vote_average > 0 ? content.vote_average.toFixed(1) : "No rating"}</span>
-              </div>         
-          
-          
+          <div className="cardBodyRatingContainer">
+            <img className="cardBodyRatingIcon" src={ratingIcon} />               
+            <span className={content.vote_average > 0 ? "cardBodyRatingNumber" : "cardBodyRatingText"}>
+              {content.vote_average > 0 ? content.vote_average.toFixed(1) : "No rating"}
+            </span>
+          </div>           
 
           <AiOutlineHeart className="cardBodyLike" />          
 
@@ -51,10 +49,10 @@ export const Card = ({ content, contentType, index }) => {
         </div>
            
         <Link
-        className="detailsButton"
-        onClick={onClickHandler}              
-        to={`/contentDetails/${contentType}/${content.id}`}>
-          See Details
+          className="detailsButton"
+          onClick={onClickHandler}              
+          to={`/contentDetails/${contentType}/${content.id}`}>
+            See Details
         </Link>
       </div>
     </div>

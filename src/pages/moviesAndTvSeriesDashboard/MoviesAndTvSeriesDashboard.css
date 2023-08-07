@@ -3,8 +3,8 @@
   min-height: 100vh;
   width: 100%;
 }
- 
-.rowStyles{
-  width: 100%;
-  margin: auto;
+
+.alertText {
+  overflow-y: hidden;
+  text-align: center;
 }

@@ -1,16 +1,13 @@
-import { useEffect, useState } from "react"
-import { useLocation } from 'react-router-dom'
+import { useState } from "react"
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { FiMail, FiGithub } from "react-icons/fi";
 import { AiFillCopy } from "react-icons/ai";
 import { AiOutlineLinkedin } from "react-icons/ai";
 import { FiFileText } from "react-icons/fi";
 import "./Footer.css"
-
+ 
 export const Footer = ()=>{ 
-  const [ isCopyingEmailFooter, setIsCopyingEmailFooter ] = useState(false)
-  const [ isLoginRegisterPage, setIsLoginRegisterPage ] = useState(false)
-  const url = useLocation()  
+  const [ isCopyingEmailFooter, setIsCopyingEmailFooter ] = useState(false) 
 
   const copyEmailAddressClickHandler = ()=>{        
     setIsCopyingEmailFooter(true)
@@ -23,19 +20,10 @@ export const Footer = ()=>{
     const clearIntervalFunction = (intervalToClear)=>{
       clearInterval(intervalToClear)
     }        
-  }    
+  }  
 
-  useEffect(()=>{
-    const urlInParts = url.pathname.split("/")    
-    if(urlInParts.includes("login") || urlInParts.includes("registerAccount")){      
-      setIsLoginRegisterPage(true)
-    }    
-    else setIsLoginRegisterPage(false)
-  },[url])
-
-  return(
-    
-      <div className={isLoginRegisterPage ? "footerLoginRegister" : "footerContainer"}>
+  return(    
+      <div className="footerContainer">
         <div className="line"></div>
         <div className="contactFooterGrid">
           {
@@ -72,7 +60,6 @@ export const Footer = ()=>{
               Curriculum Vitae
             </a>
         </div>
-      </div>
-   
+      </div>   
   )
 }

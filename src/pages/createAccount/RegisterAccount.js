@@ -10,7 +10,7 @@ export const RegisterAccount = ()=>{
   
   useEffect(()=>{
     setIsLoading(false)
-  },[])
+  },[]) 
 
   return(
     <div className="registerAccountContainer">

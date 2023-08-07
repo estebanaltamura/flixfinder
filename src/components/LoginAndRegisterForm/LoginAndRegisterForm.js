@@ -141,7 +141,7 @@ export const LoginAndRegisterForm = () => {
                 className="inputForm inputFormUserName"
                 autoComplete="off"
                 placeholder="E-mail"
-              />
+              /> 
             </div>
             <span className="inputAlerts">{userNameAlert}</span>
 

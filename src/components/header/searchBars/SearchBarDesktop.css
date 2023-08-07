@@ -12,16 +12,6 @@
   border-radius: 4px;
 }
 
-.searchIconDesktop {
-  grid-area: icon;
-  margin: auto;
-  color: black;
-  width: 24px;
-  height: 24px;
-  font-weight: 900;
-  cursor: pointer;
-}
-
 .searchInputDesktop {
   grid-area: input;
   height: 32px;
@@ -49,3 +39,12 @@
   color: #c2c2c2;
 }
 
+.searchIconDesktop {
+  grid-area: icon;
+  margin: auto;
+  color: black;
+  width: 24px;
+  height: 24px;
+  font-weight: 900;
+  cursor: pointer;
+}

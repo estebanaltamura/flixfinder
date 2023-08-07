@@ -6,14 +6,6 @@
   grid-template-areas: "logo menuItem1 menuItem2 . logOutLink";  
 }
 
-.menuItem1{
-  grid-area: menuItem1;
-}
-
-.menuItem2{
-  grid-area: menuItem2;
-}
-
 .locoContainer{
   display: flex;
   width: 70px;
@@ -28,11 +20,19 @@
   height: 50px;
 }
 
-.menuOptions{
+.menuOptionsDesktop{
   display: flex;
   align-items: center;
   justify-content: center;
   color: #c2c2c2
+}
+
+.menuItem1{
+  grid-area: menuItem1;
+}
+
+.menuItem2{
+  grid-area: menuItem2;
 }
 
 .loginHeaderLabelDesktop{  

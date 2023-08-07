@@ -13,7 +13,7 @@ export const Header = () => {
   const searchModeHandler = (event) => {
     if (
       event.target.id === "searchIcon" ||
-      event.target.parentElement.id === "searchIcon"
+      event.target.parentElement.id === "searchIcon" 
     ) {
       setIsHeaderSearchMode(true);
     } 

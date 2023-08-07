@@ -11,7 +11,7 @@ export const Spinner = ()=>{
     <div className={isLoading === true ? "spinnerContainer" : "hidden"}>
       <Lottie 
         animationData={spinner}
-        style= {{"width": "160px", "height": "160px"}}        
+        style= {{"width": "250px", "height": "250px"}}        
         play
         loop        
       />        

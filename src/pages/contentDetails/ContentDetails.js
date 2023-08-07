@@ -29,7 +29,6 @@ export const ContentDetails = () => {
   const img = useRef();
   const descriptionTextRef = useRef()
   const history = useNavigate()
-
   
   const imageErrorHandler = ()=> {   
     img.current.src = "https://i.postimg.cc/BZNQgg6T/noImage.jpg" 

@@ -5,8 +5,7 @@
   background-color: black !important;  
 }
 
-.navMenuMobile{
-  display: flex;  
+.dropdownMenu{
   background-color: black !important;   
 }
 
@@ -19,9 +18,10 @@
   border: 1px solid #4c4c4c;
 }
 
-.dropdownMenu{
-  background-color: black !important;  
-  
+.hamburgerIcon {
+  width: 42px;
+  height: 30px;
+  color: white;
 }
 
 .navBarDesplegable{  
@@ -30,12 +30,6 @@
 
 header li{
   height: 45px;
-}
-
-.hamburgerIcon {
-  width: 42px;
-  height: 30px;
-  color: white;
 }
 
 .menuOptionsMobileContainer{

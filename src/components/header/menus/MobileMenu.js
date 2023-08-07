@@ -13,7 +13,7 @@ export const MobileMenu = () => {
   const logoutHandler = () => {
     localStorage.removeItem("token");
     setIsLogged(false);
-    history("/login");
+    history("/login"); 
   };
 
   const onBlurHandler = () => {
@@ -35,7 +35,7 @@ export const MobileMenu = () => {
 
   return (
     <nav
-      className="navbar navbar-expand-xl bg-body-tertiary menuMobileContainer navMenuMobile"
+      className="navbar navbar-expand-xl bg-body-tertiary menuMobileContainer"
       onBlur={onBlurHandler}
     >      
       {

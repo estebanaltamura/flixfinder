@@ -11,8 +11,7 @@ export const MoviesAndTvSeriesDashboard = () => {
   const { isLoading, setIsLoading } = useContext(IsLoadingContext)
   const { isLogged } = useContext(LoginContext);
   const [ isLoadingRequest, setIsLoadingRequest ] = useState(true);
-  const { getData,
-          content } = useGetDataMoviesAndTvSeriesDashboard()  
+  const { getData, content } = useGetDataMoviesAndTvSeriesDashboard()  
   const imagesLoadedCounter = useRef(0)
   const contentType = useRef(null)
   const url = useLocation()  
@@ -44,7 +43,7 @@ export const MoviesAndTvSeriesDashboard = () => {
     } 
     if(urlInParts.includes("tvSeries")){
       contentType.current = "tv"      
-    }            
+    }          
 
     contentType.current !== null && getData(contentType.current, setIsLoadingRequest)    
   }, [url]);

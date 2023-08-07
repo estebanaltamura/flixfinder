@@ -37,7 +37,7 @@ export const SearchBarDesktop = () => {
     
   return (
     <div className="searchBarDesktopContainer">  
-      <form onSubmit={searchSubmitHandler} autoComplete="off">
+      <form onSubmit={searchSubmitHandler} autoComplete="off"> 
         <input
           ref={inputElement}
           name="input"

@@ -4,9 +4,8 @@ import { LoginContext } from "../../contexts/LoginContextProvider";
 import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
 import { useGetDataSearchResults } from "../../services/useGetDataSearchResults";
 import { Card } from "../../components/card/Card";
-
-import "./SearchResults.css";
 import { Spinner } from "../../components/spinner/Spinner";
+import "./SearchResults.css";
 
 export const SearchResults = () => {
   const { isLogged } = useContext(LoginContext);
@@ -14,9 +13,7 @@ export const SearchResults = () => {
   const [ isLoadingRequest, setIsLoadingRequest ] = useState(true);
   const { contentType, query } = useParams();
   const imagesLoadedCounter = useRef(0)
-
-  const { getData, content } = useGetDataSearchResults()
-  
+  const { getData, content } = useGetDataSearchResults()  
 
   const imgItemLoadHandler = (event)=>{
     const lengthResults = content.length
