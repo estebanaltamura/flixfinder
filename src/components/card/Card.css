@@ -25,7 +25,7 @@
   padding: 0 20px;
   grid-template-columns: 70px 1fr 50px;
   grid-template-rows: 60px 60px 1fr;
-  grid-template-areas: "rating . like" "title title title" ". . .";
+  grid-template-areas: "rating rating like" "title title title" ". . .";
   text-align: center;
   align-self: center;
   background-color: #2C2C2C;  
@@ -45,6 +45,7 @@
 
 .cardBodyRatingContainer{
   grid-area: rating;
+  position: relative;
   display: flex;
   align-items: center;
   width: 100%;
@@ -52,11 +53,26 @@
 }
 
 .cardBodyRatingIcon{
+  position: relative;
   width: 20px;
   height: 20px;
+  top: -3px;
+  left: 0;
 }
 
 .cardBodyRatingText{
+  position: relative;
+  top: -2px;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-left: 10px;
+}
+
+.cardBodyRatingNumber{
   font-family: Poppins;
   font-size: 20px;
   font-weight: 500;
@@ -65,6 +81,8 @@
   text-align: center;
   margin-left: 10px;
 }
+
+
 .cardBodyLike{
   width: 25px;
   height: 25px;

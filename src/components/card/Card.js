@@ -34,13 +34,13 @@ export const Card = ({ content, contentType, index }) => {
         
         <div className="cardBodyContainer">
 
-          {
-            content.vote_average > 0 &&
+          
+            
               <div className="cardBodyRatingContainer">
-                <img className="cardBodyRatingIcon" src={ratingIcon} />
-                <span className="cardBodyRatingText">{content.vote_average.toFixed(1)}</span>
+                <img className="cardBodyRatingIcon" src={ratingIcon} />               
+                <span className={content.vote_average > 0 ? "cardBodyRatingNumber" : "cardBodyRatingText"}>{content.vote_average > 0 ? content.vote_average.toFixed(1) : "No rating"}</span>
               </div>         
-          }
+          
           
 
           <AiOutlineHeart className="cardBodyLike" />          
