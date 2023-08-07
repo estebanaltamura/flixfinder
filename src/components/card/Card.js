@@ -1,12 +1,14 @@
 import { useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
+import { LoginContext } from "../../contexts/LoginContextProvider";
 import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
 import ratingIcon from '../../assets/ratingIcon.svg'
 import "./Card.css";
 
 export const Card = ({ content, contentType, index }) => {  
   const { setIsLoading } = useContext(IsLoadingContext)
+  const { isLogged } = useContext(LoginContext)
   const img = useRef();
   const card = useRef();    
   
@@ -40,8 +42,10 @@ export const Card = ({ content, contentType, index }) => {
               {content.vote_average > 0 ? content.vote_average.toFixed(1) : "No rating"}
             </span>
           </div>           
-
-          <AiOutlineHeart className="cardBodyLike" />          
+          {
+            isLogged &&<AiOutlineHeart className="cardBodyLike" />   
+          }
+                 
 
           <h5 className="cardBodyTitle">
             {contentType === "movie" ? content.original_title: content.name}

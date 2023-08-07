@@ -1,5 +1,5 @@
 import { useEffect, useRef, useContext } from "react";
-import { useParams, Navigate, Link, useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { LoginContext } from "../../contexts/LoginContextProvider";
 import { IsLoadingContext } from '../../contexts/IsLoadingContextProvider'
 import { useContentDetailsHelper } from "../../hooks/useContentDetailsHelper";
@@ -11,7 +11,11 @@ import ratingIcon from '../../assets/ratingIcon.svg'
 import { BsShareFill } from "react-icons/bs";
 import "./ContentDetails.css";
 
+import { WhatsappShareButton } from "react-share";
+
 export const ContentDetails = () => {
+
+  const shareUrl = 'http://localhost:3002/contentDetails/movie/614479'
   
   const { isLoading, setIsLoading } = useContext(IsLoadingContext); 
   const { isLogged } = useContext(LoginContext);   
@@ -53,51 +57,56 @@ export const ContentDetails = () => {
   },[content])
 
   useEffect(()=>{    
+    console.log(isLogged)
     setTextDescriptionOverflowBehavior(description, descriptionTextRef.current)    
   })  
 
   return (
-    <>
-      {isLogged ? 
-        <>
-          <Spinner />        
+    <>       
+      <Spinner />        
           
-          <div className={isLoading === true ? "hidden" : "contentDetailsContainer"}>
-            <div className="contentDetailsGrid">
-              <img
-                className="poster"
-                ref={img}
-                src={imgSrc}
-                alt={`Poster of ${titleText}`}
-                onError={imageErrorHandler}
-                onLoad={onLoadImgHandler}
-              />
-              <h2 className="title">{titleText}</h2>
+      <div className={isLoading === true ? "hidden" : "contentDetailsContainer"}>
+        <div className="contentDetailsGrid">
+          <img
+            className="poster"
+            ref={img}
+            src={imgSrc}
+            alt={`Poster of ${titleText}`}
+            onError={imageErrorHandler}
+            onLoad={onLoadImgHandler}
+          />
+          
+          <h2 className="title">{titleText}</h2>
               
-              <div className="yearReleaseAndRating"> 
-                <p className="yearReleaseText">{releaseYear}</p>
-                <img src={ratingIcon} className="ratingIcon"/>
-                <p className="ratingText">{rating}</p>
-              </div>
+          <div className="yearReleaseAndRating"> 
+            <p className="yearReleaseText">{releaseYear}</p>
+            <img src={ratingIcon} className="ratingIcon"/>
+            <p className="ratingText">{rating}</p>
+          </div>
               
-              <p className="genres">{genresText}</p>   
+          <p className="genres">{genresText}</p>   
 
-              <p className="descriptionText" ref={descriptionTextRef}>{description}</p> 
+          <p className="descriptionText" ref={descriptionTextRef}>{description}</p> 
 
-              <BsShareFill className="shareContentDetails"/>    
+          {
+            isLogged && <AiOutlineHeart className="likeContentDetails"/>
+          }          
 
-              <AiOutlineHeart className="likeContentDetails"/>
-            </div>
-            <Link className="backButtonContainer" onClick={backButtonOnClick}>
+          <WhatsappShareButton className="shareContentDetails"
+            url={shareUrl}>          
+              <BsShareFill className="shareContentDetails"/>
+          </WhatsappShareButton> 
+
+
+
+          {/* <BsShareFill className="shareContentDetails"/>     */}
+        </div>
+        
+        <Link className="backButtonContainer" onClick={backButtonOnClick}>
               <HiOutlineChevronLeft className="backButtonIcon"/>
               <span className="backButtonText">go back</span>
-            </Link>
-          </div>        
-        </>    
-              :
-              
-        <Navigate to="/login" />        
-      }
+        </Link>
+      </div>        
     </>     
   )
 }

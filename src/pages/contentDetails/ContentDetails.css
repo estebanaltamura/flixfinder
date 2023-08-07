@@ -23,12 +23,9 @@ p, h2{
   grid-template-rows: auto 70px 70px auto;
   grid-template-areas:  "poster poster poster poster poster"
                         "paddingLeft title title title paddingRight"
-                        "paddingLeft yearReleaseAndRating shareContentDetails likeContentDetails paddingRight"
+                        "paddingLeft yearReleaseAndRating likeContentDetails shareContentDetails paddingRight"
                         "paddingLeft genres genres genres paddingRight"
                         "paddingLeft descriptionText descriptionText descriptionText paddingRight";
-                        
-                        
-  margin: 20px;
 }
 
 .poster {
@@ -164,7 +161,7 @@ p, h2{
       "poster paddingLeft yearReleaseAndRating yearReleaseAndRating yearReleaseAndRating yearReleaseAndRating paddingRight"
       "poster paddingLeft genres genres genres genres paddingRight"
       "poster paddingLeft descriptionText descriptionText descriptionText descriptionText paddingRight"  
-      "poster paddingLeft . shareContentDetails . likeContentDetails paddingRight";     
+      "poster paddingLeft . likeContentDetails . shareContentDetails paddingRight";     
     margin: 20px;
     border: 1px solid #929292;   
     box-shadow: 2px 2px 3px 1px #6c6c6c;

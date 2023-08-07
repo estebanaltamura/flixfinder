@@ -12,9 +12,12 @@ export const MobileMenu = () => {
 
   const logoutHandler = () => {
     localStorage.removeItem("token");
-    setIsLogged(false);
-    history("/login"); 
+    setIsLogged(false);   
   };
+
+  const logInHandler = ()=>{
+    history("/login");
+  }
 
   const onBlurHandler = () => {
     const isOpen = !togglerButtonRef.current.classList.value.includes("collapsed")
@@ -38,8 +41,8 @@ export const MobileMenu = () => {
       className="navbar navbar-expand-xl bg-body-tertiary menuMobileContainer"
       onBlur={onBlurHandler}
     >      
-      {
-        isLogged &&
+      
+        
         <div className="container-fluid dropdownMenu">
           <button
             ref={togglerButtonRef}
@@ -72,15 +75,19 @@ export const MobileMenu = () => {
             </ul>
           </div>
   
-          {isLogged && <BsSearch className="searchIconMobile" id="searchIcon" />}
+          <BsSearch className="searchIconMobile" id="searchIcon" />
   
-          {isLogged && (
+          {isLogged ? 
             <span className="loginHeaderLabelMobile" onClick={logoutHandler}>
               Logout
             </span>
-          )}
+                    :
+            <span className="loginHeaderLabelMobile" onClick={logInHandler}>
+              Login
+            </span>        
+          }
         </div>
-      }
+      
     </nav>
   );
 };

@@ -41,8 +41,7 @@ export const Header = () => {
     return () => window.removeEventListener("resize", setWidth);
   }, []);
 
-  return (
-    isLogged &&
+  return (    
     <header onClick={searchModeHandler} onSubmit={onSubmitHandler}>
       {currentWidth < 1200 ? (
         isHeaderSearchMode === true ? (

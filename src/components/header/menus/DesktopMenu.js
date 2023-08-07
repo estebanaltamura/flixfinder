@@ -13,9 +13,13 @@ export const DesktopMenu = () => {
   const logoutHandler = () => {
     localStorage.removeItem("token");
     setIsLogged(false);
-    history("/");
+    
   };
 
+  const loginHandler = ()=>{
+    history("/login");
+  }
+  
   return (
     <Container>
       <div className="desktopItemsMenuContainer">
@@ -24,10 +28,14 @@ export const DesktopMenu = () => {
         </div>
         <NavLink  to="/movies" className="menuItem1 menuOptionsDesktop">Movies</NavLink>
         <NavLink  to="/tvSeries" className="menuItem2 menuOptionsDesktop">TV-Series</NavLink>
-        {isLogged && (
+        {isLogged ? 
           <span className="loginHeaderLabelDesktop" onClick={logoutHandler}>Logout</span>
-        )}
-        {isLogged && <SearchBarDesktop />}
+                  :
+          <span className="loginHeaderLabelDesktop" onClick={loginHandler}>Login</span>
+        }
+
+
+        <SearchBarDesktop />
       </div>
     </Container> 
   );

@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext, useRef } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { LoginContext } from "../../contexts/LoginContextProvider";
 import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
 import { useGetDataSearchResults } from "../../services/useGetDataSearchResults";
@@ -39,34 +39,26 @@ export const SearchResults = () => {
   }, [query]);
 
   return (
-    <>
-      {isLogged ? 
-        <>
-          <Spinner />
+    <>     
+      <Spinner />
 
-          {
-            (!isLoadingRequest && content.length === 0) &&
-              <div className={isLoading === true ? "hidden" : "container containerStyles"}>
-                <h3 className="alertText">{`No results for ${query}`}</h3>
-              </div>
-          } 
+      {
+        (!isLoadingRequest && content.length === 0) &&
+          <div className={isLoading === true ? "hidden" : "container containerStyles"}>
+            <h3 className="alertText">{`No results for ${query}`}</h3>
+          </div>
+      } 
 
-          {
-            (!isLoadingRequest && content.length > 0) &&
-              <div className={isLoading === true ? "hidden" : "container containerStyles"} onLoad={imgItemLoadHandler}>
-                <div className="row rowStyles">
-                  {content.map((content, index) => {
-                    return <Card content={content} contentType={contentType} key={index} index={index + 1} />;
-                  })}
-                </div>
-              </div>
-          }
-        </>    
-                :
-              
-        <Navigate to="/login" />
-        
+      {
+        (!isLoadingRequest && content.length > 0) &&
+          <div className={isLoading === true ? "hidden" : "container containerStyles"} onLoad={imgItemLoadHandler}>
+            <div className="row rowStyles">
+              {content.map((content, index) => {
+                return <Card content={content} contentType={contentType} key={index} index={index + 1} />;
+              })}
+            </div>
+          </div>
       }
-    </>
+    </>               
   )  
 };

@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext, useRef } from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { LoginContext } from "../../contexts/LoginContextProvider";
 import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
 import { useGetDataMoviesAndTvSeriesDashboard } from "../../services/useGetDataMoviesAndTvSeriesDashboard";
@@ -50,32 +50,25 @@ export const MoviesAndTvSeriesDashboard = () => {
 
   return (    
     <>
-      {isLogged ? 
-        <>
-          <Spinner />
+      <Spinner />
 
-          {
-            (!isLoadingRequest && content.length === 0) &&
-              <div className={isLoading === true ? "hidden" : "container containerMoviesAndTvSeriesDashboard"}>
-                <h3 className="alertText">{`No results`}</h3>
-              </div>
-          } 
+      {
+        (!isLoadingRequest && content.length === 0) &&
+          <div className={isLoading === true ? "hidden" : "container containerMoviesAndTvSeriesDashboard"}>
+            <h3 className="alertText">{`No results`}</h3>
+          </div>
+      } 
 
-          {
-            (!isLoadingRequest && content.length > 0) &&
-              <div className={isLoading === true ? "hidden" : "container containerMoviesAndTvSeriesDashboard"} onLoad={imgItemLoadHandler}>
-                <div className="row rowStyles">
-                  {content.map((content, index) => {
-                    return <Card content={content} contentType={contentType.current} key={index} index={index + 1} />;
-                  })}
-                </div>
-              </div>
-          }
-        </>    
-                :
-              
-        <Navigate to="/login" />        
-      }
+      {
+        (!isLoadingRequest && content.length > 0) &&
+          <div className={isLoading === true ? "hidden" : "container containerMoviesAndTvSeriesDashboard"} onLoad={imgItemLoadHandler}>
+            <div className="row rowStyles">
+              {content.map((content, index) => {
+                return <Card content={content} contentType={contentType.current} key={index} index={index + 1} />;
+              })}
+            </div>
+          </div>
+      }       
     </>
   );
 };
