@@ -15,7 +15,7 @@ import { WhatsappShareButton } from "react-share";
 
 export const ContentDetails = () => {
 
-  const shareUrl = 'http://localhost:3002/contentDetails/movie/614479'
+  const shareUrl = 'https://www.linkedin.com/in/andres-altamura/'
   
   const { isLoading, setIsLoading } = useContext(IsLoadingContext); 
   const { isLogged } = useContext(LoginContext);   
@@ -93,7 +93,9 @@ export const ContentDetails = () => {
           }          
 
           <WhatsappShareButton className="shareContentDetails"
-            url={shareUrl}>          
+            url={shareUrl}
+            title={"huifoehiowefhioewfhiowefhioewfhioewfhio"}
+            separator=":: ">          
               <BsShareFill className="shareContentDetails"/>
           </WhatsappShareButton> 
 
