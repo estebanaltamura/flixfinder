@@ -32,7 +32,12 @@ export const SearchBarMobile = () => {
     if((urlInParts.includes("searchResults") && urlInParts.includes("tv")) || urlInParts.includes("tvSeries")){
         setContentType("tv")
         setPlaceholderText("Search tv-series")
-    }     
+    }   
+    
+    if(urlInParts.includes("favorites")){
+      setContentType("movie")
+      setPlaceholderText("Search movies")
+    }        
   },[url])
 
   useEffect(()=>{

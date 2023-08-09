@@ -7,7 +7,7 @@ import { useLikeHandler } from "../../hooks/useLikeHandler";
 import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 import ratingIcon from '../../assets/ratingIcon.svg'
 import "./Card.css";
-
+ 
 export const Card = ({ content, contentType, index }) => {  
   const { setIsLoading } = useContext(IsLoadingContext)
   const { token } = useContext(LoginContext)

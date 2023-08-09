@@ -7,6 +7,7 @@ import { IsLoadingContext } from '../../contexts/IsLoadingContextProvider'
 import { ContentLikedContext } from '../../contexts/ContentLikedContextProvider';
 import { useContentDetailsHelper } from "../../hooks/useContentDetailsHelper";
 import { useGetDataContentDetails } from "../../services/useGetDataContentDetails";
+import { useLikeHandler } from '../../hooks/useLikeHandler'; 
 import { Spinner } from "../../components/spinner/Spinner";
 import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 import { HiOutlineChevronLeft } from "react-icons/hi";
@@ -19,10 +20,10 @@ import { WhatsappShareButton } from "react-share";
 export const ContentDetails = () => {
 
   const shareUrl = 'https://www.linkedin.com/in/andres-altamura/'
-  const [ isLiked, setIsLiked ] = useState(false)
+  
   const { isLoading, setIsLoading } = useContext(IsLoadingContext); 
   const { token } = useContext(LoginContext);   
-  const { contentLiked, setContentLiked } = useContext(ContentLikedContext)
+  const { contentLiked } = useContext(ContentLikedContext)
   const {
     setCardContent,
     setTextDescriptionOverflowBehavior,
@@ -32,6 +33,13 @@ export const ContentDetails = () => {
     genresText,
     imgSrc,
     description } = useContentDetailsHelper()
+
+  const { 
+    likeClickHandler,
+    isContentLiked,
+    contentTypeUrl,
+    isLiked } = useLikeHandler()    
+
   const { getData, content } = useGetDataContentDetails() 
   const { contentType, contentId } = useParams();
   const img = useRef();
@@ -51,147 +59,21 @@ export const ContentDetails = () => {
     history(-1)
   }
 
-  const likeClickHandler = ()=>{ 
-    
-    
-    
-    if(contentType === 'tv'){
-      const tvSeries = [...contentLiked.contentLiked['tvSeries']]  
-      const tvSeriesId = tvSeries.map((tvSerie)=>tvSerie.id)
-      const allFavorites = [...contentLiked.contentLiked['allFavorites']] 
-      const allFavoritesId = allFavorites.map((content)=>content.id) 
-
-      const isAlreadyLiked = tvSeriesId.includes(content.id)
-
-      if(isAlreadyLiked){
-        const tvContentAlreadyLikedIndex = tvSeriesId.findIndex((id)=> id === content.id)
-        tvSeries.splice(tvContentAlreadyLikedIndex, 1)
-        
-        const favoriteContentAlreadyLikedIndex = allFavoritesId.findIndex((id)=> id === content.id)
-        allFavorites.splice(favoriteContentAlreadyLikedIndex, 1)
-       
-        const allFavoritesSorted =  allFavorites.map((favorite, index)=> ({...favorite, 'internalId': index, contentType}))      
-
-        const newContentLikedData = {contentLiked: {'movies': [...contentLiked.contentLiked['movies']], 'tvSeries': tvSeries, 'allFavorites': allFavoritesSorted}}
-        localStorage.setItem("contentLiked", JSON.stringify(newContentLikedData))
-        setContentLiked(newContentLikedData)
-        setIsLiked(false)
-      }
-      else{
-        const newContentLikedData = {contentLiked: {'movies': [...contentLiked.contentLiked['movies']], 'tvSeries': [...contentLiked.contentLiked['tvSeries'], content], 'allFavorites': [...contentLiked.contentLiked['allFavorites'], {...content, 'internalId': contentLiked.contentLiked['allFavorites'].length, contentType}]}}
-        localStorage.setItem("contentLiked", JSON.stringify(newContentLikedData))
-        setContentLiked(newContentLikedData)
-        setIsLiked(true)
-      }      
-    } 
-
-    if(contentType === 'movie'){      
-      const movies = [...contentLiked.contentLiked['movies']] 
-      const moviesId = movies.map((movie)=>movie.id) 
-      const allFavorites = [...contentLiked.contentLiked['allFavorites']] 
-      const allFavoritesId = allFavorites.map((content)=>content.id) 
-
-      const isAlreadyLiked = moviesId.includes(content.id)
-
-      if(isAlreadyLiked){
-        const movieAlreadyLikedIndex = moviesId.findIndex((id)=> id === content.id)
-        movies.splice(movieAlreadyLikedIndex, 1)
-
-        const favoriteContentAlreadyLikedIndex = allFavoritesId.findIndex((id)=> id === content.id)
-        allFavorites.splice(favoriteContentAlreadyLikedIndex, 1)
-       
-        const allFavoritesSorted =  allFavorites.map((favorite, index)=> ({...favorite, 'internalId': index, contentType}))
-        
-        const newContentLikedData = {contentLiked: {'movies': movies, 'tvSeries': [...contentLiked.contentLiked['tvSeries']], 'allFavorites': allFavoritesSorted}}
-
-        localStorage.setItem("contentLiked", JSON.stringify(newContentLikedData))
-        setContentLiked(newContentLikedData)
-        setIsLiked(false)
-      }
-      else{
-        const newContentLikedData = {contentLiked: {'movies': [...contentLiked.contentLiked['movies'], content], 'tvSeries': [...contentLiked.contentLiked['tvSeries']], 'allFavorites': [...contentLiked.contentLiked['allFavorites'], {...content, 'internalId': contentLiked.contentLiked['allFavorites'].length, contentType}]}}
-        localStorage.setItem("contentLiked", JSON.stringify(newContentLikedData))
-        setContentLiked(newContentLikedData)
-        setIsLiked(true)
-      }      
-    }       
-
-    if(contentType === 'favorites'){      
-      const movies = [...contentLiked.contentLiked['movies']] 
-      const moviesId = movies.map((movie)=>movie.id) 
-      const tvSeries = [...contentLiked.contentLiked['tvSeries']]  
-      const tvSeriesId = tvSeries.map((tvSerie)=>tvSerie.id)
-      const allFavorites = [...contentLiked.contentLiked['allFavorites']] 
-      const allFavoritesId = allFavorites.map((content)=>content.id) 
-
-      const isAlreadyLiked = allFavoritesId.includes(content.id)
-
-      if(isAlreadyLiked){
-        
-        if(content.contentType === 'movie'){
-          const movieAlreadyLikedIndex = moviesId.findIndex((id)=> id === content.id)
-          movies.splice(movieAlreadyLikedIndex, 1)
-  
-          const favoriteContentAlreadyLikedIndex = allFavoritesId.findIndex((id)=> id === content.id)
-          allFavorites.splice(favoriteContentAlreadyLikedIndex, 1)
-         
-          const allFavoritesSorted =  allFavorites.map((favorite, index)=> ({...favorite, 'internalId': index}))
-          
-          const newContentLikedData = {contentLiked: {'movies': movies, 'tvSeries': [...contentLiked.contentLiked['tvSeries']], 'allFavorites': allFavoritesSorted}}
-        
-          localStorage.setItem("contentLiked", JSON.stringify(newContentLikedData))
-          setContentLiked(newContentLikedData)
-          setIsLiked(false)
-        }
-
-        if(content.contentType === 'tv'){
-          const tvContentAlreadyLikedIndex = tvSeriesId.findIndex((id)=> id === content.id)
-          tvSeries.splice(tvContentAlreadyLikedIndex, 1)
-  
-          const favoriteContentAlreadyLikedIndex = allFavoritesId.findIndex((id)=> id === content.id)
-          allFavorites.splice(favoriteContentAlreadyLikedIndex, 1)
-         
-          const allFavoritesSorted =  allFavorites.map((favorite, index)=> ({...favorite, 'internalId': index}))
-          
-          const newContentLikedData = {contentLiked: {'movies': [...contentLiked.contentLiked['movies']], 'tvSeries': tvSeries, 'allFavorites': allFavoritesSorted}}
-        
-          localStorage.setItem("contentLiked", JSON.stringify(newContentLikedData))
-          setContentLiked(newContentLikedData)
-          setIsLiked(false)
-        }       
-      }         
-    }     
-  }
-
-  useEffect(()=>{   
-    if(contentLiked !== null){
-      if(contentType === 'movie'){        
-        const moviesIds = contentLiked.contentLiked['movies'].map(movie=> movie.id)      
-        setIsLiked(moviesIds.includes(content.id))
-      }
-  
-      if(contentType === 'tv'){
-        const tvSeriesIds = contentLiked.contentLiked['tvSeries'].map(tvSerie=> tvSerie.id)           
-        setIsLiked(tvSeriesIds.includes(content.id))
-      }   
-
-      if(contentType === 'favorites'){
-        const allFavoritesIds = contentLiked.contentLiked['allFavorites'].map(favorite=> favorite.id)           
-        setIsLiked(allFavoritesIds.includes(content.id))
-      }   
-    }    
-  })
+  const likeClick = ()=>{   
+    likeClickHandler(contentType, contentLiked, content)
+  }  
 
   useEffect(()=>{
     setCardContent(content, contentType) 
-  },[content])
+  },[content]) 
 
   useEffect(() => {    
     window.scrollTo(0, 0);
     getData(contentType, contentId)      
   }, []);
 
-  useEffect(()=>{       
+  useEffect(()=>{     
+    isContentLiked(contentLiked, contentType, content)  
     setTextDescriptionOverflowBehavior(description, descriptionTextRef.current)    
   })  
 
@@ -226,7 +108,7 @@ export const ContentDetails = () => {
             token && 
             <>
               {
-                isLiked ? <FcLike className="likeContentDetails" onClick={likeClickHandler}/> : <FcLikePlaceholder className="likeContentDetails" onClick={likeClickHandler}/>
+                isLiked ? <FcLike className="likeContentDetails" onClick={likeClick}/> : <FcLikePlaceholder className="likeContentDetails" onClick={likeClick}/>
               }
             </>
           }

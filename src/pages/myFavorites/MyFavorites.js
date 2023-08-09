@@ -1,21 +1,18 @@
-import { useEffect, useState, useContext, useRef } from "react";
+import { useEffect, useContext, useRef } from "react";
 import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
-import { useGetDataFavorites } from "../../services/internal/useGetDataFavorites";
 import { ContentLikedContext } from "../../contexts/ContentLikedContextProvider";
+import { v4 as randomId } from 'uuid'
 import { Card } from '../../components/card/Card'
 import { Spinner } from "../../components/spinner/Spinner";
 import "./MyFavorites.css";
 
 export const MyFavorites = () => {
-  const { isLoading, setIsLoading } = useContext(IsLoadingContext)
-  const [ isLoadingRequest, setIsLoadingRequest ] = useState(true);
-  const { contentLiked } = useContext(ContentLikedContext)
-  const { getData, content } = useGetDataFavorites()  
-  const imagesLoadedCounter = useRef(0)
-  
+  const { isLoading, setIsLoading } = useContext(IsLoadingContext) 
+  const { contentLiked } = useContext(ContentLikedContext)  
+  const imagesLoadedCounter = useRef(0)  
 
   const imgItemLoadHandler = (event)=>{
-    const lengthResults = content.length
+    const lengthResults = contentLiked.contentLiked.allFavorites.length    
     const quantityImgsToLoadBeforeIsLoadingFalse = lengthResults >= 6 ? 6 : lengthResults
     const imgClasses = event.target.classList.value
     
@@ -25,49 +22,41 @@ export const MyFavorites = () => {
       }      
     }
     if(imagesLoadedCounter.current === quantityImgsToLoadBeforeIsLoadingFalse){
-      imagesLoadedCounter.current = 0
+      imagesLoadedCounter.current = 0      
       setIsLoading(false)
     }
   }
 
   useEffect(() => {    
-    window.scrollTo(0, 0);   
+    window.scrollTo(0, 0);  
+    setIsLoading(true)        
   }, []);
-
-  useEffect(()=>{  
-     
-    if(contentLiked !== null){      
-      //setIsLoadingRequest(true);
-      //setIsLoading(true)
-      //getData(setIsLoadingRequest)     
-    } 
-  },[contentLiked])
-
-  useEffect(()=>{
-    //console.log(content)
-  },[content])
 
   return (    
     <>
       <Spinner />
-
       {
-        (!isLoadingRequest && contentLiked.contentLiked.allFavorites === 0) &&
-          <div className={isLoading === true ? "hidden" : "container containerMoviesAndTvSeriesDashboard"}>
-            <h3 className="alertText">{`No results`}</h3>
-          </div>
-      } 
-
-      {
-        (contentLiked.contentLiked.allFavorites.length > 0) &&
-          <div className={isLoading === true ? "hidden" : "container containerMoviesAndTvSeriesDashboard"} onLoad={imgItemLoadHandler}>
-            <div className="row rowStyles">
-              {contentLiked.contentLiked.allFavorites.map((content, index) => {
-                return <Card content={content} contentType={'favorites'} key={index} index={index + 1} />;
-              })}
-            </div>
-          </div>
-      }       
+        contentLiked !== null &&
+          <>
+            {
+              (contentLiked.contentLiked.allFavorites.length === 0) &&
+                <div className={isLoading === true ? "hidden" : "container containerMoviesAndTvSeriesDashboard"}>
+                  <h3 className="alertText">{`No results`}</h3>
+                </div>
+            } 
+  
+            {
+              (contentLiked.contentLiked.allFavorites.length > 0) &&
+                <div className={isLoading === true ? "hidden" : "container containerMoviesAndTvSeriesDashboard"} onLoad={imgItemLoadHandler}>
+                  <div className="row rowStyles">
+                    {[...contentLiked.contentLiked.allFavorites].reverse().map((content, index) => {
+                      return <Card content={content} contentType={'favorites'} key={randomId()} index={index + 1} />;
+                    })}
+                  </div>
+                </div>
+            }       
+          </>        
+      }      
     </>
   );
 };
