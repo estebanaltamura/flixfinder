@@ -32,6 +32,11 @@ export const SearchBarDesktop = () => {
     if((urlInParts.includes("searchResults") && urlInParts.includes("tv")) || urlInParts.includes("tvSeries")){
         setContentType("tv")
         setPlaceholderText("Search tv-series")
+    }
+    
+    if((urlInParts.includes("searchResults") && urlInParts.includes("favorites")) || urlInParts.includes("movies")){
+      setContentType("movies")
+      setPlaceholderText("Search movies")
     }        
   },[url])  
     
