@@ -8,6 +8,10 @@
   text-align: center;
 }
 
+.rowStyles{
+  margin: 0;
+}
+
 
 @media screen and (min-width: 1050px) {
   .containerStyles {
