@@ -27,10 +27,14 @@ export const MyFavorites = () => {
     }
   }
 
+  useEffect(()=>{
+    if(contentLiked !== null){
+      contentLiked.contentLiked.allFavorites.length === 0 ? setIsLoading(false) :  setIsLoading(true)
+    }    
+  },[contentLiked])
+  
   useEffect(() => {    
-    window.scrollTo(0, 0);  
-     
-    contentLiked.contentLiked.allFavorites.length === 0 ? setIsLoading(false) :  setIsLoading(true)     
+    window.scrollTo(0, 0);          
   }, []);
 
   return (    

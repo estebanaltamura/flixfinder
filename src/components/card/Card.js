@@ -68,7 +68,7 @@ export const Card = ({ content, contentType, index }) => {
           }                
 
           <h5 className="cardBodyTitle">
-            {contentTypeUrl === "movie" ? content.original_title: content.name}
+            {contentTypeUrl === "movie" ? content.original_title : content.name}
           </h5>              
         </div>
            

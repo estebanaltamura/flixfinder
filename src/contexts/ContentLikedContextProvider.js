@@ -7,7 +7,7 @@ export const ContentLikedContext = createContext()
 
 export const ContentLikedContextProvider = ({children})=>{
   const { setContentLikedServer } = useSetContentLiked()  
-  const [ contentLiked, setContentLiked ] = useState(null)  
+  const [ contentLiked, setContentLiked ] = useState({contentLiked: {'movies': [], 'tvSeries': [], 'allFavorites': []}})  
   const { token } = useContext(LoginContext)
 
   useEffect(()=>{
