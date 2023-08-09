@@ -29,7 +29,8 @@ export const MyFavorites = () => {
 
   useEffect(() => {    
     window.scrollTo(0, 0);  
-    setIsLoading(true)        
+     
+    contentLiked.contentLiked.allFavorites.length === 0 ? setIsLoading(false) :  setIsLoading(true)     
   }, []);
 
   return (    
