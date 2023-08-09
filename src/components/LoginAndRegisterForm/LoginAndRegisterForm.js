@@ -12,7 +12,7 @@ import "./LoginAndRegisterForm.css";
 import { AiFillEye, AiFillEyeInvisible} from "react-icons/ai";
 
 export const LoginAndRegisterForm = () => {
-  const { isLogged } = useContext(LoginContext);
+  const { token } = useContext(LoginContext);
   const [section, setSection ] = useState(null) 
   const [ showPassword, setShowPassword ] = useState(false)
 
@@ -58,7 +58,7 @@ export const LoginAndRegisterForm = () => {
 
       const wasSuccessfullTheLogin = await getToken(userNameHandled, password);
 
-      if(wasSuccessfullTheLogin){
+      if(wasSuccessfullTheLogin){        
         history("/movies");
       }      
       else{
@@ -111,11 +111,11 @@ export const LoginAndRegisterForm = () => {
     }        
   }, [url]);
 
-  useEffect(()=>{isLogged && history("/movies");},[])
+  useEffect(()=>{token && history("/movies");},[])
 
   return (
     <>
-      {!isLogged && (
+      {!token && (
         <div className="form-container" onClick={resetAlertWhenFocusInInput}>
           <div className={section === "login" ? "formMainIconContainer" : "formMainIconContainer formMainIconContainerRegisterAccount"} >
             <img src={userIcon} />

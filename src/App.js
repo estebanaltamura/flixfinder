@@ -10,6 +10,7 @@ import { SearchResults } from "./pages/searchResults/SearchResults";
 import { ContentDetails } from "./pages/contentDetails/ContentDetails";
 import { Footer } from "./components/footer/Footer";
 import "./App.css";
+import { MyFavorites } from "./pages/myFavorites/MyFavorites";
 
 function App() { 
   const { isLoading } = useContext(IsLoadingContext)
@@ -19,13 +20,14 @@ function App() {
       <BrowserRouter>        
           <Header />          
           <Routes>
+            <Route path="*"                                           element={<Navigate to="/login" />} />           
             <Route path="/login"                                      element={<Login />} />
             <Route path="/registerAccount"                            element={<RegisterAccount />} />
             <Route path="/movies"                                     element={<MoviesAndTvSeriesDashboard key="moviesDashboard"    />} />
             <Route path="/tvSeries"                                   element={<MoviesAndTvSeriesDashboard key="tvSeriesDashboard" />} />
             <Route path="/searchResults/:contentType/:query"          element={<SearchResults />} />
-            <Route path="*"                                           element={<Navigate to="/login" />} />           
-            <Route path="/contentDetails/:contentType/:contentId"     element={<ContentDetails />} />          
+            <Route path="/contentDetails/:contentType/:contentId"     element={<ContentDetails />} /> 
+            <Route path="/favorites"                                  element={<MyFavorites/>} />
           </Routes>
           {!isLoading && <Footer />}        
       </BrowserRouter>

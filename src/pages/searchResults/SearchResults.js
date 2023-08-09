@@ -1,14 +1,12 @@
 import { useEffect, useState, useContext, useRef } from "react";
 import { useParams } from "react-router-dom";
-import { LoginContext } from "../../contexts/LoginContextProvider";
 import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
 import { useGetDataSearchResults } from "../../services/useGetDataSearchResults";
 import { Card } from "../../components/card/Card";
 import { Spinner } from "../../components/spinner/Spinner";
 import "./SearchResults.css";
 
-export const SearchResults = () => {
-  const { isLogged } = useContext(LoginContext);
+export const SearchResults = () => { 
   const { isLoading, setIsLoading } = useContext(IsLoadingContext)  
   const [ isLoadingRequest, setIsLoadingRequest ] = useState(true);
   const { contentType, query } = useParams();

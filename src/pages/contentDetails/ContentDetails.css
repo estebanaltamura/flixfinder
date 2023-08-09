@@ -107,27 +107,7 @@ p, h2{
   margin: auto 20px;
 }
 
-.backButtonContainer{ 
-  position: relative; 
-  display: flex;
-  width: 100px;
-  height: fit-content;
-}
 
-.backButtonIcon{
-  position: relative;  
-  top: 4px;
-  left: 0;
-  width: 28px;
-  height: 28px;
-  color: black;
-}
-
-.backButtonText{
-  color: black;
-  font-size: 20px;
-  text-align: right;  
-}
 
 .poster,
 .title,
@@ -257,6 +237,29 @@ p, h2{
   .descriptionTextLong{
     max-height: 250px;
     -webkit-line-clamp: 10;
+  }
+
+  .backButtonContainer{ 
+    position: relative; 
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+  }
+  
+  .backButtonIcon{
+    position: relative;  
+    top: 4px;
+    left: 0;
+    width: 28px;
+    height: 28px;
+    color: black;
+  }
+  
+  .backButtonText{
+    color: black;
+    font-size: 20px;
+    width: fit-content;
+    text-align: right;  
   }
 }
 

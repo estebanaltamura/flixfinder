@@ -1,14 +1,18 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
 import { LoginContext } from "../../contexts/LoginContextProvider";
-import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
+import { ContentLikedContext } from "../../contexts/ContentLikedContextProvider"; 
+import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 import ratingIcon from '../../assets/ratingIcon.svg'
 import "./Card.css";
 
 export const Card = ({ content, contentType, index }) => {  
   const { setIsLoading } = useContext(IsLoadingContext)
-  const { isLogged } = useContext(LoginContext)
+  const { token } = useContext(LoginContext)
+  const { contentLiked, setContentLiked } = useContext(ContentLikedContext)
+  const [ isLiked, setIsLiked ] = useState(false)
+
   const img = useRef();
   const card = useRef();    
   
@@ -19,6 +23,72 @@ export const Card = ({ content, contentType, index }) => {
   const onClickHandler = ()=>{
     setIsLoading(true)
   }
+
+  const likeClickHandler = ()=>{      
+    
+    if(contentType === 'tv'){
+      const tvSeries = [...contentLiked.contentLiked['tvSeries']]  
+      const tvSeriesId = tvSeries.map((tvSerie)=>tvSerie.id)
+
+      const isAlreadyLiked = tvSeriesId.includes(content.id)
+
+      if(isAlreadyLiked){
+        const contentAlreadyLikedIndex = tvSeriesId.findIndex((id)=> id === content.id)
+        tvSeries.splice(contentAlreadyLikedIndex, 1)
+        tvSeriesId.splice(contentAlreadyLikedIndex, 1)
+
+        console.log(tvSeries, tvSeriesId)
+
+        const newContentLikedData = {contentLiked: {'movies': [...contentLiked.contentLiked['movies']], 'tvSeries': tvSeries}}
+        localStorage.setItem("contentLiked", JSON.stringify(newContentLikedData))
+        setContentLiked(newContentLikedData)
+        setIsLiked(false)
+      }
+      else{
+        const newContentLikedData = {contentLiked: {'movies': [...contentLiked.contentLiked['movies']], 'tvSeries': [...contentLiked.contentLiked['tvSeries'], content]}}
+        localStorage.setItem("contentLiked", JSON.stringify(newContentLikedData))
+        setContentLiked(newContentLikedData)
+        setIsLiked(true)
+      }      
+    } 
+
+    if(contentType === 'movie'){      
+      const movies = [...contentLiked.contentLiked['movies']] 
+      const moviesId = movies.map((movie)=>movie.id) 
+      const isAlreadyLiked = moviesId.includes(content.id)
+
+      if(isAlreadyLiked){
+        const contentAlreadyLikedIndex = moviesId.findIndex((id)=> id === content.id)
+        movies.splice(contentAlreadyLikedIndex, 1)
+        moviesId.splice(contentAlreadyLikedIndex, 1)
+        
+        const newContentLikedData = {contentLiked: {'movies': movies, 'tvSeries': [...contentLiked.contentLiked['tvSeries']]}}
+        localStorage.setItem("contentLiked", JSON.stringify(newContentLikedData))
+        setContentLiked(newContentLikedData)
+        setIsLiked(false)
+      }
+      else{
+        const newContentLikedData = {contentLiked: {'movies': [...contentLiked.contentLiked['movies'], content], 'tvSeries': [...contentLiked.contentLiked['tvSeries']]}}
+        localStorage.setItem("contentLiked", JSON.stringify(newContentLikedData))
+        setContentLiked(newContentLikedData)
+        setIsLiked(true)
+      }      
+    }       
+  }
+
+  useEffect(()=>{
+    if(contentLiked !== null){
+      if(contentType === 'movie'){        
+        const moviesId = contentLiked.contentLiked['movies'].map(movie=> movie.id)      
+        setIsLiked(moviesId.includes(content.id))
+      }
+  
+      if(contentType === 'tv'){
+        const tvSeriesId = contentLiked.contentLiked['tvSeries'].map(tvSerie=> tvSerie.id)           
+        setIsLiked(tvSeriesId.includes(content.id))
+      }   
+    }    
+  },[])
 
   return (
     <div
@@ -43,9 +113,13 @@ export const Card = ({ content, contentType, index }) => {
             </span>
           </div>           
           {
-            isLogged &&<AiOutlineHeart className="cardBodyLike" />   
-          }
-                 
+            token && 
+            <>
+              {
+                isLiked ? <FcLike className="cardBodyLike" onClick={likeClickHandler}/> : <FcLikePlaceholder className="cardBodyLike" onClick={likeClickHandler}/>
+              }
+            </>
+          }                
 
           <h5 className="cardBodyTitle">
             {contentType === "movie" ? content.original_title: content.name}

@@ -8,7 +8,7 @@ import './Login.css'
 
 
 export const Login = ()=>{  
-  const { isLogged } = useContext(LoginContext)
+  const { token } = useContext(LoginContext)
   const { setIsLoading } = useContext(IsLoadingContext)
   
   useEffect(()=>{
@@ -16,7 +16,7 @@ export const Login = ()=>{
   },[]) 
 
   return(
-    isLogged ?
+    token ?
       <Navigate to="/movies" /> 
             :
       <div className="loginContainer">

@@ -1,18 +1,18 @@
 import { useEffect, useState, useContext, useRef } from "react";
-import { useLocation } from "react-router-dom";
 import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
-import { useGetDataMoviesAndTvSeriesDashboard } from "../../services/useGetDataMoviesAndTvSeriesDashboard";
+import { useGetDataFavorites } from "../../services/internal/useGetDataFavorites";
+import { ContentLikedContext } from "../../contexts/ContentLikedContextProvider";
 import { Card } from '../../components/card/Card'
 import { Spinner } from "../../components/spinner/Spinner";
-import "./MoviesAndTvSeriesDashboard.css";
+import "./MyFavorites.css";
 
-export const MoviesAndTvSeriesDashboard = () => {
+export const MyFavorites = () => {
   const { isLoading, setIsLoading } = useContext(IsLoadingContext)
   const [ isLoadingRequest, setIsLoadingRequest ] = useState(true);
-  const { getData, content } = useGetDataMoviesAndTvSeriesDashboard()  
+  const { contentLiked } = useContext(ContentLikedContext)
+  const { getData, content } = useGetDataFavorites()  
   const imagesLoadedCounter = useRef(0)
-  const contentType = useRef(null)
-  const url = useLocation()  
+  
 
   const imgItemLoadHandler = (event)=>{
     const lengthResults = content.length
@@ -31,20 +31,22 @@ export const MoviesAndTvSeriesDashboard = () => {
   }
 
   useEffect(() => {    
-    window.scrollTo(0, 0);  
-    setIsLoadingRequest(true);
-    setIsLoading(true)  
-    
-    const urlInParts = url.pathname.split("/")
-    if(urlInParts.includes("movies")){
-      contentType.current = "movie"       
-    } 
-    if(urlInParts.includes("tvSeries")){
-      contentType.current = "tv"      
-    }          
+    window.scrollTo(0, 0);   
+  }, []);
 
-    contentType.current !== null && getData(contentType.current, setIsLoadingRequest)    
-  }, [url]);
+  useEffect(()=>{
+    console.log(contentLiked)
+    if(contentLiked !== null){
+      
+      setIsLoadingRequest(true);
+      setIsLoading(true)
+      getData(setIsLoadingRequest)     
+    } 
+  },[contentLiked])
+
+  useEffect(()=>{
+    console.log(content.length)
+  },[content])
 
   return (    
     <>
@@ -62,7 +64,7 @@ export const MoviesAndTvSeriesDashboard = () => {
           <div className={isLoading === true ? "hidden" : "container containerMoviesAndTvSeriesDashboard"} onLoad={imgItemLoadHandler}>
             <div className="row rowStyles">
               {content.map((content, index) => {
-                return <Card content={content} contentType={contentType.current} key={index} index={index + 1} />;
+                return <Card content={content} key={index} index={index + 1} />;
               })}
             </div>
           </div>

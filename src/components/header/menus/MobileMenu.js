@@ -1,18 +1,21 @@
 import { useContext, useRef } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import { LoginContext } from "../../../contexts/LoginContextProvider";
+import { ContentLikedContext } from "../../../contexts/ContentLikedContextProvider";
 import { BsSearch } from "react-icons/bs";
 import { RxHamburgerMenu } from "react-icons/rx";
 import "./MobileMenu.css";
 
 export const MobileMenu = () => {
-  const { isLogged, setIsLogged } = useContext(LoginContext);
+  const { token, setToken } = useContext(LoginContext);
+  const { setContentLiked } = useContext(ContentLikedContext)
   const history = useNavigate();
   const togglerButtonRef = useRef();
 
   const logoutHandler = () => {
-    localStorage.removeItem("token");
-    setIsLogged(false);   
+    localStorage.removeItem("token");    
+    setToken(null);   
+    setContentLiked(null);
   };
 
   const logInHandler = ()=>{
@@ -71,13 +74,22 @@ export const MobileMenu = () => {
                   TV-Series
                 </NavLink>
               </li>
+              {
+                token &&
+                  <li className="nav-item">
+                    <NavLink className="nav-link menuOptionMobile" to="/favorites">
+                      Favorites
+                    </NavLink>
+                  </li>
+              }
+             
   
             </ul>
           </div>
   
           <BsSearch className="searchIconMobile" id="searchIcon" />
   
-          {isLogged ? 
+          {token ? 
             <span className="loginHeaderLabelMobile" onClick={logoutHandler}>
               Logout
             </span>

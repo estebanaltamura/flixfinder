@@ -1,13 +1,11 @@
-import { useState, useEffect, useContext } from "react";
-import { LoginContext } from "../../contexts/LoginContextProvider"
+import { useState, useEffect } from "react";
 import { MobileMenu } from "./menus/MobileMenu";
 import { SearchBarMobile } from "./searchBars/SearchBarMobile";
 import { DesktopMenu } from "./menus/DesktopMenu";
 import "./Header.css";
 
 export const Header = () => {
-  const [currentWidth, setCurrentWidth] = useState(window.innerWidth);
-  const { isLogged } = useContext(LoginContext);
+  const [currentWidth, setCurrentWidth] = useState(window.innerWidth);  
   const [isHeaderSearchMode, setIsHeaderSearchMode] = useState(false);
 
   const searchModeHandler = (event) => {

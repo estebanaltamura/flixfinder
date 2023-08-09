@@ -3,15 +3,15 @@ import { createContext, useState, useEffect } from "react";
 export const LoginContext = createContext();
 
 export const LoginContextProvider = (props) => {
-  const [ isLogged, setIsLogged ] = useState(null);
+  const [ token, setToken ] = useState(null);
 
   useEffect(()=>{
-    const isThereToken = localStorage.getItem("token") ? true : false;
-    setIsLogged(isThereToken)
+    const token = localStorage.getItem("token");    
+    setToken(token)
   },[])
 
   return (
-    <LoginContext.Provider value={{ isLogged, setIsLogged }}>
+    <LoginContext.Provider value={{ token, setToken }}>
       {props.children}
     </LoginContext.Provider>
   );

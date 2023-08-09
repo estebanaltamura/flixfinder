@@ -1,11 +1,14 @@
-import { useEffect, useRef, useContext } from "react";
+import axios from 'axios'
+
+import { useEffect, useRef, useContext, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { LoginContext } from "../../contexts/LoginContextProvider";
 import { IsLoadingContext } from '../../contexts/IsLoadingContextProvider'
+import { ContentLikedContext } from '../../contexts/ContentLikedContextProvider';
 import { useContentDetailsHelper } from "../../hooks/useContentDetailsHelper";
 import { useGetDataContentDetails } from "../../services/useGetDataContentDetails";
 import { Spinner } from "../../components/spinner/Spinner";
-import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
+import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 import { HiOutlineChevronLeft } from "react-icons/hi";
 import ratingIcon from '../../assets/ratingIcon.svg'
 import { BsShareFill } from "react-icons/bs";
@@ -16,9 +19,10 @@ import { WhatsappShareButton } from "react-share";
 export const ContentDetails = () => {
 
   const shareUrl = 'https://www.linkedin.com/in/andres-altamura/'
-  
+  const [ isLiked, setIsLiked ] = useState(false)
   const { isLoading, setIsLoading } = useContext(IsLoadingContext); 
-  const { isLogged } = useContext(LoginContext);   
+  const { token } = useContext(LoginContext);   
+  const { contentLiked, setContentLiked } = useContext(ContentLikedContext)
   const {
     setCardContent,
     setTextDescriptionOverflowBehavior,
@@ -47,17 +51,84 @@ export const ContentDetails = () => {
     history(-1)
   }
 
-  useEffect(() => {    
-    window.scrollTo(0, 0);
-    getData(contentType, contentId)
-  }, []);
+  const likeClickHandler = ()=>{   
+    
+    
+    if(contentType === 'tv'){
+      const tvSeries = [...contentLiked.contentLiked['tvSeries']]  
+      const tvSeriesId = tvSeries.map((tvSerie)=>tvSerie.id)
+
+      const isAlreadyLiked = tvSeriesId.includes(content.id)
+
+      if(isAlreadyLiked){
+        const contentAlreadyLikedIndex = tvSeriesId.findIndex((id)=> id === content.id)
+        tvSeries.splice(contentAlreadyLikedIndex, 1)
+        tvSeriesId.splice(contentAlreadyLikedIndex, 1)
+
+        const newContentLikedData = {contentLiked: {'movies': [...contentLiked.contentLiked['movies']], 'tvSeries': tvSeries}}
+        localStorage.setItem("contentLiked", JSON.stringify(newContentLikedData))
+        setContentLiked(newContentLikedData)
+        setIsLiked(false)
+      }
+      else{
+        const newContentLikedData = {contentLiked: {'movies': [...contentLiked.contentLiked['movies']], 'tvSeries': [...contentLiked.contentLiked['tvSeries'], content]}}
+        localStorage.setItem("contentLiked", JSON.stringify(newContentLikedData))
+        setContentLiked(newContentLikedData)
+        setIsLiked(true)
+      }      
+    } 
+
+    if(contentType === 'movie'){      
+      const movies = [...contentLiked.contentLiked['movies']] 
+      const moviesId = movies.map((movie)=>movie.id) 
+      const isAlreadyLiked = moviesId.includes(content.id)
+
+      if(isAlreadyLiked){
+        const contentAlreadyLikedIndex = moviesId.findIndex((id)=> id === content.id)
+
+        
+        movies.splice(contentAlreadyLikedIndex, 1)
+        moviesId.splice(contentAlreadyLikedIndex, 1)
+
+    
+
+
+        const newContentLikedData = {contentLiked: {'movies': movies, 'tvSeries': [...contentLiked.contentLiked['tvSeries']]}}
+        localStorage.setItem("contentLiked", JSON.stringify(newContentLikedData))
+        setContentLiked(newContentLikedData)
+        setIsLiked(false)
+      }
+      else{
+        const newContentLikedData = {contentLiked: {'movies': [...contentLiked.contentLiked['movies'], content], 'tvSeries': [...contentLiked.contentLiked['tvSeries']]}}
+        localStorage.setItem("contentLiked", JSON.stringify(newContentLikedData))
+        setContentLiked(newContentLikedData)
+        setIsLiked(true)
+      }      
+    }       
+  }
 
   useEffect(()=>{
     setCardContent(content, contentType)    
+
+    if(contentLiked !== null){
+      if(contentType === 'movie'){
+        const moviesId = contentLiked.contentLiked['movies'].map(movie=> movie.id)      
+        setIsLiked(moviesId.includes(content.id))
+      }
+  
+      if(contentType === 'tv'){
+        const tvSeriesId = contentLiked.contentLiked['tvSeries'].map(tvSerie=> tvSerie.id)           
+        setIsLiked(tvSeriesId.includes(content.id))
+      }   
+    }    
   },[content])
 
-  useEffect(()=>{    
-    console.log(isLogged)
+  useEffect(() => {    
+    window.scrollTo(0, 0);
+    getData(contentType, contentId)      
+  }, []);
+
+  useEffect(()=>{       
     setTextDescriptionOverflowBehavior(description, descriptionTextRef.current)    
   })  
 
@@ -89,8 +160,13 @@ export const ContentDetails = () => {
           <p className="descriptionText" ref={descriptionTextRef}>{description}</p> 
 
           {
-            isLogged && <AiOutlineHeart className="likeContentDetails"/>
-          }          
+            token && 
+            <>
+              {
+                isLiked ? <FcLike className="likeContentDetails" onClick={likeClickHandler}/> : <FcLikePlaceholder className="likeContentDetails" onClick={likeClickHandler}/>
+              }
+            </>
+          }
 
           <WhatsappShareButton className="shareContentDetails"
             url={shareUrl}
