@@ -182,6 +182,10 @@ export const ContentDetails = () => {
     }    
   })
 
+  useEffect(()=>{
+    setCardContent(content, contentType) 
+  },[content])
+
   useEffect(() => {    
     window.scrollTo(0, 0);
     getData(contentType, contentId)      
