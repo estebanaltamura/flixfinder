@@ -34,7 +34,7 @@ export const SearchBarDesktop = () => {
         setPlaceholderText("Search tv-series")
     }
     
-    if((urlInParts.includes("searchResults") && urlInParts.includes("favorites")) || urlInParts.includes("movies")){
+    if(urlInParts.includes("favorites")){
       setContentType("movies")
       setPlaceholderText("Search movies")
     }        
