@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { MobileMenu } from "./menus/MobileMenu";
 import { SearchBarMobile } from "./searchBars/SearchBarMobile";
 import { DesktopMenu } from "./menus/DesktopMenu";
 import "./Header.css";
 
 export const Header = () => {
-  const [currentWidth, setCurrentWidth] = useState(window.innerWidth);  
-  const [isHeaderSearchMode, setIsHeaderSearchMode] = useState(false);
+  const [ currentWidth, setCurrentWidth] = useState(window.innerWidth);  
+  const [ isHeaderSearchMode, setIsHeaderSearchMode] = useState(false);
+  const [ showHeader, setShowHeader ] = useState(null)
+  const url = useLocation()
 
   const searchModeHandler = (event) => {
     if (
@@ -29,6 +32,14 @@ export const Header = () => {
     setIsHeaderSearchMode(false);
   }
 
+  useEffect(() => {     
+    const urlInParts = url.pathname.split("/")
+    if(urlInParts.includes("login") || urlInParts.includes("registerAccount")){
+      setShowHeader(false)      
+    }     
+    else setShowHeader(true)  
+  }, [url]);
+
   useEffect(() => {
     const setWidth = () => {
       setCurrentWidth(window.innerWidth);
@@ -39,17 +50,18 @@ export const Header = () => {
     return () => window.removeEventListener("resize", setWidth);
   }, []);
 
-  return (    
-    <header onClick={searchModeHandler} onSubmit={onSubmitHandler}>
-      {currentWidth < 1200 ? (
-        isHeaderSearchMode === true ? (
-          <SearchBarMobile />
+  return (
+    showHeader &&     
+      <header onClick={searchModeHandler} onSubmit={onSubmitHandler}>
+        {currentWidth < 1200 ? (
+          isHeaderSearchMode === true ? (
+            <SearchBarMobile />
+          ) : (
+            <MobileMenu />
+          )
         ) : (
-          <MobileMenu />
-        )
-      ) : (
-        <DesktopMenu />
-      )}
-    </header>
+          <DesktopMenu />
+        )}
+      </header>
   );
 };

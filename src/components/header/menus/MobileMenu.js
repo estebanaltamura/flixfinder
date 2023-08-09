@@ -81,8 +81,7 @@ export const MobileMenu = () => {
                       Favorites
                     </NavLink>
                   </li>
-              }
-             
+              }             
   
             </ul>
           </div>

@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { LoginContext } from "../../contexts/LoginContextProvider";
+import { IsLoadingContext } from '../../contexts/IsLoadingContextProvider'
 import { useLoginValidator } from "../../hooks/useLoginValidator";
 import { useLogin } from "../../hooks/useLogin";
 import { useCreateAccount } from "../../hooks/useCreateAccount";
@@ -15,6 +16,7 @@ export const LoginAndRegisterForm = () => {
   const { token } = useContext(LoginContext);
   const [section, setSection ] = useState(null) 
   const [ showPassword, setShowPassword ] = useState(false)
+  const { setIsLoading } = useContext(IsLoadingContext)
 
   const {
     userNameAlert,
@@ -58,7 +60,8 @@ export const LoginAndRegisterForm = () => {
 
       const wasSuccessfullTheLogin = await getToken(userNameHandled, password);
 
-      if(wasSuccessfullTheLogin){        
+      if(wasSuccessfullTheLogin){    
+        setIsLoading(true)
         history("/movies");
       }      
       else{
@@ -140,6 +143,8 @@ export const LoginAndRegisterForm = () => {
                 ref={userNameInput}
                 className="inputForm inputFormUserName"
                 autoComplete="off"
+                autocorrect="off" 
+                autocapitalize="none"
                 placeholder="E-mail"
               /> 
             </div>

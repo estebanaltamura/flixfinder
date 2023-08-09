@@ -11,7 +11,6 @@ export const useContentDetailsHelper = ()=>{
 
   
   const setCardContent = (content, contentType)=>{
-
     if(content.original_title !== undefined || content.name !== undefined){
       contentType === "movie" ? setTitleText(content.original_title) : setTitleText(content.name)
     }
@@ -39,12 +38,7 @@ export const useContentDetailsHelper = ()=>{
 
     if(content.poster_path !== undefined){
       setImgSrc(`https://image.tmdb.org/t/p/original${content.poster_path}`)  
-    } 
-
-
-
-    
-    
+    }    
   }
 
   const setTextDescriptionOverflowBehavior = (description, descriptionTextElement)=>{
