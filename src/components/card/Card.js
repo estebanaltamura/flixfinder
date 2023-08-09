@@ -34,7 +34,7 @@ export const Card = ({ content, contentType, index }) => {
 
   useEffect(()=>{ 
     isContentLiked(contentLiked, contentType, content)
-  },[])
+  })
 
   return (
     <div
