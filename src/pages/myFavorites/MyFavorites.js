@@ -34,18 +34,17 @@ export const MyFavorites = () => {
     window.scrollTo(0, 0);   
   }, []);
 
-  useEffect(()=>{
-    console.log(contentLiked)
-    if(contentLiked !== null){
-      
-      setIsLoadingRequest(true);
-      setIsLoading(true)
-      getData(setIsLoadingRequest)     
+  useEffect(()=>{  
+     
+    if(contentLiked !== null){      
+      //setIsLoadingRequest(true);
+      //setIsLoading(true)
+      //getData(setIsLoadingRequest)     
     } 
   },[contentLiked])
 
   useEffect(()=>{
-    console.log(content.length)
+    //console.log(content)
   },[content])
 
   return (    
@@ -53,18 +52,18 @@ export const MyFavorites = () => {
       <Spinner />
 
       {
-        (!isLoadingRequest && content.length === 0) &&
+        (!isLoadingRequest && contentLiked.contentLiked.allFavorites === 0) &&
           <div className={isLoading === true ? "hidden" : "container containerMoviesAndTvSeriesDashboard"}>
             <h3 className="alertText">{`No results`}</h3>
           </div>
       } 
 
       {
-        (!isLoadingRequest && content.length > 0) &&
+        (contentLiked.contentLiked.allFavorites.length > 0) &&
           <div className={isLoading === true ? "hidden" : "container containerMoviesAndTvSeriesDashboard"} onLoad={imgItemLoadHandler}>
             <div className="row rowStyles">
-              {content.map((content, index) => {
-                return <Card content={content} key={index} index={index + 1} />;
+              {contentLiked.contentLiked.allFavorites.map((content, index) => {
+                return <Card content={content} contentType={'favorites'} key={index} index={index + 1} />;
               })}
             </div>
           </div>
