@@ -12,6 +12,7 @@ export const Card = ({ content, contentType, index }) => {
   const { token } = useContext(LoginContext)
   const { contentLiked, setContentLiked } = useContext(ContentLikedContext)
   const [ isLiked, setIsLiked ] = useState(false)
+  const [ contentTypeCard, setContentTypeCard ] = useState(null)
 
   const img = useRef();
   const card = useRef();    
@@ -24,11 +25,8 @@ export const Card = ({ content, contentType, index }) => {
     setIsLoading(true)
   }
 
-  const likeClickHandler = ()=>{ 
-    
-    
-    
-    if(contentType === 'tv'){
+  const likeClickHandler = ()=>{     
+    if(contentType === 'tv'){      
       const tvSeries = [...contentLiked.contentLiked['tvSeries']]  
       const tvSeriesId = tvSeries.map((tvSerie)=>tvSerie.id)
       const allFavorites = [...contentLiked.contentLiked['allFavorites']] 
@@ -48,14 +46,14 @@ export const Card = ({ content, contentType, index }) => {
         const newContentLikedData = {contentLiked: {'movies': [...contentLiked.contentLiked['movies']], 'tvSeries': tvSeries, 'allFavorites': allFavoritesSorted}}
         localStorage.setItem("contentLiked", JSON.stringify(newContentLikedData))
         setContentLiked(newContentLikedData)
-        setIsLiked(false)
+        setIsLiked(false)        
       }
       else{
         const newContentLikedData = {contentLiked: {'movies': [...contentLiked.contentLiked['movies']], 'tvSeries': [...contentLiked.contentLiked['tvSeries'], content], 'allFavorites': [...contentLiked.contentLiked['allFavorites'], {...content, 'internalId': contentLiked.contentLiked['allFavorites'].length, contentType}]}}
         localStorage.setItem("contentLiked", JSON.stringify(newContentLikedData))
         setContentLiked(newContentLikedData)
         setIsLiked(true)
-      }      
+      }            
     } 
 
     if(contentType === 'movie'){      
@@ -136,23 +134,31 @@ export const Card = ({ content, contentType, index }) => {
     }
   }
 
+
+
   useEffect(()=>{   
     if(contentLiked !== null){
-      if(contentType === 'movie'){        
+      if(contentType === 'movie'){      
+        setContentTypeCard('movie')  
         const moviesIds = contentLiked.contentLiked['movies'].map(movie=> movie.id)      
         setIsLiked(moviesIds.includes(content.id))
       }
   
       if(contentType === 'tv'){
+        setContentTypeCard('tv')
         const tvSeriesIds = contentLiked.contentLiked['tvSeries'].map(tvSerie=> tvSerie.id)           
         setIsLiked(tvSeriesIds.includes(content.id))
       }   
 
       if(contentType === 'favorites'){
+        setContentTypeCard(content.contentType)
         const allFavoritesIds = contentLiked.contentLiked['allFavorites'].map(favorite=> favorite.id)           
         setIsLiked(allFavoritesIds.includes(content.id))
       }   
     }    
+
+
+
   },[])
 
   return (
@@ -187,14 +193,14 @@ export const Card = ({ content, contentType, index }) => {
           }                
 
           <h5 className="cardBodyTitle">
-            {contentType === "movie" ? content.original_title: content.name}
+            {contentTypeCard === "movie" ? content.original_title: content.name}
           </h5>              
         </div>
            
         <Link
           className="detailsButton"
           onClick={onClickHandler}              
-          to={`/contentDetails/${contentType}/${content.id}`}>
+          to={`/contentDetails/${contentTypeCard}/${content.id}`}>
             See Details
         </Link>
       </div>
