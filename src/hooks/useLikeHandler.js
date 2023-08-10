@@ -118,27 +118,31 @@ export const useLikeHandler = ()=>{
   }
   
   const isContentLiked = (contentLiked, contentType, content)=>{
-    if(contentLiked !== null){
-      if(contentType === 'movie'){      
-        setContentTypeUrl('movie')  
+    
+    if(contentType === 'movie'){      
+      setContentTypeUrl('movie')  
+      if(contentLiked !== null){
         const moviesIds = contentLiked.contentLiked['movies'].map(movie=> movie.id)      
         setIsLiked(moviesIds.includes(content.id))
       }
+    }
     
-      if(contentType === 'tv'){
-        setContentTypeUrl('tv')
+    if(contentType === 'tv'){
+      setContentTypeUrl('tv')
+      if(contentLiked !== null){
         const tvSeriesIds = contentLiked.contentLiked['tvSeries'].map(tvSerie=> tvSerie.id)           
         setIsLiked(tvSeriesIds.includes(content.id))
-      }   
+      }
+    }   
   
-      if(contentType === 'favorites'){
-        setContentTypeUrl(content.contentType)
+    if(contentType === 'favorites'){
+      setContentTypeUrl(content.contentType)
+      if(contentLiked !== null){
         const allFavoritesIds = contentLiked.contentLiked['allFavorites'].map(favorite=> favorite.id)           
         setIsLiked(allFavoritesIds.includes(content.id))
-      }   
-    }    
+      }
+    }   
   }
-
 
   return({
     likeClickHandler,

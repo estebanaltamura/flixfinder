@@ -10,7 +10,7 @@ import "./Card.css";
  
 export const Card = ({ content, contentType, index }) => {  
   const { setIsLoading } = useContext(IsLoadingContext)
-  const { token } = useContext(LoginContext)
+  const { token } = useContext(LoginContext) 
   const { contentLiked } = useContext(ContentLikedContext)
   const { likeClickHandler,
           isContentLiked,

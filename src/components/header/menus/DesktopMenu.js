@@ -13,7 +13,8 @@ export const DesktopMenu = () => {
   const history = useNavigate();
 
   const logoutHandler = () => {
-    localStorage.removeItem("token");    
+    localStorage.removeItem("token"); 
+    localStorage.removeItem("contentLiked");       
     setToken(null);
     setContentLiked(null);
   };

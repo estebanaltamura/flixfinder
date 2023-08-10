@@ -13,7 +13,8 @@ export const MobileMenu = () => {
   const togglerButtonRef = useRef();
 
   const logoutHandler = () => {
-    localStorage.removeItem("token");    
+    localStorage.removeItem("token");   
+    localStorage.removeItem("contentLiked");      
     setToken(null);   
     setContentLiked(null);
   };
