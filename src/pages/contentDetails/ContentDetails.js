@@ -54,7 +54,7 @@ export const ContentDetails = () => {
   }
 
   const backButtonOnClick = ()=>{
-    history('/movies')
+    history(-1)
     //history.length === 1 ? history('/movies') : history(-1)
   }
 
