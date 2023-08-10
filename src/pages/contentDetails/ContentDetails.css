@@ -141,7 +141,7 @@ p, h2{
       "poster paddingLeft yearReleaseAndRating yearReleaseAndRating yearReleaseAndRating yearReleaseAndRating paddingRight"
       "poster paddingLeft genres genres genres genres paddingRight"
       "poster paddingLeft descriptionText descriptionText descriptionText descriptionText paddingRight"  
-      "poster paddingLeft . likeContentDetails . shareContentDetails paddingRight";     
+      "poster paddingLeft . shareContentDetails . likeContentDetails paddingRight";     
     margin: 20px;
     border: 1px solid #929292;   
     box-shadow: 2px 2px 3px 1px #6c6c6c;
