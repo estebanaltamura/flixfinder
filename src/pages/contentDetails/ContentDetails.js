@@ -53,8 +53,9 @@ export const ContentDetails = () => {
     setIsLoading(false)
   }
 
-  const backButtonOnClick = ()=>{    
-    history.length === 1 ? history('/movies') : history(-1)
+  const backButtonOnClick = ()=>{       
+    contentTypeUrl === 'movie' && history('/movies')
+    contentTypeUrl === 'tv' && history('/tvSeries')
   }
 
   const likeClick = ()=>{   
@@ -75,10 +76,7 @@ export const ContentDetails = () => {
     setTextDescriptionOverflowBehavior(description, descriptionTextRef.current)    
   })  
 
-  const prueba = ()=>{
-    console.log(titleText)
-  }
-
+ 
   return (
     <>       
       <Spinner />        
@@ -115,8 +113,7 @@ export const ContentDetails = () => {
             </>
           }
 
-          <WhatsappShareButton className="shareContentDetails"
-            onClick={prueba}
+          <WhatsappShareButton className="shareContentDetails"            
             url={`www.flixfinder.online/${url.pathname}`}
             title={titleText}
             >          
