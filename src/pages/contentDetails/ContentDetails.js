@@ -53,9 +53,8 @@ export const ContentDetails = () => {
     setIsLoading(false)
   }
 
-  const backButtonOnClick = ()=>{
-    history(-1)
-    //history.length === 1 ? history('/movies') : history(-1)
+  const backButtonOnClick = ()=>{    
+    history.length === 1 ? history('/movies') : history(-1)
   }
 
   const likeClick = ()=>{   
@@ -129,10 +128,10 @@ export const ContentDetails = () => {
           {/* <BsShareFill className="shareContentDetails"/>     */}
         </div>
         
-        <Link className="backButtonContainer" onClick={backButtonOnClick}>
+        <div className="backButtonContainer" onClick={backButtonOnClick}>
               <HiOutlineChevronLeft className="backButtonIcon"/>
               <span className="backButtonText">go back</span>
-        </Link>
+        </div>
       </div>        
     </>     
   )
