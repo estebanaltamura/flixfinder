@@ -47,6 +47,11 @@ export const Card = ({ content, contentType, index }) => {
     setShareOptionsVisivility(!shareOptionsVisivility)
   }
 
+  const onBlurCardHandler = ()=>{
+    console.log("desenfoco")
+    setShareOptionsVisivility(false)
+  }
+
   useEffect(()=>{ 
     isContentLiked(contentLiked, contentType, content)
   })
@@ -66,7 +71,7 @@ export const Card = ({ content, contentType, index }) => {
           onClick={linkToContentDetails}             
         />       
 
-        <div className="cardDetails">
+        <div className="cardDetails" onBlur={onBlurCardHandler}>
           <div className="cardBodyRatingContainer">
             <img className="cardBodyRatingIcon" src={ratingIcon} />               
             <span className={content.vote_average > 0 ? "cardBodyRatingNumber" : "cardBodyRatingText"}>
