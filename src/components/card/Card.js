@@ -80,7 +80,7 @@ export const Card = ({ content, contentType, index }) => {
           </div> 
 
           <div className="shareCardContainer" onClick={shareButtonClickHandler}>          
-              <BsShareFill className="shareCardIcon"/>
+              <BsShareFill className={shareOptionsVisivility ? "shareCardIcon shareCardIconActive" : "shareCardIcon"} />
           </div> 
           {
             shareOptionsVisivility &&
