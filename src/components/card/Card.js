@@ -25,6 +25,8 @@ export const Card = ({ content, contentType, index }) => {
   const history = useNavigate()  
   const img = useRef();
   const card = useRef();    
+
+  const shareUrl = `www.flixfinder.online/contentDetails/${contentTypeUrl}/${content.id}`
   
   const imageErrorHandler = () => {
     img.current.src = "https://i.postimg.cc/BZNQgg6T/noImage.jpg";    
@@ -83,8 +85,8 @@ export const Card = ({ content, contentType, index }) => {
               <>
              
                 <WhatsappShareButton className="WhatsappShareButton"
-                  url={`www.flixfinder.online/contentDetails/${contentTypeUrl}/${content.id}`}
-                  title={contentTypeUrl === "movie" ? content.original_title : content.name}>
+                  url={shareUrl}
+                  >
                     <BsWhatsapp className="whastappShareIcon" />
                 </WhatsappShareButton>    
                 
