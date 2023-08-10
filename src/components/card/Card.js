@@ -1,5 +1,5 @@
 import { useContext, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
 import { LoginContext } from "../../contexts/LoginContextProvider";
 import { ContentLikedContext } from "../../contexts/ContentLikedContextProvider"; 
@@ -17,6 +17,7 @@ export const Card = ({ content, contentType, index }) => {
           contentTypeUrl,
           isLiked } = useLikeHandler()
 
+  const history = useNavigate()
   const img = useRef();
   const card = useRef();    
   
@@ -26,6 +27,10 @@ export const Card = ({ content, contentType, index }) => {
 
   const linkToContentDetailsClickHandler = ()=>{
     setIsLoading(true)
+  }
+
+  const linkToContentDetails = ()=>{
+    history(`/contentDetails/${contentTypeUrl}/${content.id}`)
   }
 
   const likeClick = ()=>{   
@@ -47,10 +52,11 @@ export const Card = ({ content, contentType, index }) => {
           className="card-img-top cardImg"
           id={index}
           alt="..."
-          onError={imageErrorHandler}              
+          onError={imageErrorHandler} 
+          onClick={linkToContentDetails}             
         />
         
-        <div className="cardBodyContainer">         
+        <div className="cardBodyContainer">     
             
           <div className="cardBodyRatingContainer">
             <img className="cardBodyRatingIcon" src={ratingIcon} />               
@@ -67,9 +73,9 @@ export const Card = ({ content, contentType, index }) => {
             </>
           }                
 
-          <h5 className="cardBodyTitle">
-            {contentTypeUrl === "movie" ? content.original_title : content.name}
-          </h5>              
+          <div className="cardBodyTitle" onClick={linkToContentDetails}>
+            <h5>{contentTypeUrl === "movie" ? content.original_title : content.name}</h5>
+          </div>              
         </div>
            
         <Link

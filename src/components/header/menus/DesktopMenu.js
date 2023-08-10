@@ -24,25 +24,28 @@ export const DesktopMenu = () => {
   }
   
   return (
-    <Container>
-      <div className="desktopItemsMenuContainer">
-        <div className="locoContainer">
-          <img src={logo} className="logoDesktop" />
-        </div>
-        <NavLink  to="/movies" className="menuItem1 menuOptionsDesktop">Movies</NavLink>
-        <NavLink  to="/tvSeries" className="menuItem2 menuOptionsDesktop">TV-Series</NavLink>
-        {
-          token && <NavLink  to="/favorites" className="menuItem2 menuOptionsDesktop">Favorites</NavLink>
-        }
-        
-        {token ? 
-          <span className="loginHeaderLabelDesktop" onClick={logoutHandler}>Logout</span>
-                  :
-          <span className="loginHeaderLabelDesktop" onClick={loginHandler}>Login</span>
-        }
-        
-        <SearchBarDesktop />
+    <>
+      <div className="logoContainer">
+        <img src={logo} className="logoDesktop" />
       </div>
-    </Container> 
+
+      {token ? 
+        <span className="loginHeaderLabelDesktop" onClick={logoutHandler}>Logout</span>
+          :
+        <span className="loginHeaderLabelDesktop" onClick={loginHandler}>Login</span>
+      }
+
+      <Container>
+        <div className="desktopItemsMenuContainer">        
+          <NavLink  to="/movies" className="menuItem1 menuOptionsDesktop">Movies</NavLink>
+          <NavLink  to="/tvSeries" className="menuItem2 menuOptionsDesktop">TV-Series</NavLink>
+          {
+            token && <NavLink  to="/favorites" className="menuItem3 menuOptionsDesktop">Favorites</NavLink>
+          }
+                    
+          <SearchBarDesktop />
+        </div>
+      </Container> 
+    </>    
   );
 };
