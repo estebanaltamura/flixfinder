@@ -1,6 +1,8 @@
 import { useEffect, useContext, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
 import { ContentLikedContext } from "../../contexts/ContentLikedContextProvider";
+import { LoginContext } from "../../contexts/LoginContextProvider";
 import { v4 as randomId } from 'uuid'
 import { Card } from '../../components/card/Card'
 import { Spinner } from "../../components/spinner/Spinner";
@@ -9,6 +11,9 @@ import "./MyFavorites.css";
 export const MyFavorites = () => {
   const { isLoading, setIsLoading } = useContext(IsLoadingContext) 
   const { contentLiked } = useContext(ContentLikedContext)  
+  const { token } = useContext(LoginContext)
+  const history = useNavigate()
+
   const imagesLoadedCounter = useRef(0)  
 
   const imgItemLoadHandler = (event)=>{
@@ -32,6 +37,11 @@ export const MyFavorites = () => {
       contentLiked.contentLiked.allFavorites.length === 0 ? setIsLoading(false) :  setIsLoading(true)
     }    
   },[contentLiked])
+
+  useEffect(()=>{
+    token === null && history('/movies')
+  },[token])
+  
   
   useEffect(() => {    
     window.scrollTo(0, 0);          
