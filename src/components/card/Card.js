@@ -85,8 +85,8 @@ export const Card = ({ content, contentType, index }) => {
               <>
              
                 <WhatsappShareButton className="WhatsappShareButton"
-                  url={`www.flixfinder.online/contentDetails/${contentTypeUrl}/${content.id}`}>
-                 
+                  url={`www.flixfinder.online/contentDetails/${contentTypeUrl}/${content.id}`}
+                  title={contentTypeUrl === "movie" ? content.original_title : content.name}>
                     <BsWhatsapp className="whastappShareIcon" />
                 </WhatsappShareButton>    
                 
