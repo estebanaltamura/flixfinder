@@ -54,7 +54,8 @@ export const ContentDetails = () => {
   }
 
   const backButtonOnClick = ()=>{
-    history.length === 1 ? history('/movies') : history(-1)
+    history('/movies')
+    //history.length === 1 ? history('/movies') : history(-1)
   }
 
   const likeClick = ()=>{   
