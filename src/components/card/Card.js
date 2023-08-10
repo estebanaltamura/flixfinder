@@ -47,8 +47,6 @@ export const Card = ({ content, contentType, index }) => {
     setShareOptionsVisivility(!shareOptionsVisivility)
   }
 
-  
-
 
   useEffect(()=>{ 
     isContentLiked(contentLiked, contentType, content)
