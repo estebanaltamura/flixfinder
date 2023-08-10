@@ -33,7 +33,7 @@
   width: 100%;
   height: 100%;
   padding: 0 20px;
-  grid-template-columns: 70px 1fr 36px 43px 27px 42px;
+  grid-template-columns: 70px 1fr 37px 43px 27px 42px;
   grid-template-rows: 60px 90px;
   grid-template-areas: "rating rating whatsapp twitter share like" "title title title title title title" ". . . . . .";
   text-align: center;
@@ -59,7 +59,7 @@
   top: 0px;
   width: 23px;
   height: 23px;
-  color: #ED3BC3;
+  color: #007A78;
 }
 
 .twitterShareIcon{
@@ -67,7 +67,7 @@
   top: 1px;
   width: 26px;
   height: 26px;
-  color: #ED3BC3;
+  color: #007A78;
 }
 
 .cardBodyrating{
@@ -143,7 +143,7 @@
   top: 1px;
   width: 22px;
   height: 22px;
-  color: #ED3BC3;
+  color: #007A78;
 }
 
 .cardBodyTitle{
