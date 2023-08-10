@@ -1,11 +1,13 @@
 import { useContext, useRef, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
 import { LoginContext } from "../../contexts/LoginContextProvider";
 import { ContentLikedContext } from "../../contexts/ContentLikedContextProvider"; 
 import { useLikeHandler } from "../../hooks/useLikeHandler";
 import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 import ratingIcon from '../../assets/ratingIcon.svg'
+import { BsShareFill } from "react-icons/bs";
+import { WhatsappShareButton } from "react-share";
 import "./Card.css";
  
 export const Card = ({ content, contentType, index }) => {  
@@ -18,6 +20,7 @@ export const Card = ({ content, contentType, index }) => {
           isLiked } = useLikeHandler()
 
   const history = useNavigate()
+  const url = useLocation()
   const img = useRef();
   const card = useRef();    
   
@@ -55,37 +58,46 @@ export const Card = ({ content, contentType, index }) => {
           alt="..."
           onError={imageErrorHandler} 
           onClick={linkToContentDetails}             
-        />
-        
-        <div className="cardBodyContainer">     
-            
+        />       
+
+        <div className="cardDetails">
           <div className="cardBodyRatingContainer">
             <img className="cardBodyRatingIcon" src={ratingIcon} />               
             <span className={content.vote_average > 0 ? "cardBodyRatingNumber" : "cardBodyRatingText"}>
               {content.vote_average > 0 ? content.vote_average.toFixed(1) : "No rating"}
             </span>
-          </div>           
+          </div> 
+
+          <WhatsappShareButton className="shareCardContainer"            
+            url={`www.flixfinder.online/contentDetails/${contentTypeUrl}/${content.id}`}
+            title={contentTypeUrl === "movie" ? content.original_title : content.name}
+            >          
+              <BsShareFill className="shareCardIcon"/>
+          </WhatsappShareButton> 
+
           {
             token && 
-            <>
-              {
-                isLiked ? <FcLike className="cardBodyLike" onClick={likeClick}/> : <FcLikePlaceholder className="cardBodyLike" onClick={likeClick}/>
-              }
-            </>
+              <>
+                {
+                  isLiked ? <FcLike className="cardBodyLike" onClick={likeClick}/> : <FcLikePlaceholder className="cardBodyLike" onClick={likeClick}/>
+                }
+              </>
           }                
 
           <div className="cardBodyTitle" onClick={linkToContentDetails}>
             <h5>{contentTypeUrl === "movie" ? content.original_title : content.name}</h5>
-          </div>              
-        </div>
-           
+          </div>          
+        </div>    
+        
         <Link
-          className="detailsButton"
-          onClick={linkToContentDetailsLink}  
-          to={`/contentDetails/${contentTypeUrl}/${content.id}`}>
-            See Details
-        </Link>
+            className="detailsButton"
+            onClick={linkToContentDetailsLink}  
+            to={`/contentDetails/${contentTypeUrl}/${content.id}`}>
+              See Details
+          </Link>
+
       </div>
+
     </div>
   ) 
 };

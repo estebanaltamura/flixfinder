@@ -114,7 +114,7 @@ export const ContentDetails = () => {
           }
 
           <WhatsappShareButton className="shareContentDetails"            
-            url={`www.flixfinder.online/${url.pathname}`}
+            url={`www.flixfinder.online${url.pathname}`}
             title={titleText}
             >          
               <BsShareFill className="shareContentDetails"/>
