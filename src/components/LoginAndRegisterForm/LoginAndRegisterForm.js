@@ -3,8 +3,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { LoginContext } from "../../contexts/LoginContextProvider";
 import { IsLoadingContext } from '../../contexts/IsLoadingContextProvider'
 import { useLoginValidator } from "../../hooks/useLoginValidator";
-import { useLogin } from "../../hooks/useLogin";
-import { useCreateAccount } from "../../hooks/useCreateAccount";
+import { useLogin } from '../../services/internal/useLogin'
+import { useCreateAccount } from '../../services/internal/useCreateAccount';
 import { useFormElementsBehavior } from "../../hooks/useFormElementsBehavior";
 import mailIcon from '../../assets/mailIcon.svg'
 import passwordIcon from '../../assets/passwordIcon.svg'
@@ -143,8 +143,8 @@ export const LoginAndRegisterForm = () => {
                 ref={userNameInput}
                 className="inputForm inputFormUserName"
                 autoComplete="off"
-                autocorrect="off" 
-                autocapitalize="none"
+                autoCorrect="off" 
+                autoCapitalize="none"
                 placeholder="E-mail"
               /> 
             </div>

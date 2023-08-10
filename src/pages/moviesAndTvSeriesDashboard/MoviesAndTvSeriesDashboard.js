@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
-import { useGetDataMoviesAndTvSeriesDashboard } from "../../services/useGetDataMoviesAndTvSeriesDashboard";
+import { useGetDataMoviesAndTvSeriesDashboard } from '../../services/external/useGetDataMoviesAndTvSeriesDashboard';
 import { Card } from '../../components/card/Card'
 import { Spinner } from "../../components/spinner/Spinner";
 import "./MoviesAndTvSeriesDashboard.css";

@@ -1,15 +1,15 @@
 import { createContext, useState } from "react";
 
-export const headerSearchModeContext = createContext();
+export const HeaderSearchModeContext = createContext();
 
-export const HeaderSearchModeContext = (props) => {
+export const HeaderSearchModeContextProvider = (props) => {
   const [headerSearchMode, setHeaderSearchMode] = useState(false);
 
   return (
-    <headerSearchModeContext.Provider
+    <HeaderSearchModeContext.Provider
       value={{ headerSearchMode, setHeaderSearchMode }}
     >
       {props.children}
-    </headerSearchModeContext.Provider>
+    </HeaderSearchModeContext.Provider>
   );
 };

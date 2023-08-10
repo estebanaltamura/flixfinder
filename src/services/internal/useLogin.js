@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { LoginContext } from "../contexts/LoginContextProvider";
-import { ContentLikedContext } from "../contexts/ContentLikedContextProvider";
+import { LoginContext } from "../../contexts/LoginContextProvider";
+import { ContentLikedContext } from "../../contexts/ContentLikedContextProvider";
 import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -19,15 +19,10 @@ export const useLogin = () => {
       const responseLogin = resLogin.data
       const token = responseLogin.token
       localStorage.setItem("token", token);     
-
-      const reqContentLiked = { 'token': token, projectCollection }      
-      const resContentLiked = await axios.post("https://encrypted-chat-backend.online:3100/getContentLikedData", reqContentLiked, {timeout: 5000})
-      const responseContentLiked = resContentLiked.data     
-      console.log(responseContentLiked)
-      setContentLiked(responseContentLiked)
       setToken(token);      
       return true
     }
+    
     catch (error){      
       MySwal.fire({
         title: 'ERROR',

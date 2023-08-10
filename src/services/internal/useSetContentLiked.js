@@ -1,9 +1,6 @@
-
 import axios from 'axios'
 
-
-export const useSetContentLiked = ()=>{
-  
+export const useSetContentLiked = ()=>{  
   const setContentLikedServer = async(token, updatedData)=>{
     const projectCollection = 'movie-and-tv-series-browser-users'
     const req = { token, projectCollection, updatedData }
@@ -19,7 +16,6 @@ export const useSetContentLiked = ()=>{
     }
   }
   
-
   return({
     setContentLikedServer
   })

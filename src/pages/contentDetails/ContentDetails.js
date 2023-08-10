@@ -6,7 +6,7 @@ import { LoginContext } from "../../contexts/LoginContextProvider";
 import { IsLoadingContext } from '../../contexts/IsLoadingContextProvider'
 import { ContentLikedContext } from '../../contexts/ContentLikedContextProvider';
 import { useContentDetailsHelper } from "../../hooks/useContentDetailsHelper";
-import { useGetDataContentDetails } from "../../services/useGetDataContentDetails";
+import { useGetDataContentDetails } from "../../services/external/useGetDataContentDetails";
 import { useLikeHandler } from '../../hooks/useLikeHandler'; 
 import { Spinner } from "../../components/spinner/Spinner";
 import { FcLikePlaceholder, FcLike } from "react-icons/fc";

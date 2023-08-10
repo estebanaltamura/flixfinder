@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
-import { useGetDataSearchResults } from "../../services/useGetDataSearchResults";
+import { useGetDataSearchResults } from '../../services/external/useGetDataSearchResults'
 import { Card } from "../../components/card/Card";
 import { Spinner } from "../../components/spinner/Spinner";
 import "./SearchResults.css";

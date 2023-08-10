@@ -2,8 +2,6 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-
-
 export const useCreateAccount = () => {  
   const MySwal = withReactContent(Swal);  
 
@@ -12,7 +10,7 @@ export const useCreateAccount = () => {
     const req = { projectCollection, userName, password }
     
     try{
-      const res = await axios.post("https://encrypted-chat-backend.online:3100/registerUser", req, {timeout: 5000})    
+      await axios.post("https://encrypted-chat-backend.online:3100/registerUser", req, {timeout: 5000})    
       MySwal.fire({
         title: 'USER CREATED',
         text: 'Please login with your user',
@@ -31,8 +29,7 @@ export const useCreateAccount = () => {
       });
       console.log(error?.response?.data?.message)
       return false
-    }
-  
+    }  
   };
 
   return { createAccount };

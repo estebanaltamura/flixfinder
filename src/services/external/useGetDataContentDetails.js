@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { IsLoadingContext } from '../contexts/IsLoadingContextProvider';
+import { IsLoadingContext } from '../../contexts/IsLoadingContextProvider';
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import axios from 'axios'

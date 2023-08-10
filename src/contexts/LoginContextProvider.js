@@ -7,7 +7,7 @@ export const LoginContextProvider = (props) => {
 
   useEffect(()=>{
     const token = localStorage.getItem("token");    
-    setToken(token)
+    token !== null && setToken(token)    
   },[])
 
   return (
