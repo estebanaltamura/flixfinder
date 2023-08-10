@@ -25,12 +25,13 @@ export const Card = ({ content, contentType, index }) => {
     img.current.src = "https://i.postimg.cc/BZNQgg6T/noImage.jpg";    
   }; 
 
-  const linkToContentDetailsClickHandler = ()=>{
+  const linkToContentDetails = ()=>{
     setIsLoading(true)
+    history(`/contentDetails/${contentTypeUrl}/${content.id}`)
   }
 
-  const linkToContentDetails = ()=>{
-    history(`/contentDetails/${contentTypeUrl}/${content.id}`)
+  const linkToContentDetailsLink = ()=>{
+    setIsLoading(true)
   }
 
   const likeClick = ()=>{   
@@ -80,7 +81,7 @@ export const Card = ({ content, contentType, index }) => {
            
         <Link
           className="detailsButton"
-          onClick={linkToContentDetailsClickHandler}              
+          onClick={linkToContentDetailsLink}  
           to={`/contentDetails/${contentTypeUrl}/${content.id}`}>
             See Details
         </Link>

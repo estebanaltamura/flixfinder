@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-import { useEffect, useRef, useContext, useState } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useEffect, useRef, useContext } from "react";
+import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import { LoginContext } from "../../contexts/LoginContextProvider";
 import { IsLoadingContext } from '../../contexts/IsLoadingContextProvider'
 import { ContentLikedContext } from '../../contexts/ContentLikedContextProvider';
@@ -13,14 +13,11 @@ import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 import { HiOutlineChevronLeft } from "react-icons/hi";
 import ratingIcon from '../../assets/ratingIcon.svg'
 import { BsShareFill } from "react-icons/bs";
+import { WhatsappShareButton } from "react-share";
 import "./ContentDetails.css";
 
-import { WhatsappShareButton } from "react-share";
 
-export const ContentDetails = () => {
-
-  const shareUrl = 'https://www.linkedin.com/in/andres-altamura/'
-  
+export const ContentDetails = () => {  
   const { isLoading, setIsLoading } = useContext(IsLoadingContext); 
   const { token } = useContext(LoginContext);   
   const { contentLiked } = useContext(ContentLikedContext)
@@ -45,6 +42,7 @@ export const ContentDetails = () => {
   const img = useRef();
   const descriptionTextRef = useRef()
   const history = useNavigate()
+  const url = useLocation()
   
   const imageErrorHandler = ()=> {   
     img.current.src = "https://i.postimg.cc/BZNQgg6T/noImage.jpg" 
@@ -56,7 +54,7 @@ export const ContentDetails = () => {
   }
 
   const backButtonOnClick = ()=>{
-    history(-1)
+    history.length > 1 ? history(-1) : history('/movies')
   }
 
   const likeClick = ()=>{   
@@ -76,6 +74,10 @@ export const ContentDetails = () => {
     isContentLiked(contentLiked, contentType, content)  
     setTextDescriptionOverflowBehavior(description, descriptionTextRef.current)    
   })  
+
+  const prueba = ()=>{
+    console.log(titleText)
+  }
 
   return (
     <>       
@@ -114,9 +116,10 @@ export const ContentDetails = () => {
           }
 
           <WhatsappShareButton className="shareContentDetails"
-            url={shareUrl}
-            title={"huifoehiowefhioewfhiowefhioewfhioewfhio"}
-            separator=":: ">          
+            onClick={prueba}
+            url={`www.flixfinder.online/${url.pathname}`}
+            title={titleText}
+            >          
               <BsShareFill className="shareContentDetails"/>
           </WhatsappShareButton> 
 
