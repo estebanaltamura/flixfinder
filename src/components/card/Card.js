@@ -1,5 +1,5 @@
 import { useContext, useRef, useEffect, useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
 import { LoginContext } from "../../contexts/LoginContextProvider";
 import { ContentLikedContext } from "../../contexts/ContentLikedContextProvider"; 
@@ -9,6 +9,7 @@ import ratingIcon from '../../assets/ratingIcon.svg'
 import { BsShareFill, BsWhatsapp } from "react-icons/bs";
 import { SlSocialTwitter } from "react-icons/sl";
 import { WhatsappShareButton, TwitterShareButton } from "react-share";
+import { Helmet } from "react-helmet";
 import "./Card.css";
  
 export const Card = ({ content, contentType, index }) => { 
@@ -21,8 +22,7 @@ export const Card = ({ content, contentType, index }) => {
           contentTypeUrl,
           isLiked } = useLikeHandler()
 
-  const history = useNavigate()
-  const url = useLocation()
+  const history = useNavigate()  
   const img = useRef();
   const card = useRef();    
   
@@ -47,10 +47,8 @@ export const Card = ({ content, contentType, index }) => {
     setShareOptionsVisivility(!shareOptionsVisivility)
   }
 
-  const onBlurCardHandler = ()=>{
-    console.log("desenfoco")
-    setShareOptionsVisivility(false)
-  }
+  
+
 
   useEffect(()=>{ 
     isContentLiked(contentLiked, contentType, content)
@@ -71,7 +69,7 @@ export const Card = ({ content, contentType, index }) => {
           onClick={linkToContentDetails}             
         />       
 
-        <div className="cardDetails" onBlur={onBlurCardHandler}>
+        <div className="cardDetails">
           <div className="cardBodyRatingContainer">
             <img className="cardBodyRatingIcon" src={ratingIcon} />               
             <span className={content.vote_average > 0 ? "cardBodyRatingNumber" : "cardBodyRatingText"}>
@@ -85,9 +83,13 @@ export const Card = ({ content, contentType, index }) => {
           {
             shareOptionsVisivility &&
               <>
-                <WhatsappShareButton className="WhatsappShareButton">
-                  <BsWhatsapp className="whastappShareIcon" />
-                </WhatsappShareButton>
+             
+                <WhatsappShareButton className="WhatsappShareButton"
+                  url={`www.flixfinder.online/contentDetails/${contentTypeUrl}/${content.id}`}>
+                 
+                    <BsWhatsapp className="whastappShareIcon" />
+                </WhatsappShareButton>    
+                
 
                 <TwitterShareButton className="TwitterShareButton">
                   <SlSocialTwitter className="twitterShareIcon" />
