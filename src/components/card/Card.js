@@ -79,24 +79,17 @@ export const Card = ({ content, contentType, index }) => {
 
           <div className="shareCardContainer" onClick={shareButtonClickHandler}>          
               <BsShareFill className={shareOptionsVisivility ? "shareCardIcon shareCardIconActive" : "shareCardIcon"} />
-          </div> 
-          {
-            shareOptionsVisivility &&
-              <>
+          </div>           
              
-                <WhatsappShareButton className="WhatsappShareButton"
-                  url={shareUrl}
-                  >
-                    <BsWhatsapp className="whastappShareIcon" />
-                </WhatsappShareButton>    
-                
+          <div className={shareOptionsVisivility ? "shareOptionsContainer shareOptionsContainerOpen" : "shareOptionsContainer"}>
+              <div className="shareOptionContainer">
+                <BsWhatsapp className="whastappShareIcon" />
+              </div>
 
-                <TwitterShareButton className="TwitterShareButton">
-                  <SlSocialTwitter className="twitterShareIcon" />
-                </TwitterShareButton>
-              </>
-          }
-          
+              <div className="shareOptionContainer">
+                <SlSocialTwitter className="twitterShareIcon" />
+              </div>              
+          </div>            
 
           {
             token && 
@@ -124,3 +117,15 @@ export const Card = ({ content, contentType, index }) => {
     </div>
   ) 
 };
+
+
+/*<WhatsappShareButton className="WhatsappShareButton"
+                  url={shareUrl}
+                  >
+                    <BsWhatsapp className="whastappShareIcon" />
+                </WhatsappShareButton>    
+                
+
+                <TwitterShareButton className="TwitterShareButton">
+                  
+                </TwitterShareButton> */

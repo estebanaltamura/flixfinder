@@ -33,9 +33,9 @@
   width: 100%;
   height: 100%;
   padding: 0 20px;
-  grid-template-columns: 70px 1fr 37px 43px 27px 42px;
+  grid-template-columns: 70px 1fr 27px 42px;
   grid-template-rows: 60px 90px;
-  grid-template-areas: "rating rating whatsapp twitter share like" "title title title title title title" ". . . . . .";
+  grid-template-areas: "rating rating share like" "title title title title" ". . . .";
   text-align: center;
   align-self: center;
   background-color: #2C2C2C;  
@@ -46,29 +46,51 @@
   grid-area: details;
 }
 
-.TwitterShareButton{
-  grid-area: twitter;
+.shareOptionsContainer {
+  position: absolute;
+  flex-direction: column-reverse;
+  bottom: 192px;
+  width: 100%;
+  height: 0;
+  overflow: hidden; 
+  background-color: #007A78; 
+  transition: height 0.3s linear; 
 }
 
-.WhatsappShareButton{
-  grid-area: whatsapp;
+.shareOptionsContainerOpen {
+  height: 84px; /* Altura completa cuando está abierto */
 }
+
+.shareOptionContainer {
+  display: flex;
+  height: 42px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  border-top: 2px solid #2C2C2C;
+}
+
+
 
 .whastappShareIcon{
   position: relative;  
   top: 0px;
-  width: 23px;
-  height: 23px;
-  color: #007A78;
+  width: 22px;
+  height: 22px;
+  color: white;
 }
 
 .twitterShareIcon{
   position: relative;
   top: 1px;
-  width: 26px;
-  height: 26px;
-  color: #007A78;
+  width: 25px;
+  height: 25px;
+  color: white;
 }
+
+
+
+
 
 .cardBodyrating{
   width: 100%;
