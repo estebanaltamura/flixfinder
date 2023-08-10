@@ -1,4 +1,4 @@
-import { useContext, useRef, useEffect } from "react";
+import { useContext, useRef, useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
 import { LoginContext } from "../../contexts/LoginContextProvider";
@@ -6,11 +6,13 @@ import { ContentLikedContext } from "../../contexts/ContentLikedContextProvider"
 import { useLikeHandler } from "../../hooks/useLikeHandler";
 import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 import ratingIcon from '../../assets/ratingIcon.svg'
-import { BsShareFill } from "react-icons/bs";
-import { WhatsappShareButton } from "react-share";
+import { BsShareFill, BsWhatsapp } from "react-icons/bs";
+import { SlSocialTwitter } from "react-icons/sl";
+import { WhatsappShareButton, TwitterShareButton } from "react-share";
 import "./Card.css";
  
-export const Card = ({ content, contentType, index }) => {  
+export const Card = ({ content, contentType, index }) => { 
+  const [ shareOptionsVisivility, setShareOptionsVisivility ] = useState(false)
   const { setIsLoading } = useContext(IsLoadingContext)
   const { token } = useContext(LoginContext) 
   const { contentLiked } = useContext(ContentLikedContext)
@@ -41,6 +43,10 @@ export const Card = ({ content, contentType, index }) => {
     likeClickHandler(contentType, contentLiked, content)
   }
 
+  const shareButtonClickHandler = ()=>{
+    setShareOptionsVisivility(!shareOptionsVisivility)
+  }
+
   useEffect(()=>{ 
     isContentLiked(contentLiked, contentType, content)
   })
@@ -68,12 +74,22 @@ export const Card = ({ content, contentType, index }) => {
             </span>
           </div> 
 
-          <WhatsappShareButton className="shareCardContainer"            
-            url={`www.flixfinder.online/contentDetails/${contentTypeUrl}/${content.id}`}
-            title={contentTypeUrl === "movie" ? content.original_title : content.name}
-            >          
+          <div className="shareCardContainer" onClick={shareButtonClickHandler}>          
               <BsShareFill className="shareCardIcon"/>
-          </WhatsappShareButton> 
+          </div> 
+          {
+            shareOptionsVisivility &&
+              <>
+                <WhatsappShareButton className="WhatsappShareButton">
+                  <BsWhatsapp className="whastappShareIcon" />
+                </WhatsappShareButton>
+
+                <TwitterShareButton className="TwitterShareButton">
+                  <SlSocialTwitter className="twitterShareIcon" />
+                </TwitterShareButton>
+              </>
+          }
+          
 
           {
             token && 
