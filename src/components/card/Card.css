@@ -46,6 +46,12 @@
   grid-area: details;
 }
 
+.cardDetailsNoLogged{
+  grid-template-columns: 70px 1fr 42px;
+  grid-template-rows: 60px 90px;
+  grid-template-areas: "rating rating share" "title title title" ". . .";
+}
+
 .shareOptionsContainer {
   position: absolute;
   flex-direction: column-reverse;

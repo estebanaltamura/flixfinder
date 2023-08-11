@@ -82,10 +82,10 @@ export const Card = ({ content, URLcontentType, index, cardIdShareOptionsAllowed
           id={index}
           alt="..."
           onError={imageErrorHandler} 
-          onClick={linkToContentDetails}             
+          onClick={linkToContentDetails}              
         />       
 
-        <div className="cardDetails">
+        <div className={token ? "cardDetails" : "cardDetails cardDetailsNoLogged"}>
           <div className="cardBodyRatingContainer">
             <img className="cardBodyRatingIcon" src={ratingIcon} />               
             <span className={content.vote_average > 0 ? "cardBodyRatingNumber" : "cardBodyRatingText"}>
