@@ -12,7 +12,7 @@ import "./Card.css";
  
 export const Card = ({ content, URLcontentType, index, cardIdShareOptionsAllowed}) => { 
   const [ shareOptionsVisivility, setShareOptionsVisivility ] = useState(false)
-  const [ contentTypeFromFavorite,  setContentTypeFromFavorite ] = useState(null)
+  const [ contentType,  setContentType ] = useState(null)
   const { setIsLoading } = useContext(IsLoadingContext)
   const { token } = useContext(LoginContext) 
   const { contentLiked } = useContext(ContentLikedContext)
@@ -29,7 +29,7 @@ export const Card = ({ content, URLcontentType, index, cardIdShareOptionsAllowed
 
   const linkToContentDetails = ()=>{
     setIsLoading(true)
-    history(`/contentDetails/${URLcontentType}/${content.id}`)
+    history(`/contentDetails/${contentType}/${content.id}`)
   }
 
   const linkToContentDetailsLink = ()=>{
@@ -44,22 +44,22 @@ export const Card = ({ content, URLcontentType, index, cardIdShareOptionsAllowed
     setShareOptionsVisivility(!shareOptionsVisivility)    
   }
 
-  const getContentTypeFromFavorite = (content, URLcontentType)=>{
+  const getContentType = (content, URLcontentType)=>{
     if(URLcontentType === 'movie'){      
-      setContentTypeFromFavorite('movie')         
+      setContentType('movie')         
     }
       
     if(URLcontentType === 'tv'){
-      setContentTypeFromFavorite('tv')        
+      setContentType('tv')        
     }   
     
     if(URLcontentType === 'favorites'){      
-      setContentTypeFromFavorite(content.contentType)             
+      setContentType(content.contentType)             
     }
   } 
   
   useEffect(()=>{    
-    content !== null && getContentTypeFromFavorite(content, URLcontentType)    
+    content !== null && getContentType(content, URLcontentType)    
   },[content])
     
   useEffect(()=>{    
@@ -117,14 +117,14 @@ export const Card = ({ content, URLcontentType, index, cardIdShareOptionsAllowed
           }                
 
           <div className="cardBodyTitle" onClick={linkToContentDetails}>
-            <h5>{contentTypeFromFavorite === "movie" ? content.original_title : content.name}</h5>
+            <h5>{contentType === "movie" ? content.original_title : content.name}</h5>
           </div>          
         </div>    
         
         <Link
             className="detailsButton"
             onClick={linkToContentDetailsLink}  
-            to={`/contentDetails/${contentTypeFromFavorite}/${content.id}`}>
+            to={`/contentDetails/${contentType}/${content.id}`}>
               See Details
           </Link>
 
