@@ -12,7 +12,7 @@ import { WhatsappShareButton, TwitterShareButton } from "react-share";
 import { Helmet } from "react-helmet";
 import "./Card.css";
  
-export const Card = ({ content, contentType, index, closeShareOptions, setCloseShareOptions}) => { 
+export const Card = ({ content, contentType, index, cardIdToAllowShareOptions}) => { 
   const [ shareOptionsVisivility, setShareOptionsVisivility ] = useState(false)
   const { setIsLoading } = useContext(IsLoadingContext)
   const { token } = useContext(LoginContext) 
@@ -48,20 +48,15 @@ export const Card = ({ content, contentType, index, closeShareOptions, setCloseS
   const shareButtonClickHandler = ()=>{
     setShareOptionsVisivility(!shareOptionsVisivility)    
   }
-
-  const clickInCardHandler = (event)=>{
-    
-    setCloseShareOptions(false)
-  } 
-
+  
   useEffect(()=>{ 
     isContentLiked(contentLiked, contentType, content)
   })
 
 
-  useEffect(()=>{
-    closeShareOptions === true && setShareOptionsVisivility(false)
-  },[closeShareOptions])
+  useEffect(()=>{    
+    cardIdToAllowShareOptions !== `card${index}` && setShareOptionsVisivility(false)
+  },[cardIdToAllowShareOptions])
 
   
 
@@ -69,7 +64,7 @@ export const Card = ({ content, contentType, index, closeShareOptions, setCloseS
     <div
     className="col col-xs-12 col-md-6 col-xl-4 col-xxl-3 itemBody"
     ref={card}>    
-      <div className="card" style={{ width: "18rem" }} onClick={clickInCardHandler}>
+      <div className="card" style={{ width: "18rem" }} id={`card${index}`} >
         <img
           ref={img}
           src={`https://image.tmdb.org/t/p/original${content.poster_path}`}
@@ -88,8 +83,8 @@ export const Card = ({ content, contentType, index, closeShareOptions, setCloseS
             </span>
           </div> 
 
-          <div className="shareCardContainer" onClick={shareButtonClickHandler}>          
-              <BsShareFill className={shareOptionsVisivility ? "shareCardIcon shareCardIconActive" : "shareCardIcon"} />
+          <div className="shareCardContainer">          
+              <BsShareFill className={shareOptionsVisivility ? "shareCardIcon shareCardIconActive" : "shareCardIcon"} onClick={shareButtonClickHandler}/>
           </div>           
              
           <div className={shareOptionsVisivility ? "shareOptionsContainer shareOptionsContainerOpen" : "shareOptionsContainer"}>
