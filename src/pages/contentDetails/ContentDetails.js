@@ -33,8 +33,7 @@ export const ContentDetails = () => {
 
   const { 
     likeClickHandler,
-    isContentLiked,
-    contentTypeUrl,
+    isContentLiked,    
     isLiked } = useLikeHandler()    
 
   const { getData, content } = useGetDataContentDetails() 
@@ -53,9 +52,10 @@ export const ContentDetails = () => {
     setIsLoading(false)
   }
 
-  const backButtonOnClick = ()=>{       
-    contentTypeUrl === 'movie' && history('/movies')
-    contentTypeUrl === 'tv' && history('/tvSeries')
+  const backButtonOnClick = ()=>{    
+    const urlInParts = url.pathname.split('/') 
+    urlInParts.includes('movie') && history('/movies')
+    urlInParts.includes('tv') && history('/tvSeries')
   }
 
   const likeClick = ()=>{   
@@ -63,7 +63,7 @@ export const ContentDetails = () => {
   }  
 
   useEffect(()=>{
-    setCardContent(content, contentType) 
+    content !== null && setCardContent(content, contentType) 
   },[content]) 
 
   useEffect(() => {    
@@ -74,8 +74,7 @@ export const ContentDetails = () => {
   useEffect(()=>{     
     isContentLiked(contentLiked, contentType, content)  
     setTextDescriptionOverflowBehavior(description, descriptionTextRef.current)    
-  })  
-
+  })
  
   return (
     <>       

@@ -58,12 +58,10 @@ export const Card = ({ content, URLcontentType, index, cardIdShareOptionsAllowed
     }
   } 
   
-
   useEffect(()=>{    
     content !== null && getContentTypeFromFavorite(content, URLcontentType)    
   },[content])
-  
-  
+    
   useEffect(()=>{    
     cardIdShareOptionsAllowed !== `card${index}` && setShareOptionsVisivility(false)
   },[cardIdShareOptionsAllowed])
