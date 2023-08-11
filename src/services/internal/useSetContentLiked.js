@@ -17,6 +17,6 @@ export const useSetContentLiked = ()=>{
   }
   
   return({
-    setContentLikedServer
+    setContentLikedServer 
   })
 }

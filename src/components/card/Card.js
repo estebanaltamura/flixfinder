@@ -12,7 +12,7 @@ import { WhatsappShareButton, TwitterShareButton } from "react-share";
 import { Helmet } from "react-helmet";
 import "./Card.css";
  
-export const Card = ({ content, contentType, index }) => { 
+export const Card = ({ content, contentType, index, closeShareOptions, setCloseShareOptions}) => { 
   const [ shareOptionsVisivility, setShareOptionsVisivility ] = useState(false)
   const { setIsLoading } = useContext(IsLoadingContext)
   const { token } = useContext(LoginContext) 
@@ -46,19 +46,30 @@ export const Card = ({ content, contentType, index }) => {
   }
 
   const shareButtonClickHandler = ()=>{
-    setShareOptionsVisivility(!shareOptionsVisivility)
+    setShareOptionsVisivility(!shareOptionsVisivility)    
   }
 
+  const clickInCardHandler = (event)=>{
+    
+    setCloseShareOptions(false)
+  } 
 
   useEffect(()=>{ 
     isContentLiked(contentLiked, contentType, content)
   })
 
+
+  useEffect(()=>{
+    closeShareOptions === true && setShareOptionsVisivility(false)
+  },[closeShareOptions])
+
+  
+
   return (
     <div
     className="col col-xs-12 col-md-6 col-xl-4 col-xxl-3 itemBody"
-    ref={card}>
-      <div className="card" style={{ width: "18rem" }}>
+    ref={card}>    
+      <div className="card" style={{ width: "18rem" }} onClick={clickInCardHandler}>
         <img
           ref={img}
           src={`https://image.tmdb.org/t/p/original${content.poster_path}`}

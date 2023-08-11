@@ -9,9 +9,11 @@ import "./MoviesAndTvSeriesDashboard.css";
 export const MoviesAndTvSeriesDashboard = () => {
   const { isLoading, setIsLoading } = useContext(IsLoadingContext)
   const [ isLoadingRequest, setIsLoadingRequest ] = useState(true);
+  const [ closeShareOptions, setCloseShareOptions ] = useState(false)
   const { getData, content } = useGetDataMoviesAndTvSeriesDashboard()  
   const imagesLoadedCounter = useRef(0)
   const contentType = useRef(null)
+  
   const url = useLocation()  
 
   const imgItemLoadHandler = (event)=>{
@@ -46,9 +48,20 @@ export const MoviesAndTvSeriesDashboard = () => {
     contentType.current !== null && getData(contentType.current, setIsLoadingRequest)    
   }, [url]);
 
+  useEffect(()=>{
+    const detectOutsiderClick = (event)=>{
+      console.log(event)
+      setCloseShareOptions(true)
+    }
+
+    window.addEventListener('click', detectOutsiderClick)
+
+    return ()=> window.removeEventListener('click', detectOutsiderClick)
+  },[])
+
   return (    
     <>
-      <Spinner />
+      <Spinner /> 
 
       {
         (!isLoadingRequest && content.length === 0) &&
@@ -62,7 +75,7 @@ export const MoviesAndTvSeriesDashboard = () => {
           <div className={isLoading === true ? "hidden" : "container containerMoviesAndTvSeriesDashboard"} onLoad={imgItemLoadHandler}>
             <div className="row rowStyles">
               {content.map((content, index) => {
-                return <Card content={content} contentType={contentType.current} key={index} index={index + 1} />;
+                return <Card content={content} contentType={contentType.current} key={index} index={index + 1} closeShareOptions={closeShareOptions} setCloseShareOptions={setCloseShareOptions}/>;
               })}
             </div>
           </div>

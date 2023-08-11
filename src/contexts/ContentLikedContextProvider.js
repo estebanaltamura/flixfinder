@@ -12,13 +12,14 @@ export const ContentLikedContextProvider = ({children})=>{
   const { token } = useContext(LoginContext)
 
   const getContentLikedFromServer = async(token)=>{
-    const contentLikedServerResponse = await getContentLikedServer(token)     
-    localStorage.setItem("contentLiked", JSON.stringify(contentLikedServerResponse));       
+    const contentLikedServerResponse = await getContentLikedServer(token)             
     setContentLiked(contentLikedServerResponse)
   }
 
-  useEffect(()=>{
-    contentLiked !== null && setContentLikedServer(token, contentLiked)
+  useEffect(()=>{    
+    if(contentLiked !== null && token !== null){
+      setContentLikedServer(token, contentLiked)
+    }
   },[contentLiked])
 
   useEffect(()=>{    
