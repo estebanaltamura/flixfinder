@@ -9,6 +9,7 @@ import "./SearchResults.css";
 export const SearchResults = () => { 
   const { isLoading, setIsLoading } = useContext(IsLoadingContext)  
   const [ isLoadingRequest, setIsLoadingRequest ] = useState(true);
+  const [ cardIdShareOptionsAllowed, setCardIdShareOptionsAllowed ] = useState(false)
   const { contentType, query } = useParams();
   const imagesLoadedCounter = useRef(0)
   const { getData, content } = useGetDataSearchResults()  
@@ -36,6 +37,23 @@ export const SearchResults = () => {
     getData(contentType, query, setIsLoadingRequest)          
   }, [query]);
 
+  useEffect(()=>{
+    window.scrollTo(0, 0);  
+
+    const detectCardClicked = (event)=>{      
+      const cardElement = event.target.closest('.card');    
+    
+      if(cardElement && (event.target.classList.value.includes('shareCardIcon') || event.target.parentNode.classList.value.includes('shareCardIcon'))) {
+        setCardIdShareOptionsAllowed(cardElement.id)                  
+      }
+      else setCardIdShareOptionsAllowed(null)         
+    }
+
+    window.addEventListener('click', detectCardClicked)
+
+    return ()=> window.removeEventListener('click', detectCardClicked)
+  },[])  
+
   return (
     <>     
       <Spinner />
@@ -52,7 +70,7 @@ export const SearchResults = () => {
           <div className={isLoading === true ? "hidden" : "container containerStyles"} onLoad={imgItemLoadHandler}>
             <div className="row rowStyles">
               {content.map((content, index) => {
-                return <Card content={content} contentType={contentType} key={index} index={index + 1} />;
+                return <Card content={content} URLcontentType={contentType} key={index} index={index + 1}  cardIdShareOptionsAllowed={cardIdShareOptionsAllowed}/>;
               })}
             </div>
           </div>

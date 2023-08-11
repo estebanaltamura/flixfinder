@@ -8,25 +8,20 @@ import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 import ratingIcon from '../../assets/ratingIcon.svg'
 import { BsShareFill, BsWhatsapp } from "react-icons/bs";
 import { SlSocialTwitter } from "react-icons/sl";
-import { WhatsappShareButton, TwitterShareButton } from "react-share";
-import { Helmet } from "react-helmet";
 import "./Card.css";
  
-export const Card = ({ content, contentType, index, cardIdToAllowShareOptions}) => { 
+export const Card = ({ content, URLcontentType, index, cardIdShareOptionsAllowed}) => { 
   const [ shareOptionsVisivility, setShareOptionsVisivility ] = useState(false)
+  const [ contentTypeFromFavorite,  setContentTypeFromFavorite ] = useState(null)
   const { setIsLoading } = useContext(IsLoadingContext)
   const { token } = useContext(LoginContext) 
   const { contentLiked } = useContext(ContentLikedContext)
   const { likeClickHandler,
-          isContentLiked,
-          contentTypeUrl,
+          isContentLiked,         
           isLiked } = useLikeHandler()
-
   const history = useNavigate()  
   const img = useRef();
-  const card = useRef();    
-
-  const shareUrl = `www.flixfinder.online/contentDetails/${contentTypeUrl}/${content.id}`
+  const card = useRef();      
   
   const imageErrorHandler = () => {
     img.current.src = "https://i.postimg.cc/BZNQgg6T/noImage.jpg";    
@@ -34,7 +29,7 @@ export const Card = ({ content, contentType, index, cardIdToAllowShareOptions}) 
 
   const linkToContentDetails = ()=>{
     setIsLoading(true)
-    history(`/contentDetails/${contentTypeUrl}/${content.id}`)
+    history(`/contentDetails/${URLcontentType}/${content.id}`)
   }
 
   const linkToContentDetailsLink = ()=>{
@@ -42,23 +37,40 @@ export const Card = ({ content, contentType, index, cardIdToAllowShareOptions}) 
   }
 
   const likeClick = ()=>{   
-    likeClickHandler(contentType, contentLiked, content)
+    likeClickHandler(URLcontentType, contentLiked, content)
   }
 
   const shareButtonClickHandler = ()=>{
     setShareOptionsVisivility(!shareOptionsVisivility)    
   }
-  
-  useEffect(()=>{ 
-    isContentLiked(contentLiked, contentType, content)
-  })
 
+  const getContentTypeFromFavorite = (content, URLcontentType)=>{
+    if(URLcontentType === 'movie'){      
+      setContentTypeFromFavorite('movie')         
+    }
+      
+    if(URLcontentType === 'tv'){
+      setContentTypeFromFavorite('tv')        
+    }   
+    
+    if(URLcontentType === 'favorites'){      
+      setContentTypeFromFavorite(content.contentType)             
+    }
+  } 
+  
 
   useEffect(()=>{    
-    cardIdToAllowShareOptions !== `card${index}` && setShareOptionsVisivility(false)
-  },[cardIdToAllowShareOptions])
-
+    content !== null && getContentTypeFromFavorite(content, URLcontentType)    
+  },[content])
   
+  
+  useEffect(()=>{    
+    cardIdShareOptionsAllowed !== `card${index}` && setShareOptionsVisivility(false)
+  },[cardIdShareOptionsAllowed])
+  
+  useEffect(()=>{ 
+    isContentLiked(contentLiked, URLcontentType, content)    
+  })  
 
   return (
     <div
@@ -107,14 +119,14 @@ export const Card = ({ content, contentType, index, cardIdToAllowShareOptions}) 
           }                
 
           <div className="cardBodyTitle" onClick={linkToContentDetails}>
-            <h5>{contentTypeUrl === "movie" ? content.original_title : content.name}</h5>
+            <h5>{contentTypeFromFavorite === "movie" ? content.original_title : content.name}</h5>
           </div>          
         </div>    
         
         <Link
             className="detailsButton"
             onClick={linkToContentDetailsLink}  
-            to={`/contentDetails/${contentTypeUrl}/${content.id}`}>
+            to={`/contentDetails/${contentTypeFromFavorite}/${content.id}`}>
               See Details
           </Link>
 

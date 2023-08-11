@@ -3,13 +3,11 @@ import { ContentLikedContext } from "../contexts/ContentLikedContextProvider"
 
 
 export const useLikeHandler = ()=>{
-  const [ isLiked, setIsLiked ] = useState(false)
-  const [ contentTypeUrl,  setContentTypeUrl ] = useState(null)
+  const [ isLiked, setIsLiked ] = useState(false)  
   const { setContentLiked } = useContext(ContentLikedContext)
-  
-  const likeClickHandler = (contentType, contentLiked, content)=>{
-    
-    if(contentType === 'tv'){      
+
+  const likeClickHandler = (URLcontentType, contentLiked, content)=>{    
+    if(URLcontentType === 'tv'){      
       const tvSeries = [...contentLiked.contentLiked['tvSeries']]  
       const tvSeriesId = tvSeries.map((tvSerie)=>tvSerie.id)
       const allFavorites = [...contentLiked.contentLiked['allFavorites']] 
@@ -24,7 +22,7 @@ export const useLikeHandler = ()=>{
         const favoriteContentAlreadyLikedIndex = allFavoritesId.findIndex((id)=> id === content.id)
         allFavorites.splice(favoriteContentAlreadyLikedIndex, 1)
        
-        const allFavoritesSorted =  allFavorites.map((favorite, index)=> ({...favorite, 'internalId': index, contentType}))      
+        const allFavoritesSorted =  allFavorites.map((favorite, index)=> ({...favorite, 'internalId': index, 'contentType': URLcontentType}))      
 
         const newContentLikedData = {contentLiked: {'movies': [...contentLiked.contentLiked['movies']], 'tvSeries': tvSeries, 'allFavorites': allFavoritesSorted}}
         localStorage.setItem("contentLiked", JSON.stringify(newContentLikedData))
@@ -32,14 +30,14 @@ export const useLikeHandler = ()=>{
         setIsLiked(false)        
       }
       else{
-        const newContentLikedData = {contentLiked: {'movies': [...contentLiked.contentLiked['movies']], 'tvSeries': [...contentLiked.contentLiked['tvSeries'], content], 'allFavorites': [...contentLiked.contentLiked['allFavorites'], {...content, 'internalId': contentLiked.contentLiked['allFavorites'].length, contentType}]}}
+        const newContentLikedData = {contentLiked: {'movies': [...contentLiked.contentLiked['movies']], 'tvSeries': [...contentLiked.contentLiked['tvSeries'], content], 'allFavorites': [...contentLiked.contentLiked['allFavorites'], {...content, 'internalId': contentLiked.contentLiked['allFavorites'].length, 'contentType': URLcontentType}]}}
         localStorage.setItem("contentLiked", JSON.stringify(newContentLikedData))
         setContentLiked(newContentLikedData)
         setIsLiked(true)
       }            
     } 
 
-    if(contentType === 'movie'){      
+    if(URLcontentType === 'movie'){      
       const movies = [...contentLiked.contentLiked['movies']] 
       const moviesId = movies.map((movie)=>movie.id) 
       const allFavorites = [...contentLiked.contentLiked['allFavorites']] 
@@ -54,7 +52,7 @@ export const useLikeHandler = ()=>{
         const favoriteContentAlreadyLikedIndex = allFavoritesId.findIndex((id)=> id === content.id)
         allFavorites.splice(favoriteContentAlreadyLikedIndex, 1)
        
-        const allFavoritesSorted =  allFavorites.map((favorite, index)=> ({...favorite, 'internalId': index, contentType}))
+        const allFavoritesSorted =  allFavorites.map((favorite, index)=> ({...favorite, 'internalId': index, 'contentType': URLcontentType}))
         
         const newContentLikedData = {contentLiked: {'movies': movies, 'tvSeries': [...contentLiked.contentLiked['tvSeries']], 'allFavorites': allFavoritesSorted}}
 
@@ -63,14 +61,14 @@ export const useLikeHandler = ()=>{
         setIsLiked(false)
       }
       else{
-        const newContentLikedData = {contentLiked: {'movies': [...contentLiked.contentLiked['movies'], content], 'tvSeries': [...contentLiked.contentLiked['tvSeries']], 'allFavorites': [...contentLiked.contentLiked['allFavorites'], {...content, 'internalId': contentLiked.contentLiked['allFavorites'].length, contentType}]}}
+        const newContentLikedData = {contentLiked: {'movies': [...contentLiked.contentLiked['movies'], content], 'tvSeries': [...contentLiked.contentLiked['tvSeries']], 'allFavorites': [...contentLiked.contentLiked['allFavorites'], {...content, 'internalId': contentLiked.contentLiked['allFavorites'].length, 'contentType': URLcontentType}]}}
         localStorage.setItem("contentLiked", JSON.stringify(newContentLikedData))
         setContentLiked(newContentLikedData)
         setIsLiked(true)
       }      
     }       
 
-    if(contentType === 'favorites'){      
+    if(URLcontentType === 'favorites'){          
       const movies = [...contentLiked.contentLiked['movies']] 
       const moviesId = movies.map((movie)=>movie.id) 
       const tvSeries = [...contentLiked.contentLiked['tvSeries']]  
@@ -80,8 +78,7 @@ export const useLikeHandler = ()=>{
 
       const isAlreadyLiked = allFavoritesId.includes(content.id)
 
-      if(isAlreadyLiked){
-        
+      if(isAlreadyLiked){        
         if(content.contentType === 'movie'){
           const movieAlreadyLikedIndex = moviesId.findIndex((id)=> id === content.id)
           movies.splice(movieAlreadyLikedIndex, 1)
@@ -117,37 +114,37 @@ export const useLikeHandler = ()=>{
     }
   }
   
-  const isContentLiked = (contentLiked, contentType, content)=>{
-    
-    if(contentType === 'movie'){      
-      setContentTypeUrl('movie')  
+  const isContentLiked = (contentLiked, URLcontentType, content)=>{    
+    if(URLcontentType === 'movie'){       
       if(contentLiked !== null){
         const moviesIds = contentLiked.contentLiked['movies'].map(movie=> movie.id)      
         setIsLiked(moviesIds.includes(content.id))
       }
     }
     
-    if(contentType === 'tv'){
-      setContentTypeUrl('tv')
+    if(URLcontentType === 'tv'){
       if(contentLiked !== null){
         const tvSeriesIds = contentLiked.contentLiked['tvSeries'].map(tvSerie=> tvSerie.id)           
         setIsLiked(tvSeriesIds.includes(content.id))
       }
     }   
   
-    if(contentType === 'favorites'){
-      setContentTypeUrl(content.contentType)
+    if(URLcontentType === 'favorites'){      
       if(contentLiked !== null){
         const allFavoritesIds = contentLiked.contentLiked['allFavorites'].map(favorite=> favorite.id)           
         setIsLiked(allFavoritesIds.includes(content.id))
       }
-    }   
-  }
+    }
+  }  
+    
+
+  
+
+
 
   return({
     likeClickHandler,
-    isContentLiked,
-    contentTypeUrl,
+    isContentLiked,    
     isLiked
   })
 }

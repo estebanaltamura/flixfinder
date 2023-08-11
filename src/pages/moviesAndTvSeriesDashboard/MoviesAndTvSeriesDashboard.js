@@ -9,7 +9,7 @@ import "./MoviesAndTvSeriesDashboard.css";
 export const MoviesAndTvSeriesDashboard = () => {
   const { isLoading, setIsLoading } = useContext(IsLoadingContext)
   const [ isLoadingRequest, setIsLoadingRequest ] = useState(true);
-  const [ cardIdToAllowShareOptions, setCardIdToAllowShareOptions ] = useState(false)
+  const [ cardIdShareOptionsAllowed, setCardIdShareOptionsAllowed ] = useState(false)
   const { getData, content } = useGetDataMoviesAndTvSeriesDashboard()  
   const imagesLoadedCounter = useRef(0)
   const contentType = useRef(null)
@@ -53,9 +53,9 @@ export const MoviesAndTvSeriesDashboard = () => {
       const cardElement = event.target.closest('.card');    
     
       if(cardElement && (event.target.classList.value.includes('shareCardIcon') || event.target.parentNode.classList.value.includes('shareCardIcon'))) {
-        setCardIdToAllowShareOptions(cardElement.id)                  
+        setCardIdShareOptionsAllowed(cardElement.id)                  
       }
-      else setCardIdToAllowShareOptions(null)         
+      else setCardIdShareOptionsAllowed(null)         
     }
 
     window.addEventListener('click', detectCardClicked)
@@ -79,7 +79,7 @@ export const MoviesAndTvSeriesDashboard = () => {
           <div className={isLoading === true ? "hidden" : "container containerMoviesAndTvSeriesDashboard"} onLoad={imgItemLoadHandler} id='containerMoviesAndTvSeriesDashboard'>
             <div className="row rowStyles">
               {content.map((content, index) => {
-                return <Card content={content} contentType={contentType.current} key={index} index={index + 1} cardIdToAllowShareOptions={cardIdToAllowShareOptions}/>;
+                return <Card content={content} URLcontentType={contentType.current} key={index} index={index + 1} cardIdShareOptionsAllowed={cardIdShareOptionsAllowed}/>;
               })}
             </div>
           </div>
