@@ -1,6 +1,8 @@
 import { useEffect, useState, useContext, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
+import { LoginContext } from "../../contexts/LoginContextProvider";
+import { ContentLikedContext } from "../../contexts/ContentLikedContextProvider";
 import { useGetDataMoviesAndTvSeriesDashboard } from '../../services/external/useGetDataMoviesAndTvSeriesDashboard';
 import { Card } from '../../components/card/Card'
 import { Spinner } from "../../components/spinner/Spinner";
@@ -8,6 +10,8 @@ import "./MoviesAndTvSeriesDashboard.css";
 
 export const MoviesAndTvSeriesDashboard = () => {
   const { isLoading, setIsLoading } = useContext(IsLoadingContext)
+
+
   const [ isLoadingRequest, setIsLoadingRequest ] = useState(true);
   const [ cardIdShareOptionsAllowed, setCardIdShareOptionsAllowed ] = useState(false)
   const { getData, content } = useGetDataMoviesAndTvSeriesDashboard()  
@@ -47,6 +51,8 @@ export const MoviesAndTvSeriesDashboard = () => {
 
     contentType.current !== null && getData(contentType.current, setIsLoadingRequest)    
   }, [url]);
+
+ 
 
   useEffect(()=>{
     const detectCardClicked = (event)=>{      

@@ -101,6 +101,8 @@ export const ContentDetails = () => {
               
           <p className="genres">{genresText}</p>   
 
+          <h4 className='overview'>Overview</h4>
+
           <p className="descriptionText" ref={descriptionTextRef}>{description}</p> 
 
           {

@@ -2,6 +2,7 @@ import { useContext, useEffect, useState, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { LoginContext } from "../../contexts/LoginContextProvider";
 import { IsLoadingContext } from '../../contexts/IsLoadingContextProvider'
+import { useGetContentLiked } from "../../services/internal/useGetContentLiked";
 import { useLoginValidator } from "../../hooks/useLoginValidator";
 import { useLogin } from '../../services/internal/useLogin'
 import { useCreateAccount } from '../../services/internal/useCreateAccount';
@@ -14,6 +15,7 @@ import { AiFillEye, AiFillEyeInvisible} from "react-icons/ai";
 
 export const LoginAndRegisterForm = () => {
   const { token } = useContext(LoginContext);
+  const { getContentLikedServer} = useContext(useGetContentLiked)
   const [section, setSection ] = useState(null) 
   const [ showPassword, setShowPassword ] = useState(false)
   const { setIsLoading } = useContext(IsLoadingContext)
@@ -58,10 +60,13 @@ export const LoginAndRegisterForm = () => {
     else if (urlInParts.includes("login")) {      
       setStylesElementsWaiting(userNameInput.current, passwordInput.current, submitButton.current)
 
-      const wasSuccessfullTheLogin = await getToken(userNameHandled, password);
+      const getTokenData = await getToken(userNameHandled, password);
+      const getContentLikedServerData =  await getContentLikedServer(token)
 
-      if(wasSuccessfullTheLogin){    
+      if(getTokenData && getContentLikedServerData){    
         setIsLoading(true)
+        localStorage.setItem("token", JSON.stringify(getTokenData))
+        localStorage.setItem("contentLiked", JSON.stringify(getContentLikedServerData))
         history("/movies");
       }      
       else{
@@ -72,8 +77,8 @@ export const LoginAndRegisterForm = () => {
     else if (urlInParts.includes("registerAccount")) {
       setStylesElementsWaiting(userNameInput.current, passwordInput.current, submitButton.current)   
 
-      const wasSuccessfullTheLogin = await createAccount(userNameHandled, password);
-      if(wasSuccessfullTheLogin){
+      const wasSuccessfulCreateAccount = await createAccount(userNameHandled, password);
+      if(wasSuccessfulCreateAccount){
         history("/login");
       }
       else{

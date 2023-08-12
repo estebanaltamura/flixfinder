@@ -2,6 +2,7 @@ import { useState, useContext } from "react"
 import { ContentLikedContext } from "../contexts/ContentLikedContextProvider"
 
 
+//cambiar nombre por update
 export const useLikeHandler = ()=>{
   const [ isLiked, setIsLiked ] = useState(false)  
   const { setContentLiked } = useContext(ContentLikedContext)
@@ -136,11 +137,6 @@ export const useLikeHandler = ()=>{
       }
     }
   }  
-    
-
-  
-
-
 
   return({
     likeClickHandler,

@@ -26,7 +26,7 @@ export const useContentDetailsHelper = ()=>{
 
     if(content.genres !== undefined){      
       const genresText = content.genres
-                            .slice(0,4)
+                            .slice(0,3)
                             .map((genre)=> genre.name)
                             .join(" - ")
       setGenresText(genresText)

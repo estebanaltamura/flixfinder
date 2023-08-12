@@ -14,5 +14,5 @@ export const LoginContextProvider = (props) => {
     <LoginContext.Provider value={{ token, setToken }}>
       {props.children}
     </LoginContext.Provider>
-  );
+  ); 
 };
