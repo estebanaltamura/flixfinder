@@ -15,7 +15,7 @@ import { AiFillEye, AiFillEyeInvisible} from "react-icons/ai";
 
 export const LoginAndRegisterForm = () => {
   const { token } = useContext(LoginContext);
-  const { getContentLikedServer} = useContext(useGetContentLiked)
+  const { getContentLikedServer } = useGetContentLiked()
   const [section, setSection ] = useState(null) 
   const [ showPassword, setShowPassword ] = useState(false)
   const { setIsLoading } = useContext(IsLoadingContext)
@@ -61,7 +61,7 @@ export const LoginAndRegisterForm = () => {
       setStylesElementsWaiting(userNameInput.current, passwordInput.current, submitButton.current)
 
       const getTokenData = await getToken(userNameHandled, password);
-      const getContentLikedServerData =  await getContentLikedServer(token)
+      const getContentLikedServerData = getTokenData ? await getContentLikedServer(getTokenData) : false
 
       if(getTokenData && getContentLikedServerData){    
         setIsLoading(true)
