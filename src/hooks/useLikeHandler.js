@@ -25,7 +25,7 @@ export const useLikeHandler = ()=>{
         const favoriteContentAlreadyLikedIndex = allFavoritesId.findIndex((id)=> id === content.id)
         allFavorites.splice(favoriteContentAlreadyLikedIndex, 1)
        
-        const allFavoritesSorted =  allFavorites.map((favorite, index)=> ({...favorite, 'internalId': index, 'contentType': URLcontentType}))      
+        const allFavoritesSorted =  allFavorites.map((favorite, index)=> ({...favorite, 'internalId': index}))      
 
         const newContentLikedData = {contentLiked: {'movies': [...contentLiked.contentLiked['movies']], 'tvSeries': tvSeries, 'allFavorites': allFavoritesSorted}}
         localStorage.setItem("contentLiked", JSON.stringify(newContentLikedData))
@@ -59,7 +59,7 @@ export const useLikeHandler = ()=>{
         const favoriteContentAlreadyLikedIndex = allFavoritesId.findIndex((id)=> id === content.id)
         allFavorites.splice(favoriteContentAlreadyLikedIndex, 1)
        
-        const allFavoritesSorted =  allFavorites.map((favorite, index)=> ({...favorite, 'internalId': index, 'contentType': URLcontentType}))
+        const allFavoritesSorted =  allFavorites.map((favorite, index)=> ({...favorite, 'internalId': index}))
         
         const newContentLikedData = {contentLiked: {'movies': movies, 'tvSeries': [...contentLiked.contentLiked['tvSeries']], 'allFavorites': allFavoritesSorted}}
 
