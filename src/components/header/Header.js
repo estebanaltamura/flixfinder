@@ -7,7 +7,7 @@ import "./Header.css";
 
 export const Header = () => {
   const [ currentWidth, setCurrentWidth] = useState(window.innerWidth);  
-  const [ isHeaderSearchMode, setIsHeaderSearchMode] = useState(false);
+  const [ isHeaderSearchMode, setIsHeaderSearchMode ] = useState(false);
   const [ showHeader, setShowHeader ] = useState(null)
   const url = useLocation()
 

@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { LoginContext } from "../../contexts/LoginContextProvider";
+import { TokenContext } from "../../contexts/TokenContextProvider";
+import { ContentLikedContext } from "../../contexts/ContentLikedContextProvider";
 import { IsLoadingContext } from '../../contexts/IsLoadingContextProvider'
 import { useGetContentLiked } from "../../services/internal/useGetContentLiked";
 import { useLoginValidator } from "../../hooks/useLoginValidator";
@@ -10,15 +11,17 @@ import { useFormElementsBehavior } from "../../hooks/useFormElementsBehavior";
 import mailIcon from '../../assets/mailIcon.svg'
 import passwordIcon from '../../assets/passwordIcon.svg'
 import userIcon from '../../assets/userIcon.svg'
-import "./LoginAndRegisterForm.css";
 import { AiFillEye, AiFillEyeInvisible} from "react-icons/ai";
+import "./LoginAndRegisterForm.css";
+
 
 export const LoginAndRegisterForm = () => {
-  const { token } = useContext(LoginContext);
-  const { getContentLikedServer } = useGetContentLiked()
+  const { setToken } = useContext(TokenContext);
+  const { setContentLiked } = useContext(ContentLikedContext)
+  const { setIsLoading } = useContext(IsLoadingContext)
   const [section, setSection ] = useState(null) 
   const [ showPassword, setShowPassword ] = useState(false)
-  const { setIsLoading } = useContext(IsLoadingContext)
+  const { getContentLikedServer } = useGetContentLiked()
 
   const {
     userNameAlert,
@@ -61,12 +64,15 @@ export const LoginAndRegisterForm = () => {
       setStylesElementsWaiting(userNameInput.current, passwordInput.current, submitButton.current)
 
       const getTokenData = await getToken(userNameHandled, password);
-      const getContentLikedServerData = getTokenData ? await getContentLikedServer(getTokenData) : false
-
+      const getContentLikedServerData = await getContentLikedServer(getTokenData)
+            
       if(getTokenData && getContentLikedServerData){    
         setIsLoading(true)
+        setToken(getTokenData)
+        setContentLiked(getContentLikedServerData)
         localStorage.setItem("token", JSON.stringify(getTokenData))
         localStorage.setItem("contentLiked", JSON.stringify(getContentLikedServerData))
+        console.log('setea token en contexto y local storage, setea liked context desde login')
         history("/movies");
       }      
       else{
@@ -117,28 +123,22 @@ export const LoginAndRegisterForm = () => {
     if (urlInParts.includes("registerAccount")) {
       setSection("registerAccount")
     }        
-  }, [url]);
+  }, [url]);  
 
-  useEffect(()=>{token && history("/movies");},[])
-
-  return (
-    <>
-      {!token && (
-        <div className="form-container" onClick={resetAlertWhenFocusInInput}>
-          <div className={section === "login" ? "formMainIconContainer" : "formMainIconContainer formMainIconContainerRegisterAccount"} >
-            <img src={userIcon} />
-          </div>
-          <h3 className="formTitle">{section === "login" ? "Good to see you again!" : "Create your account"}</h3>
-          <form
-            action="/action_page.php"
-            onSubmit={loginRegisterFormSubmitClickHandler}
-            className="loginAndRegisterForm"
-          >
-            <div
-              className={
-                userNameAlert === "" ? "inputContainer" : "inputContainer shake"                 
-              }
-            >
+  return (  
+    <div className="form-container" onClick={resetAlertWhenFocusInInput}>
+      <div className={section === "login" ? "formMainIconContainer" : "formMainIconContainer formMainIconContainerRegisterAccount"} >
+        <img src={userIcon} />
+      </div>
+      <h3 className="formTitle">{section === "login" ? "Good to see you again!" : "Create your account"}</h3>
+      <form
+        action="/action_page.php"
+        onSubmit={loginRegisterFormSubmitClickHandler}
+        className="loginAndRegisterForm">
+          <div
+            className={
+              userNameAlert === "" ? "inputContainer" : "inputContainer shake"                 
+            }>
               <div className="inputIconContainer">
                 <img src={mailIcon} className="inputIcon"/>                
               </div>
@@ -150,16 +150,14 @@ export const LoginAndRegisterForm = () => {
                 autoComplete="off"
                 autoCorrect="off" 
                 autoCapitalize="none"
-                placeholder="E-mail"
-              /> 
-            </div>
-            <span className="inputAlerts">{userNameAlert}</span>
+                placeholder="E-mail"/> 
+          </div>
+          <span className="inputAlerts">{userNameAlert}</span>
 
-            <div
-              className={
-                passwordAlert === "" ? "inputContainer" : "inputContainer shake"
-              }
-            >
+          <div
+            className={
+              passwordAlert === "" ? "inputContainer" : "inputContainer shake"
+            }>
               <div className="inputIconContainer">
                 <img src={passwordIcon} className="inputIcon"/>              
               </div>
@@ -169,28 +167,25 @@ export const LoginAndRegisterForm = () => {
                 ref={passwordInput}
                 className="inputForm"
                 autoComplete="off"
-                placeholder="Password"
-              />
+                placeholder="Password"/>
               <>
                 {
                   showPassword ?<AiFillEyeInvisible className="showPasswordIcon" onClick={showpasswordClickHandler} /> : <AiFillEye className="showPasswordIcon" onClick={showpasswordClickHandler}/> 
                 }
               </>
-            </div>
-            <span className="inputAlerts">{passwordAlert}</span>
+          </div>
+          <span className="inputAlerts">{passwordAlert}</span>
 
-            <button 
-              type="submit" 
-              className={section === "login" ? "submitButton" : "submitButton submitButtonRegisterAccount"}
-              ref={submitButton}>
-                {section === "login" ? "LOGIN" : "CREATE ACCOUNT"}
-            </button>
-          </form>
-          <a className="createAccountLink" onClick={redirectToLoginOrRegister}>
-            {section === "login" ? "Create an account" : "Already have an account?"}
-          </a>
-        </div>
-      )}
-    </>
+          <button 
+            type="submit" 
+            className={section === "login" ? "submitButton" : "submitButton submitButtonRegisterAccount"}
+            ref={submitButton}>
+              {section === "login" ? "LOGIN" : "CREATE ACCOUNT"}
+          </button>
+      </form>
+      <a className="createAccountLink" onClick={redirectToLoginOrRegister}>
+        {section === "login" ? "Create an account" : "Already have an account?"}
+      </a>
+    </div>  
   );
 };

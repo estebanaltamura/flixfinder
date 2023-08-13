@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react"
 import { Navigate } from "react-router-dom"
-import { LoginContext } from "../../contexts/LoginContextProvider"
+import { TokenContext } from "../../contexts/TokenContextProvider"
 import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider"
 import { LoginAndRegisterForm } from "../../components/LoginAndRegisterForm/LoginAndRegisterForm"
 import logo from '../../assets/logo.png'
@@ -8,7 +8,7 @@ import './Login.css'
 
 
 export const Login = ()=>{  
-  const { token } = useContext(LoginContext)
+  const { token } = useContext(TokenContext)
   const { setIsLoading } = useContext(IsLoadingContext)
   
   useEffect(()=>{

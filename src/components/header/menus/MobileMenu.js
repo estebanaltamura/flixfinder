@@ -1,13 +1,13 @@
 import { useContext, useRef } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
-import { LoginContext } from "../../../contexts/LoginContextProvider";
+import { TokenContext } from "../../../contexts/TokenContextProvider";
 import { ContentLikedContext } from "../../../contexts/ContentLikedContextProvider";
 import { BsSearch } from "react-icons/bs";
 import { RxHamburgerMenu } from "react-icons/rx";
 import "./MobileMenu.css";
 
 export const MobileMenu = () => {
-  const { token, setToken } = useContext(LoginContext);
+  const { token, setToken } = useContext(TokenContext);
   const { setContentLiked } = useContext(ContentLikedContext)
   const history = useNavigate();
   const togglerButtonRef = useRef();

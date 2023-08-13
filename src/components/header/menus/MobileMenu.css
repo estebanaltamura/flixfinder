@@ -2,11 +2,11 @@
   display: flex;
   width: 100%;
   height: 100%;
-  background-color: black !important;  
+  background-color: #2C2C2C !important;  
 }
 
 .dropdownMenu{
-  background-color: black !important;   
+  background-color: #2C2C2C !important;   
 }
 
 .togglerButtonContainer {
@@ -18,6 +18,10 @@
   border: 1px solid #4c4c4c;
 }
 
+.togglerButtonContainer { 
+  box-shadow: none !important;
+}
+
 .hamburgerIcon {
   width: 42px;
   height: 30px;
@@ -25,7 +29,7 @@
 }
 
 .navBarDesplegable{  
-  background-color: black;
+  background-color: #2C2C2C !important;
 }
 
 header li{

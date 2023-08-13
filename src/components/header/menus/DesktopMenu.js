@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
-import { LoginContext } from "../../../contexts/LoginContextProvider";
+import { TokenContext } from "../../../contexts/TokenContextProvider";
 import { ContentLikedContext } from "../../../contexts/ContentLikedContextProvider";
 import { SearchBarDesktop } from "../searchBars/SearchBarDesktop";
 import { Container } from "react-bootstrap";
@@ -8,7 +8,7 @@ import logo from '../../../assets/logo.png'
 import './DesktopMenu.css'
 
 export const DesktopMenu = () => {
-  const { token, setToken } = useContext(LoginContext);
+  const { token, setToken } = useContext(TokenContext);
   const { setContentLiked } = useContext(ContentLikedContext)
   const history = useNavigate();
 

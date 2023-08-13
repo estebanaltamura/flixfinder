@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 import { useEffect, useRef, useContext } from "react";
-import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
-import { LoginContext } from "../../contexts/LoginContextProvider";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { TokenContext } from '../../contexts/TokenContextProvider';
 import { IsLoadingContext } from '../../contexts/IsLoadingContextProvider'
 import { ContentLikedContext } from '../../contexts/ContentLikedContextProvider';
 import { useContentDetailsHelper } from "../../hooks/useContentDetailsHelper";
@@ -17,9 +17,10 @@ import { WhatsappShareButton } from "react-share";
 import "./ContentDetails.css";
 
 
+
 export const ContentDetails = () => {  
   const { isLoading, setIsLoading } = useContext(IsLoadingContext); 
-  const { token } = useContext(LoginContext);   
+  const { token } = useContext(TokenContext);   
   const { contentLiked } = useContext(ContentLikedContext)
   const {
     setCardContent,
@@ -59,7 +60,7 @@ export const ContentDetails = () => {
   }
 
   const likeClick = ()=>{   
-    likeClickHandler(contentType, contentLiked, content)
+    likeClickHandler(contentType, contentLiked, content, token)
   }  
 
   useEffect(()=>{

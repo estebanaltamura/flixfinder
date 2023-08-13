@@ -1,7 +1,7 @@
 import { useContext, useRef, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
-import { LoginContext } from "../../contexts/LoginContextProvider";
+import { TokenContext } from "../../contexts/TokenContextProvider";
 import { ContentLikedContext } from "../../contexts/ContentLikedContextProvider"; 
 import { useLikeHandler } from "../../hooks/useLikeHandler";
 import { FcLikePlaceholder, FcLike } from "react-icons/fc";
@@ -9,12 +9,13 @@ import ratingIcon from '../../assets/ratingIcon.svg'
 import { BsShareFill, BsWhatsapp } from "react-icons/bs";
 import { SlSocialTwitter } from "react-icons/sl";
 import "./Card.css";
- 
+
+  
 export const Card = ({ content, URLcontentType, index, cardIdShareOptionsAllowed}) => { 
   const [ shareOptionsVisivility, setShareOptionsVisivility ] = useState(false)
   const [ contentType,  setContentType ] = useState(null)
   const { setIsLoading } = useContext(IsLoadingContext)
-  const { token } = useContext(LoginContext) 
+  const { token } = useContext(TokenContext) 
   const { contentLiked } = useContext(ContentLikedContext)
   const { likeClickHandler,
           isContentLiked,         
@@ -37,7 +38,7 @@ export const Card = ({ content, URLcontentType, index, cardIdShareOptionsAllowed
   }
 
   const likeClick = ()=>{   
-    likeClickHandler(URLcontentType, contentLiked, content)
+    likeClickHandler(URLcontentType, contentLiked, content, token)
   }
 
   const shareButtonClickHandler = ()=>{

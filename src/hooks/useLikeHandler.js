@@ -1,13 +1,15 @@
 import { useState, useContext } from "react"
 import { ContentLikedContext } from "../contexts/ContentLikedContextProvider"
+import { useSetContentLiked } from "../services/internal/useSetContentLiked"
 
 
 //cambiar nombre por update
 export const useLikeHandler = ()=>{
   const [ isLiked, setIsLiked ] = useState(false)  
   const { setContentLiked } = useContext(ContentLikedContext)
+  const { setContentLikedServer } = useSetContentLiked()
 
-  const likeClickHandler = (URLcontentType, contentLiked, content)=>{    
+  const likeClickHandler = (URLcontentType, contentLiked, content, token)=>{    
     if(URLcontentType === 'tv'){      
       const tvSeries = [...contentLiked.contentLiked['tvSeries']]  
       const tvSeriesId = tvSeries.map((tvSerie)=>tvSerie.id)
@@ -28,13 +30,17 @@ export const useLikeHandler = ()=>{
         const newContentLikedData = {contentLiked: {'movies': [...contentLiked.contentLiked['movies']], 'tvSeries': tvSeries, 'allFavorites': allFavoritesSorted}}
         localStorage.setItem("contentLiked", JSON.stringify(newContentLikedData))
         setContentLiked(newContentLikedData)
-        setIsLiked(false)        
+        setContentLikedServer(token, newContentLikedData)
+        setIsLiked(false)   
+        console.log('actulizo contexto liked, actualizo en server liked, seteo si esta liked o no la card para definir icono')     
       }
       else{
         const newContentLikedData = {contentLiked: {'movies': [...contentLiked.contentLiked['movies']], 'tvSeries': [...contentLiked.contentLiked['tvSeries'], content], 'allFavorites': [...contentLiked.contentLiked['allFavorites'], {...content, 'internalId': contentLiked.contentLiked['allFavorites'].length, 'contentType': URLcontentType}]}}
         localStorage.setItem("contentLiked", JSON.stringify(newContentLikedData))
         setContentLiked(newContentLikedData)
+        setContentLikedServer(token, newContentLikedData)
         setIsLiked(true)
+        console.log('actulizo contexto liked, actualizo en server liked, seteo si esta liked o no la card para definir icono')
       }            
     } 
 
@@ -59,13 +65,17 @@ export const useLikeHandler = ()=>{
 
         localStorage.setItem("contentLiked", JSON.stringify(newContentLikedData))
         setContentLiked(newContentLikedData)
+        setContentLikedServer(token, newContentLikedData)
         setIsLiked(false)
+        console.log('actulizo contexto liked, actualizo en server liked, seteo si esta liked o no la card para definir icono')
       }
       else{
         const newContentLikedData = {contentLiked: {'movies': [...contentLiked.contentLiked['movies'], content], 'tvSeries': [...contentLiked.contentLiked['tvSeries']], 'allFavorites': [...contentLiked.contentLiked['allFavorites'], {...content, 'internalId': contentLiked.contentLiked['allFavorites'].length, 'contentType': URLcontentType}]}}
         localStorage.setItem("contentLiked", JSON.stringify(newContentLikedData))
         setContentLiked(newContentLikedData)
+        setContentLikedServer(token, newContentLikedData)
         setIsLiked(true)
+        console.log('actulizo contexto liked, actualizo en server liked, seteo si esta liked o no la card para definir icono')
       }      
     }       
 
@@ -93,7 +103,9 @@ export const useLikeHandler = ()=>{
         
           localStorage.setItem("contentLiked", JSON.stringify(newContentLikedData))
           setContentLiked(newContentLikedData)
+          setContentLikedServer(token, newContentLikedData)
           setIsLiked(false)
+          console.log('actulizo contexto liked, actualizo en server liked, seteo si esta liked o no la card para definir icono')
         }
 
         if(content.contentType === 'tv'){
@@ -109,16 +121,18 @@ export const useLikeHandler = ()=>{
         
           localStorage.setItem("contentLiked", JSON.stringify(newContentLikedData))
           setContentLiked(newContentLikedData)
+          setContentLikedServer(token, newContentLikedData)
           setIsLiked(false)
+          console.log('actulizo contexto liked, actualizo en server liked, seteo si esta liked o no la card para definir icono')
         }        
       }        
     }
   }
   
-  const isContentLiked = (contentLiked, URLcontentType, content)=>{    
+  const isContentLiked = (contentLiked, URLcontentType, content)=>{     
     if(URLcontentType === 'movie'){       
       if(contentLiked !== null){
-        const moviesIds = contentLiked.contentLiked['movies'].map(movie=> movie.id)      
+        const moviesIds = contentLiked.contentLiked['movies'].map(movie=> movie.id)       
         setIsLiked(moviesIds.includes(content.id))
       }
     }
