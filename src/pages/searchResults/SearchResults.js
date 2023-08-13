@@ -29,7 +29,7 @@ export const SearchResults = () => {
       setIsLoading(false)
     }
   }
-
+ 
   useEffect(() => {        
     setIsLoadingRequest(true);
     setIsLoading(true)
@@ -38,8 +38,6 @@ export const SearchResults = () => {
   }, [query]);
 
   useEffect(()=>{
-    window.scrollTo(0, 0);  
-
     const detectCardClicked = (event)=>{      
       const cardElement = event.target.closest('.card');    
     
@@ -52,8 +50,8 @@ export const SearchResults = () => {
     window.addEventListener('click', detectCardClicked)
 
     return ()=> window.removeEventListener('click', detectCardClicked)
-  },[])  
-
+  },[])
+  
   return (
     <>     
       <Spinner />

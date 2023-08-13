@@ -73,7 +73,7 @@ export const MoviesAndTvSeriesDashboard = () => {
         <div className={isLoading === true ? "hidden" : "container containerMoviesAndTvSeriesDashboard"} id='containerMoviesAndTvSeriesDashboard'>
           <h3 className="alertText">{`No results`}</h3>
         </div>
-      } 
+      }  
     
       {
         (!isLoadingRequest && content.length > 0) &&

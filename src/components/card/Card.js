@@ -41,10 +41,6 @@ export const Card = ({ content, URLcontentType, index, cardIdShareOptionsAllowed
     likeClickHandler(URLcontentType, contentLiked, content, token)
   }
 
-  const shareButtonClickHandler = ()=>{
-    setShareOptionsVisivility(!shareOptionsVisivility)    
-  }
-
   const getContentType = (content, URLcontentType)=>{
     if(URLcontentType === 'movie'){      
       setContentType('movie')         
@@ -64,7 +60,9 @@ export const Card = ({ content, URLcontentType, index, cardIdShareOptionsAllowed
   },[content])
     
   useEffect(()=>{    
+    console.log(cardIdShareOptionsAllowed, `card${index}`)
     cardIdShareOptionsAllowed !== `card${index}` && setShareOptionsVisivility(false)
+    cardIdShareOptionsAllowed === `card${index}` && setShareOptionsVisivility(true)
   },[cardIdShareOptionsAllowed])
   
   useEffect(()=>{ 
@@ -95,7 +93,7 @@ export const Card = ({ content, URLcontentType, index, cardIdShareOptionsAllowed
           </div> 
 
           <div className="shareCardContainer">          
-              <BsShareFill className={shareOptionsVisivility ? "shareCardIcon shareCardIconActive" : "shareCardIcon"} onClick={shareButtonClickHandler}/>
+              <BsShareFill className={shareOptionsVisivility ? "shareCardIcon shareCardIconActive" : "shareCardIcon"} />
           </div>           
              
           <div className={shareOptionsVisivility ? "shareOptionsContainer shareOptionsContainerOpen" : "shareOptionsContainer"}>

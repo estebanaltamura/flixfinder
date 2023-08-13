@@ -26,7 +26,7 @@ export const MyFavorites = () => {
     if(imgClasses.includes("cardImg")){
       if(event.target.id <= quantityImgsToLoadBeforeIsLoadingFalse){
         imagesLoadedCounter.current += 1
-      }      
+      }       
     }
     if(imagesLoadedCounter.current === quantityImgsToLoadBeforeIsLoadingFalse){
       imagesLoadedCounter.current = 0      
@@ -45,12 +45,11 @@ export const MyFavorites = () => {
   },[token])
   
   useEffect(()=>{
-    window.scrollTo(0, 0);  
-
     const detectCardClicked = (event)=>{      
       const cardElement = event.target.closest('.card');    
     
       if(cardElement && (event.target.classList.value.includes('shareCardIcon') || event.target.parentNode.classList.value.includes('shareCardIcon'))) {
+        console.log(cardElement.id)
         setCardIdShareOptionsAllowed(cardElement.id)                  
       }
       else setCardIdShareOptionsAllowed(null)         
@@ -79,7 +78,7 @@ export const MyFavorites = () => {
                 <div className={isLoading === true ? "hidden" : "container containerMoviesAndTvSeriesDashboard"} onLoad={imgItemLoadHandler}>
                   <div className="row rowStyles">
                     {[...contentLiked.contentLiked.allFavorites].reverse().map((content, index) => {
-                      return <Card content={content} URLcontentType={'favorites'} key={randomId()} index={index + 1}  cardIdShareOptionsAllowed={cardIdShareOptionsAllowed}/>;
+                      return <Card content={content} URLcontentType={'favorites'} key={randomId()} index={index + 1} cardIdShareOptionsAllowed={cardIdShareOptionsAllowed}/>;
                     })}
                   </div>
                 </div>
