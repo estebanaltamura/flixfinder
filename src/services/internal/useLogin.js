@@ -1,6 +1,3 @@
-import { useContext } from "react";
-import { TokenContext } from "../../contexts/TokenContextProvider";
-import { ContentLikedContext } from "../../contexts/ContentLikedContextProvider";
 import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -8,8 +5,6 @@ import withReactContent from "sweetalert2-react-content";
 
 export const useLogin = () => {  
   const MySwal = withReactContent(Swal);  
-  const { setToken } = useContext(TokenContext);
-  const { setContentLiked } = useContext(ContentLikedContext)
 
   const getToken = async (userName, password) => {
     const projectCollection = 'movie-and-tv-series-browser-users'        
@@ -19,7 +14,7 @@ export const useLogin = () => {
       const resLogin = await axios.post("https://encrypted-chat-backend.online:3100/login", reqLogin, {timeout: 5000})
       const responseLogin = resLogin.data
       const token = responseLogin.token
-      localStorage.setItem("token", token);             
+      localStorage.setItem("token", JSON.stringify(token));             
       return token
     }
     
