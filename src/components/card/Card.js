@@ -8,12 +8,14 @@ import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 import ratingIcon from '../../assets/ratingIcon.svg'
 import { BsShareFill, BsWhatsapp } from "react-icons/bs";
 import { SlSocialTwitter } from "react-icons/sl";
+import { WhatsappShareButton, TwitterShareButton } from 'react-share';
 import "./Card.css";
 
   
-export const Card = ({ content, URLcontentType, index, cardIdShareOptionsAllowed}) => { 
-  const [ shareOptionsVisivility, setShareOptionsVisivility ] = useState(false)
+export const Card = ({ content, URLcontentType, index }) => { 
+  
   const [ contentType,  setContentType ] = useState(null)
+  const [ shareOptionsOpen, setIsShareOptionsOpen ] = useState(false)
   const { setIsLoading } = useContext(IsLoadingContext)
   const { token } = useContext(TokenContext) 
   const { contentLiked } = useContext(ContentLikedContext)
@@ -23,6 +25,8 @@ export const Card = ({ content, URLcontentType, index, cardIdShareOptionsAllowed
   const history = useNavigate()  
   const img = useRef();
   const card = useRef();      
+
+  const shareUrl = `www.flixfinder.online/contentDetails/${contentType}/${content.id}`
   
   const imageErrorHandler = () => {
     img.current.src = "https://i.postimg.cc/BZNQgg6T/noImage.jpg";    
@@ -59,15 +63,15 @@ export const Card = ({ content, URLcontentType, index, cardIdShareOptionsAllowed
     content !== null && getContentType(content, URLcontentType)    
   },[content])
     
-  useEffect(()=>{    
-    console.log(cardIdShareOptionsAllowed, `card${index}`)
-    cardIdShareOptionsAllowed !== `card${index}` && setShareOptionsVisivility(false)
-    cardIdShareOptionsAllowed === `card${index}` && setShareOptionsVisivility(true)
-  },[cardIdShareOptionsAllowed])
+  
   
   useEffect(()=>{ 
     isContentLiked(contentLiked, URLcontentType, content)    
   })  
+
+  const shareOptionsClickHandler = () => {
+    setIsShareOptionsOpen(!shareOptionsOpen)   
+  }
 
   return (
     <div
@@ -92,17 +96,21 @@ export const Card = ({ content, URLcontentType, index, cardIdShareOptionsAllowed
             </span>
           </div> 
 
-          <div className="shareCardContainer">          
-              <BsShareFill className={shareOptionsVisivility ? "shareCardIcon shareCardIconActive" : "shareCardIcon"} />
+          <div className="shareCardContainer" >          
+              <BsShareFill className={shareOptionsOpen ? "shareCardIcon shareCardIconActive" : "shareCardIcon"} onClick={shareOptionsClickHandler}/>
           </div>           
              
-          <div className={shareOptionsVisivility ? "shareOptionsContainer shareOptionsContainerOpen" : "shareOptionsContainer"}>
+          <div className={shareOptionsOpen ? "shareOptionsContainer shareOptionsContainerOpen" : "shareOptionsContainer"}>
               <div className="shareOptionContainer">
-                <BsWhatsapp className="whastappShareIcon" />
+                <WhatsappShareButton url={shareUrl} title={contentType === "movie" ? content.original_title : content.name}>
+                  <BsWhatsapp className="whastappShareIcon" />
+                </WhatsappShareButton>
               </div>
 
               <div className="shareOptionContainer">
-                <SlSocialTwitter className="twitterShareIcon" />
+                <TwitterShareButton url={shareUrl} title={contentType === "movie" ? content.original_title : content.name}>
+                  <SlSocialTwitter className="twitterShareIcon" />
+                </TwitterShareButton>
               </div>              
           </div>            
 
@@ -134,7 +142,7 @@ export const Card = ({ content, URLcontentType, index, cardIdShareOptionsAllowed
 };
 
 
-/*<WhatsappShareButton className="WhatsappShareButton"
+/*              <WhatsappShareButton className="WhatsappShareButton"
                   url={shareUrl}
                   >
                     <BsWhatsapp className="whastappShareIcon" />

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { useEffect, useRef, useContext } from "react";
+import { useEffect, useRef, useContext, useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { TokenContext } from '../../contexts/TokenContextProvider';
 import { IsLoadingContext } from '../../contexts/IsLoadingContextProvider'
@@ -12,13 +12,15 @@ import { Spinner } from "../../components/spinner/Spinner";
 import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 import { HiOutlineChevronLeft } from "react-icons/hi";
 import ratingIcon from '../../assets/ratingIcon.svg'
-import { BsShareFill } from "react-icons/bs";
-import { WhatsappShareButton } from "react-share";
+import { BsShareFill, BsWhatsapp } from "react-icons/bs";
+import { SlSocialTwitter } from "react-icons/sl";
+import { WhatsappShareButton, TwitterShareButton } from 'react-share';
 import "./ContentDetails.css";
 
 
 
 export const ContentDetails = () => {  
+  const [ shareOptionsOpen, setIsShareOptionsOpen ] = useState(false)
   const { isLoading, setIsLoading } = useContext(IsLoadingContext); 
   const { token } = useContext(TokenContext);   
   const { contentLiked } = useContext(ContentLikedContext)
@@ -43,6 +45,9 @@ export const ContentDetails = () => {
   const descriptionTextRef = useRef()
   const history = useNavigate()
   const url = useLocation()
+
+  const shareUrl = `www.flixfinder.online/contentDetails/${contentType}/${contentId}`
+ 
   
   const imageErrorHandler = ()=> {   
     img.current.src = "https://i.postimg.cc/BZNQgg6T/noImage.jpg" 
@@ -62,6 +67,10 @@ export const ContentDetails = () => {
   const likeClick = ()=>{   
     likeClickHandler(contentType, contentLiked, content, token)
   }  
+
+  const shareOptionsClickHandler = () => {
+    setIsShareOptionsOpen(!shareOptionsOpen)   
+  }
 
   useEffect(()=>{
     content !== null && setCardContent(content, contentType) 
@@ -115,23 +124,31 @@ export const ContentDetails = () => {
             </>
           }
 
-          <WhatsappShareButton className="shareContentDetails"            
-            url={`www.flixfinder.online${url.pathname}`}
-            title={titleText}
-            >          
-              <BsShareFill className="shareContentDetails"/>
-          </WhatsappShareButton> 
+          <div className="shareCardContainerContentDetails" >          
+              <BsShareFill className={shareOptionsOpen ? "shareCardIconContentDetais shareCardIconActiveContentDetais" : "shareCardIconContentDetais"} onClick={shareOptionsClickHandler}/>
 
+              <div className={shareOptionsOpen ? "shareOptionsContainerContentDetails shareOptionsContainerOpenContentDetails" : "shareOptionsContainerContentDetails"}>
+                <div className="shareOptionContainerContentDetails">
+                  <WhatsappShareButton url={shareUrl} title={titleText}>
+                    <BsWhatsapp className="whastappShareIconContentDetails" />
+                  </WhatsappShareButton>
+                </div>
 
-
-          {/* <BsShareFill className="shareContentDetails"/>     */}
+                <div className="shareOptionContainerContentDetails">
+                  <TwitterShareButton url={shareUrl} title={titleText}>
+                    <SlSocialTwitter className="twitterShareIconContentDetails" />
+                  </TwitterShareButton>
+                </div>              
+              </div>   
+          </div>     
         </div>
         
         <div className="backButtonContainer" onClick={backButtonOnClick}>
-              <HiOutlineChevronLeft className="backButtonIcon"/>
-              <span className="backButtonText">go back</span>
+          <HiOutlineChevronLeft className="backButtonIcon"/>
+          <span className="backButtonText">go back</span>
         </div>
       </div>        
     </>     
   )
 }
+

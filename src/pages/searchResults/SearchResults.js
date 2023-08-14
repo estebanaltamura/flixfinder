@@ -2,14 +2,14 @@ import { useEffect, useState, useContext, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
 import { useGetDataSearchResults } from '../../services/external/useGetDataSearchResults'
+import { v4 as randomId } from 'uuid'
 import { Card } from "../../components/card/Card";
 import { Spinner } from "../../components/spinner/Spinner";
 import "./SearchResults.css";
 
 export const SearchResults = () => { 
   const { isLoading, setIsLoading } = useContext(IsLoadingContext)  
-  const [ isLoadingRequest, setIsLoadingRequest ] = useState(true);
-  const [ cardIdShareOptionsAllowed, setCardIdShareOptionsAllowed ] = useState(false)
+  const [ isLoadingRequest, setIsLoadingRequest ] = useState(true);  
   const { contentType, query } = useParams();
   const imagesLoadedCounter = useRef(0)
   const { getData, content } = useGetDataSearchResults()  
@@ -36,21 +36,6 @@ export const SearchResults = () => {
     window.scrollTo(0, 0);  
     getData(contentType, query, setIsLoadingRequest)          
   }, [query]);
-
-  useEffect(()=>{
-    const detectCardClicked = (event)=>{      
-      const cardElement = event.target.closest('.card');    
-    
-      if(cardElement && (event.target.classList.value.includes('shareCardIcon') || event.target.parentNode.classList.value.includes('shareCardIcon'))) {
-        setCardIdShareOptionsAllowed(cardElement.id)                  
-      }
-      else setCardIdShareOptionsAllowed(null)         
-    }
-
-    window.addEventListener('click', detectCardClicked)
-
-    return ()=> window.removeEventListener('click', detectCardClicked)
-  },[])
   
   return (
     <>     
@@ -68,7 +53,11 @@ export const SearchResults = () => {
           <div className={isLoading === true ? "hidden" : "container containerStyles"} onLoad={imgItemLoadHandler}>
             <div className="row rowStyles">
               {content.map((content, index) => {
-                return <Card content={content} URLcontentType={contentType} key={index} index={index + 1}  cardIdShareOptionsAllowed={cardIdShareOptionsAllowed}/>;
+                return <Card 
+                  content={content} 
+                  URLcontentType={contentType} 
+                  key={randomId()}
+                  index={index + 1} />;
               })}
             </div>
           </div>

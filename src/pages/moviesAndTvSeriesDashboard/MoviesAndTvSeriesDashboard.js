@@ -2,6 +2,7 @@ import { useEffect, useState, useContext, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
 import { useGetDataMoviesAndTvSeriesDashboard } from '../../services/external/useGetDataMoviesAndTvSeriesDashboard';
+import { v4 as randomId } from 'uuid'
 import { Card } from '../../components/card/Card'
 import { Spinner } from "../../components/spinner/Spinner";
 import "./MoviesAndTvSeriesDashboard.css";
@@ -49,21 +50,6 @@ export const MoviesAndTvSeriesDashboard = () => {
 
   }, [url]); 
 
-  useEffect(()=>{
-    const detectCardClicked = (event)=>{      
-      const cardElement = event.target.closest('.card');    
-    
-      if(cardElement && (event.target.classList.value.includes('shareCardIcon') || event.target.parentNode.classList.value.includes('shareCardIcon'))) {
-        setCardIdShareOptionsAllowed(cardElement.id)                  
-      }
-      else setCardIdShareOptionsAllowed(null)         
-    }
-
-    window.addEventListener('click', detectCardClicked)
-
-    return ()=> window.removeEventListener('click', detectCardClicked)
-  },[])
-
   return (    
     <>
       <Spinner />              
@@ -80,7 +66,11 @@ export const MoviesAndTvSeriesDashboard = () => {
           <div className={isLoading === true ? "hidden" : "container containerMoviesAndTvSeriesDashboard"} onLoad={imgItemLoadHandler} id='containerMoviesAndTvSeriesDashboard'>
             <div className="row rowStyles">
               {content.map((content, index) => {
-                return <Card content={content} URLcontentType={contentType.current} key={index} index={index + 1} cardIdShareOptionsAllowed={cardIdShareOptionsAllowed}/>;
+                return <Card 
+                  content={content} 
+                  URLcontentType={contentType.current} 
+                  key={randomId()} 
+                  index={index + 1} />;
               })}
             </div>
           </div>

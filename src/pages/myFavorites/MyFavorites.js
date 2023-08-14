@@ -13,7 +13,6 @@ export const MyFavorites = () => {
   const { isLoading, setIsLoading } = useContext(IsLoadingContext) 
   const { contentLiked } = useContext(ContentLikedContext)  
   const { token } = useContext(TokenContext)
-  const [ cardIdShareOptionsAllowed, setCardIdShareOptionsAllowed ] = useState(false)
   const history = useNavigate()
 
   const imagesLoadedCounter = useRef(0)  
@@ -44,22 +43,6 @@ export const MyFavorites = () => {
     token === null && history('/movies')
   },[token])
   
-  useEffect(()=>{
-    const detectCardClicked = (event)=>{      
-      const cardElement = event.target.closest('.card');    
-    
-      if(cardElement && (event.target.classList.value.includes('shareCardIcon') || event.target.parentNode.classList.value.includes('shareCardIcon'))) {
-        console.log(cardElement.id)
-        setCardIdShareOptionsAllowed(cardElement.id)                  
-      }
-      else setCardIdShareOptionsAllowed(null)         
-    }
-
-    window.addEventListener('click', detectCardClicked)
-
-    return ()=> window.removeEventListener('click', detectCardClicked)
-  },[])
-
   return (    
     <>
       <Spinner />
@@ -78,7 +61,11 @@ export const MyFavorites = () => {
                 <div className={isLoading === true ? "hidden" : "container containerMoviesAndTvSeriesDashboard"} onLoad={imgItemLoadHandler}>
                   <div className="row rowStyles">
                     {[...contentLiked.contentLiked.allFavorites].reverse().map((content, index) => {
-                      return <Card content={content} URLcontentType={'favorites'} key={randomId()} index={index + 1} cardIdShareOptionsAllowed={cardIdShareOptionsAllowed}/>;
+                      return <Card 
+                        content={content} 
+                        URLcontentType={'favorites'} 
+                        key={randomId()} 
+                        index={index + 1} />;                        
                     })}
                   </div>
                 </div>
