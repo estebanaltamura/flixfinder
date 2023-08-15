@@ -114,13 +114,13 @@ p, h2{
 }
 
 .shareOptionsContainerOpenContentDetails {
-  height: 84px; /* Altura completa cuando está abierto */
+  height: 110px; /* Altura completa cuando está abierto */
 }
 
 .shareOptionContainerContentDetails {
   position: relative;
   display: flex;
-  height: 42px;
+  height: 55px;
   width: 100%;
   justify-content: center;
   align-items: center;
