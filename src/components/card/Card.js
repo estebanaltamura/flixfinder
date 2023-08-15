@@ -105,7 +105,7 @@ export const Card = ({ content, URLcontentType, index }) => {
                 <WhatsappShareButton
                   className='shareIcons' 
                   url={shareUrl} 
-                  title={`Check this out! enjoy watching this:\n${contentType === "movie" ? content.original_title : content.name}\n`}>
+                  title={`Check this out! enjoy watching this:${contentType === "movie" ? content.original_title : content.name}`}>
                     <BsWhatsapp className="whastappShareIcon" />
                 </WhatsappShareButton>
               </div>
