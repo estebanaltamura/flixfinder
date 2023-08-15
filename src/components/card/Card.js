@@ -28,9 +28,7 @@ export const Card = ({ content, URLcontentType, index }) => {
   const titleForTwitter = contentType === "movie" ? content.original_title : content.name
   const titleForTwitterHandled = typeof titleForTwitter === 'string' && encodeURIComponent(titleForTwitter)
   const twitterHref = `https://twitter.com/intent/tweet?text=Check%20this%20out!%20enjoy%20watching%20this%3A%20${titleForTwitterHandled}&url=https%3A%2F%2F${shareUrl}`
-  console.log(twitterHref)
-  
-  
+   
   const imageErrorHandler = () => {
     img.current.src = "https://i.postimg.cc/BZNQgg6T/noImage.jpg";    
   }; 
@@ -113,12 +111,11 @@ export const Card = ({ content, URLcontentType, index }) => {
               </div>
 
               <div className="shareOptionContainer">
-                <TwitterShareButton 
+                <a 
                   className='shareIcons' 
-                  url={shareUrl} 
-                  title={`Check this out! enjoy watching this:\n${contentType === "movie" ? content.original_title : content.name}\n`}>
+                  href={twitterHref}>
                     <SlSocialTwitter className="twitterShareIcon" />
-                </TwitterShareButton>
+                </a>
               </div>              
           </div>            
 
