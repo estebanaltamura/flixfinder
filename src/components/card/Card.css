@@ -90,12 +90,12 @@
 }
 
 .shareOptionsContainerOpen {
-  height: 84px; /* Altura completa cuando está abierto */
+  height: 94px; /* Altura completa cuando está abierto */
 }
 
 .shareOptionContainer {
   display: flex;
-  height: 42px;
+  height: 47px;
   width: 100%;
   justify-content: center;
   align-items: center;
