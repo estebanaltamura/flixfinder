@@ -75,6 +75,11 @@ p, h2{
 }
 
 
+.shareIcons{
+  width: 100%;
+  height: 100%;
+}
+
 
 .shareCardContainerContentDetails{
   position: relative;
