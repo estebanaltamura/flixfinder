@@ -22,14 +22,16 @@ export const SearchBarDesktop = () => {
   };   
 
   useEffect(()=>{
-    const urlInParts = url.pathname.split("/")    
+    const urlInParts = url.pathname.split("/") 
     
-    if((urlInParts.includes("searchResults") && urlInParts.includes("movie")) || urlInParts.includes("movies")){      
+    console.log(urlInParts)
+    
+    if(((urlInParts.includes("searchResults") || urlInParts.includes("contentDetails")) && urlInParts.includes("movie")) || urlInParts.includes("movies")){      
         setContentType("movie")
         setPlaceholderText("Search movies")
     } 
 
-    if((urlInParts.includes("searchResults") && urlInParts.includes("tv")) || urlInParts.includes("tvSeries")){
+    if(((urlInParts.includes("searchResults") || urlInParts.includes("contentDetails")) && urlInParts.includes("tv")) || urlInParts.includes("tvSeries")){
         setContentType("tv")
         setPlaceholderText("Search tv-series")
     }
@@ -39,6 +41,10 @@ export const SearchBarDesktop = () => {
       setPlaceholderText("Search movies")
     }        
   },[url])  
+
+  useEffect(()=>{
+    console.log(contentType)
+  },[])
     
   return (
     <div className="searchBarDesktopContainer">  
