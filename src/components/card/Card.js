@@ -101,7 +101,7 @@ export const Card = ({ content, URLcontentType, index }) => {
               <div className="shareOptionContainer">
                 <WhatsappShareButton 
                   url={shareUrl} 
-                  title={`Check this out! enjoy watching this:\n ${contentType === "movie" ? content.original_title : content.name}\n`}>
+                  title={`Check this out! enjoy watching this:\n${contentType === "movie" ? content.original_title : content.name}\n`}>
                     <BsWhatsapp className="whastappShareIcon" />
                 </WhatsappShareButton>
               </div>
@@ -109,7 +109,7 @@ export const Card = ({ content, URLcontentType, index }) => {
               <div className="shareOptionContainer">
                 <TwitterShareButton 
                   url={shareUrl} 
-                  title={`Check this out! enjoy watching this:\n ${contentType === "movie" ? content.original_title : content.name}\n`}>
+                  title={`Check this out! enjoy watching this:\n${contentType === "movie" ? content.original_title : content.name}\n`}>
                     <SlSocialTwitter className="twitterShareIcon" />
                 </TwitterShareButton>
               </div>              

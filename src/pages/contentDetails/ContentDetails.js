@@ -131,7 +131,7 @@ export const ContentDetails = () => {
                 <div className="shareOptionContainerContentDetails">
                   <WhatsappShareButton 
                     url={shareUrl} 
-                    title={`Check this out! enjoy watching this:\n ${contentType === "movie" ? content.original_title : content.name}\n`}>
+                    title={`Check this out! enjoy watching this:\n${contentType === "movie" ? content.original_title : content.name}\n`}>
                       <BsWhatsapp className="whastappShareIconContentDetails" />
                   </WhatsappShareButton>
                 </div>
@@ -139,7 +139,7 @@ export const ContentDetails = () => {
                 <div className="shareOptionContainerContentDetails">
                   <TwitterShareButton 
                     url={shareUrl} 
-                    title={`Check this out! enjoy watching this:\n ${contentType === "movie" ? content.original_title : content.name}\n`}>
+                    title={`Check this out! enjoy watching this:\n${contentType === "movie" ? content.original_title : content.name}\n`}>
                       <SlSocialTwitter className="twitterShareIconContentDetails" />
                   </TwitterShareButton>
                 </div>              
