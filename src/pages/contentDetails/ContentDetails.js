@@ -14,7 +14,7 @@ import { HiOutlineChevronLeft } from "react-icons/hi";
 import ratingIcon from '../../assets/ratingIcon.svg'
 import { BsShareFill, BsWhatsapp } from "react-icons/bs";
 import { SlSocialTwitter } from "react-icons/sl";
-import { WhatsappShareButton, TwitterShareButton } from 'react-share';
+import { WhatsappShareButton } from 'react-share';
 import "./ContentDetails.css";
 
 
@@ -146,7 +146,7 @@ export const ContentDetails = () => {
                     target="_blank" 
                     rel="noopener noreferrer"
                     href={twitterHref}>
-                      <SlSocialTwitter className="twitterShareIcon" />
+                      <SlSocialTwitter className="twitterShareIconContentDetails" />
                   </a>
                 </div>              
               </div>   

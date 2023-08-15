@@ -8,7 +8,7 @@ import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 import ratingIcon from '../../assets/ratingIcon.svg'
 import { BsShareFill, BsWhatsapp } from "react-icons/bs";
 import { SlSocialTwitter } from "react-icons/sl";
-import { WhatsappShareButton, TwitterShareButton } from 'react-share';
+import { WhatsappShareButton } from 'react-share';
 import "./Card.css";
   
 export const Card = ({ content, URLcontentType, index }) => {   
@@ -105,7 +105,7 @@ export const Card = ({ content, URLcontentType, index }) => {
                 <WhatsappShareButton
                   className='shareIcons' 
                   url={shareUrl} 
-                  title={`Check this out! enjoy watching this:${contentType === "movie" ? content.original_title : content.name}`}>
+                  title={`Check this out! enjoy watching this:\n${contentType === "movie" ? content.original_title : content.name}\n`}>
                     <BsWhatsapp className="whastappShareIcon" />
                 </WhatsappShareButton>
               </div>
