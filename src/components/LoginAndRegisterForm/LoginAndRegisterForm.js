@@ -64,21 +64,24 @@ export const LoginAndRegisterForm = () => {
       setStylesElementsWaiting(userNameInput.current, passwordInput.current, submitButton.current)
 
       const getTokenData = await getToken(userNameHandled, password);
-      const getContentLikedServerData = await getContentLikedServer(getTokenData)
-            
-      if(getTokenData && getContentLikedServerData){    
-        setIsLoading(true)
-        setToken(getTokenData)
-        setContentLiked(getContentLikedServerData)
-        localStorage.setItem("token", JSON.stringify(getTokenData))
-        localStorage.setItem("contentLiked", JSON.stringify(getContentLikedServerData))
-        console.log('setea token en contexto y local storage, setea liked context desde login')
-        history("/movies");
-      }      
-      else{
-        setStylesElementsLoginRejected(userNameInput.current, passwordInput.current, submitButton.current)        
+      if(getTokenData){
+        const getContentLikedServerData = await getContentLikedServer(getTokenData)
+        if(getTokenData && getContentLikedServerData){    
+          setIsLoading(true)
+          setToken(getTokenData)
+          setContentLiked(getContentLikedServerData)
+          localStorage.setItem("token", JSON.stringify(getTokenData))
+          localStorage.setItem("contentLiked", JSON.stringify(getContentLikedServerData))
+          console.log('setea token en contexto y local storage, setea liked context desde login')
+          history("/movies");
+        }     
+        else{
+          setStylesElementsLoginRejected(userNameInput.current, passwordInput.current, submitButton.current)
+        }  
       }
+      else setStylesElementsLoginRejected(userNameInput.current, passwordInput.current, submitButton.current)        
     }    
+        
 
     else if (urlInParts.includes("registerAccount")) {
       setStylesElementsWaiting(userNameInput.current, passwordInput.current, submitButton.current)   
