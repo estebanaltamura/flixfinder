@@ -1,7 +1,8 @@
 .registerAccountContainer{  
   padding: 0 20px;
   width: 100%;
-  height: calc(100vh - 160px);  
+  min-height: calc(100vh - 160px); 
+  height: fit-content; 
 }
 
 .brandingContainerRegisterAccount{
