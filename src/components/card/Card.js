@@ -25,6 +25,11 @@ export const Card = ({ content, URLcontentType, index }) => {
   const card = useRef();      
 
   const shareUrl = `www.flixfinder.online/contentDetails/${contentType}/${content.id}`
+  const titleForTwitter = contentType === "movie" ? content.original_title : content.name
+  const titleForTwitterHandled = typeof titleForTwitter === 'string' && encodeURIComponent(titleForTwitter)
+  const twitterHref = `https://twitter.com/intent/tweet?text=Check%20this%20out!%20enjoy%20watching%20this%3A%20${titleForTwitterHandled}&url=https%3A%2F%2F${shareUrl}`
+  console.log(twitterHref)
+  
   
   const imageErrorHandler = () => {
     img.current.src = "https://i.postimg.cc/BZNQgg6T/noImage.jpg";    

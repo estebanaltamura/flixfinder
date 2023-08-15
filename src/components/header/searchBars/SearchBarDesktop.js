@@ -22,9 +22,7 @@ export const SearchBarDesktop = () => {
   };   
 
   useEffect(()=>{
-    const urlInParts = url.pathname.split("/") 
-    
-    console.log(urlInParts)
+    const urlInParts = url.pathname.split("/")     
     
     if(((urlInParts.includes("searchResults") || urlInParts.includes("contentDetails")) && urlInParts.includes("movie")) || urlInParts.includes("movies")){      
         setContentType("movie")
