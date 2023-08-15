@@ -129,14 +129,18 @@ export const ContentDetails = () => {
 
               <div className={shareOptionsOpen ? "shareOptionsContainerContentDetails shareOptionsContainerOpenContentDetails" : "shareOptionsContainerContentDetails"}>
                 <div className="shareOptionContainerContentDetails">
-                  <WhatsappShareButton url={shareUrl} title={titleText}>
-                    <BsWhatsapp className="whastappShareIconContentDetails" />
+                  <WhatsappShareButton 
+                    url={shareUrl} 
+                    title={`Check this out! Thought you might enjoy watching this: ${contentType === "movie" ? content.original_title : content.name}\n`}>
+                      <BsWhatsapp className="whastappShareIconContentDetails" />
                   </WhatsappShareButton>
                 </div>
 
                 <div className="shareOptionContainerContentDetails">
-                  <TwitterShareButton url={shareUrl} title={titleText}>
-                    <SlSocialTwitter className="twitterShareIconContentDetails" />
+                  <TwitterShareButton 
+                    url={shareUrl} 
+                    title={`Check this out! Thought you might enjoy watching this: ${contentType === "movie" ? content.original_title : content.name}\n`}>
+                      <SlSocialTwitter className="twitterShareIconContentDetails" />
                   </TwitterShareButton>
                 </div>              
               </div>   
