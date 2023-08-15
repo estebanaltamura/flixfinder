@@ -287,11 +287,7 @@ p, h2{
     font-size: 15px;
     font-weight: 400;    
     line-height: 25px;
-    overflow-y: auto;    
-    /* display: -webkit-box;    
-    -webkit-box-orient: vertical;  
-    overflow: hidden;
-    text-overflow: ellipsis; */
+    overflow-y: auto;      
     grid-area: descriptionText;
     padding: 0;
   }
@@ -352,7 +348,7 @@ p, h2{
   }
   
   .shareOptionsContainerOpenContentDetails {
-    width: 80px; /* Altura completa cuando está abierto */
+    width: 80px; 
   }
   
   .shareOptionContainerContentDetails {
@@ -387,16 +383,6 @@ p, h2{
     height: 30px;
     cursor: pointer;
     grid-area: likeContentDetails;
-  }
-
-  .descriptionTextShort{
-    max-height: 200px;
-    -webkit-line-clamp: 8;
-  }
-
-  .descriptionTextLong{
-    max-height: 250px;
-    -webkit-line-clamp: 10;
   }
 
   .backButtonContainer{ 

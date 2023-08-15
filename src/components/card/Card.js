@@ -10,10 +10,8 @@ import { BsShareFill, BsWhatsapp } from "react-icons/bs";
 import { SlSocialTwitter } from "react-icons/sl";
 import { WhatsappShareButton, TwitterShareButton } from 'react-share';
 import "./Card.css";
-
   
-export const Card = ({ content, URLcontentType, index }) => { 
-  
+export const Card = ({ content, URLcontentType, index }) => {   
   const [ contentType,  setContentType ] = useState(null)
   const [ shareOptionsOpen, setIsShareOptionsOpen ] = useState(false)
   const { setIsLoading } = useContext(IsLoadingContext)
@@ -58,20 +56,19 @@ export const Card = ({ content, URLcontentType, index }) => {
       setContentType(content.contentType)             
     }
   } 
-  
-  useEffect(()=>{    
-    content !== null && getContentType(content, URLcontentType)    
-  },[content])
-    
-  
-  
-  useEffect(()=>{ 
-    isContentLiked(contentLiked, URLcontentType, content)    
-  })  
 
   const shareOptionsClickHandler = () => {
     setIsShareOptionsOpen(!shareOptionsOpen)   
   }
+  
+  useEffect(()=>{    
+    content !== null && getContentType(content, URLcontentType)    
+  },[content])    
+  
+  
+  useEffect(()=>{ 
+    isContentLiked(contentLiked, URLcontentType, content)    
+  })   
 
   return (
     <div
@@ -85,7 +82,7 @@ export const Card = ({ content, URLcontentType, index }) => {
           id={index}
           alt="..."
           onError={imageErrorHandler} 
-          onClick={linkToContentDetails}              
+          onClick={linkToContentDetails}                        
         />       
 
         <div className={token ? "cardDetails" : "cardDetails cardDetailsNoLogged"}>
@@ -140,15 +137,3 @@ export const Card = ({ content, URLcontentType, index }) => {
     </div>
   ) 
 };
-
-
-/*              <WhatsappShareButton className="WhatsappShareButton"
-                  url={shareUrl}
-                  >
-                    <BsWhatsapp className="whastappShareIcon" />
-                </WhatsappShareButton>    
-                
-
-                <TwitterShareButton className="TwitterShareButton">
-                  
-                </TwitterShareButton> */

@@ -64,7 +64,7 @@ export const MyFavorites = () => {
                       return <Card 
                         content={content} 
                         URLcontentType={'favorites'} 
-                        key={randomId()} 
+                        key={index} 
                         index={index + 1} />;                        
                     })}
                   </div>

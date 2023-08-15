@@ -4,21 +4,17 @@ import axios from "axios"
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-export const useGetDataSearchResults = ()=>{
-  const [ content, setContent ] = useState([null])
+export const useGetDataSearchResults = ()=>{ 
   const { setIsLoading } = useContext(IsLoadingContext)
   const MySwal = withReactContent(Swal);  
 
-  const getData = async(contentType, query, setIsLoadingRequest)=>{
+  const getData = async(contentType, query)=>{
     try{
       const endPoint = `https://api.themoviedb.org/3/search/${contentType}?api_key=d3c0215c2ca34a0fad2322c5e5f70ab4&query=${query}`
       const res = await axios(endPoint)
       const data = res.data      
-      const onlyContentWithPoster = data.results.filter((content)=>content.poster_path !== null && content)
-      setContent(onlyContentWithPoster)      
-      setIsLoadingRequest(false)
-      data.results.length === 0 && setIsLoading(false) 
-      return true
+      const onlyContentWithPoster = data.results.filter((content)=>content.poster_path !== null && content)      
+      return onlyContentWithPoster
     }
     
     catch (error){      
@@ -38,7 +34,6 @@ export const useGetDataSearchResults = ()=>{
   }
   
   return({
-    getData,
-    content
+    getData    
   })
 }
