@@ -7,7 +7,7 @@ import { v4 as randomId } from 'uuid'
 import { Card } from '../../components/card/Card'
 import { Spinner } from "../../components/spinner/Spinner";
 import "./MyFavorites.css";
-
+ 
 
 export const MyFavorites = () => {
   const { isLoading, setIsLoading } = useContext(IsLoadingContext) 
@@ -17,20 +17,21 @@ export const MyFavorites = () => {
 
   const imagesLoadedCounter = useRef(0)  
 
-  const imgItemLoadHandler = (event)=>{
-    const lengthResults = contentLiked.contentLiked.allFavorites.length    
-    const quantityImgsToLoadBeforeIsLoadingFalse = lengthResults >= 6 ? 6 : lengthResults
-    const imgClasses = event.target.classList.value
-    
-    if(imgClasses.includes("cardImg")){
-      if(event.target.id <= quantityImgsToLoadBeforeIsLoadingFalse){
+  const imgItemLoadHandler = (event)=>{     
+    if(isLoading){       
+      const lengthResults = contentLiked.contentLiked.allFavorites.length    
+      const quantityImgsToLoadBeforeIsLoadingFalse = lengthResults >= 6 ? 6 : lengthResults
+      const imgClasses = event.target.classList.value
+      
+      if(imgClasses.includes("cardImg") && event.target.id <= quantityImgsToLoadBeforeIsLoadingFalse){        
         imagesLoadedCounter.current += 1
-      }       
-    }
-    if(imagesLoadedCounter.current === quantityImgsToLoadBeforeIsLoadingFalse){
-      imagesLoadedCounter.current = 0      
-      setIsLoading(false)
-    }
+      }            
+      
+      if(imagesLoadedCounter.current === quantityImgsToLoadBeforeIsLoadingFalse){
+        imagesLoadedCounter.current = 0                 
+        setIsLoading(false)
+      }
+    }    
   }
 
   useEffect(()=>{
