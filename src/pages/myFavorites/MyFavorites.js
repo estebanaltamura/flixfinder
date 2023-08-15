@@ -36,7 +36,7 @@ export const MyFavorites = () => {
 
   useEffect(()=>{
     if(contentLiked !== null){
-      contentLiked.contentLiked.allFavorites.length === 0 ? setIsLoading(false) :  setIsLoading(true)
+      contentLiked.contentLiked.allFavorites.length === 0 && setIsLoading(false)
     }    
   },[contentLiked])
 
