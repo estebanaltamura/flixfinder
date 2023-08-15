@@ -113,7 +113,8 @@ export const Card = ({ content, URLcontentType, index }) => {
               <div className="shareOptionContainer">
                 <a 
                   className='shareIcons' 
-                  target='_blank'
+                  target="_blank" 
+                  rel="noopener noreferrer"
                   href={twitterHref}>
                     <SlSocialTwitter className="twitterShareIcon" />
                 </a>

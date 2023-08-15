@@ -143,6 +143,8 @@ export const ContentDetails = () => {
                 <div className="shareOptionContainerContentDetails">
                   <a 
                     className='shareIcons' 
+                    target="_blank" 
+                    rel="noopener noreferrer"
                     href={twitterHref}>
                       <SlSocialTwitter className="twitterShareIcon" />
                   </a>
