@@ -42,6 +42,10 @@ export const SearchResults = () => {
     setIsLoading(true)
     query !== null && getDataHandler(contentType, query)             
   }, [query]);
+
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  },[])
   
   return (
     <>     
