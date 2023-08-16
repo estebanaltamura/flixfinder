@@ -9,7 +9,7 @@ Flix Finder es una aplicación web construida con React que permite a los usuari
 ### Características Principales:
 * Búsqueda de Contenido: Navega y busca entre una vasta colección de películas y series.
 * Autenticación de Usuario: Permite el registro del usuario y su posterio autenticacion para personalizar su experiencia.
-* Contenido Favorito: Flixfinder ofrece likear contenidos como favoritos y crea tu propia selección personalizada.
+* Contenido Favorito: Flixfinder ofrece la posibilidad de likear contenidos como favoritos y crea tu propia selección personalizada.
 * Compartición en Redes Sociales: Comparte tus contenidos favoritos directamente en Twitter y WhatsApp.
 
 
