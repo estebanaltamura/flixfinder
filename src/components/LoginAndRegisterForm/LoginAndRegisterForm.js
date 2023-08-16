@@ -61,7 +61,7 @@ export const LoginAndRegisterForm = () => {
     if(!areValidEntries(event)){
       setAlerts(event);
     }
-    
+     
     else if (urlInParts.includes("login")) {      
       setStylesElementsWaiting(userNameInput.current, passwordInput.current, submitButton.current)
 

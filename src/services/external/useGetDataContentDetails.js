@@ -14,10 +14,9 @@ export const useGetDataContentDetails = ()=>{
   
     try{
       const res = await axios(endPoint)
-      const content = res.data
-      setContent(content)
-      return true
-    }
+      const content = res.data      
+      return content 
+    } 
   
     catch (error){      
         MySwal.fire({

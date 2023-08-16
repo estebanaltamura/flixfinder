@@ -13,8 +13,7 @@ export const useLogin = () => {
       const reqLogin = { projectCollection, userName, password }
       const resLogin = await axios.post("https://encrypted-chat-backend.online:3100/login", reqLogin, {timeout: 5000})
       const responseLogin = resLogin.data
-      const token = responseLogin.token
-      localStorage.setItem("token", JSON.stringify(token));             
+      const token = responseLogin.token                   
       return token
     }
     

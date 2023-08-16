@@ -41,20 +41,8 @@ export const useContentDetailsHelper = ()=>{
     }    
   }
 
-  const setTextDescriptionOverflowBehavior = (description, descriptionTextElement)=>{
-    if(description !== null){
-      const descriptionTextHeight = descriptionTextElement.offsetHeight
-      if(descriptionTextHeight > 0){
-        descriptionTextHeight === 200 && descriptionTextElement.classList.add("descriptionTextShort")
-        descriptionTextHeight === 250 && descriptionTextElement.classList.add("descriptionTextLong")
-      }       
-    }    
-  }
-
-
   return({
-    setCardContent,
-    setTextDescriptionOverflowBehavior,
+    setCardContent,   
     titleText,
     releaseYear,
     rating,

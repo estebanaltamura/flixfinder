@@ -24,6 +24,7 @@ https://www.flixfinder.online
 * React-Icons: Conjunto de íconos para React.
 * UUID: Generación de identificadores únicos.
 * SweetAlert2: Alertas personalizadas y estilizadas.
+* react-copy-to-clipboard: Gestion de contenido en portapapeles
 
 
 ### Instalación y Uso 🚀

@@ -8,7 +8,7 @@ export const useGetDataMoviesAndTvSeriesDashboard = ()=>{
   const { setIsLoading } = useContext(IsLoadingContext)
   const MySwal = withReactContent(Swal);  
 
-  const getData = async (contentType)=>{    
+  const getData = async (contentType)=>{     
     try{
       const endPoint = `https://api.themoviedb.org/3/discover/${contentType}?api_key=d3c0215c2ca34a0fad2322c5e5f70ab4&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`
       const res = await axios(endPoint)
@@ -29,7 +29,7 @@ export const useGetDataMoviesAndTvSeriesDashboard = ()=>{
       setIsLoading(false)
       console.log(error?.response?.data?.message)
       return false
-    }    
+    }     
   }       
        
   return({

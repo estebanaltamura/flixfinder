@@ -8,9 +8,9 @@ import { RegisterAccount } from "./pages/createAccount/RegisterAccount";
 import { MoviesAndTvSeriesDashboard } from "./pages/moviesAndTvSeriesDashboard/MoviesAndTvSeriesDashboard";
 import { SearchResults } from "./pages/searchResults/SearchResults";
 import { ContentDetails } from "./pages/contentDetails/ContentDetails";
+import { MyFavorites } from "./pages/myFavorites/MyFavorites";
 import { Footer } from "./components/footer/Footer";
 import "./App.css";
-import { MyFavorites } from "./pages/myFavorites/MyFavorites";
 
 function App() { 
   const { isLoading } = useContext(IsLoadingContext)

@@ -21,12 +21,12 @@ import "./ContentDetails.css";
 
 export const ContentDetails = () => {  
   const [ shareOptionsOpen, setIsShareOptionsOpen ] = useState(false)
+  const [ content, setContent ] = useState([])
   const { isLoading, setIsLoading } = useContext(IsLoadingContext); 
   const { token } = useContext(TokenContext);   
   const { contentLiked } = useContext(ContentLikedContext)
   const {
-    setCardContent,
-    setTextDescriptionOverflowBehavior,
+    setCardContent,    
     titleText,
     releaseYear,
     rating,
@@ -39,7 +39,7 @@ export const ContentDetails = () => {
     isContentLiked,    
     isLiked } = useLikeHandler()    
 
-  const { getData, content } = useGetDataContentDetails() 
+  const { getData } = useGetDataContentDetails() 
   const { contentType, contentId } = useParams();
   const img = useRef();
   const descriptionTextRef = useRef()
@@ -77,16 +77,21 @@ export const ContentDetails = () => {
 
   useEffect(()=>{
     content !== null && setCardContent(content, contentType) 
-  },[content]) 
+  },[content])
+  
+  const getDataHandler = async(contentType, contentId)=>{      
+    const dataResponse = await getData(contentType, contentId)
+    dataResponse.length === 0 && setIsLoading(false)     
+    setContent(dataResponse)          
+  }
 
   useEffect(() => {    
     window.scrollTo(0, 0);
-    getData(contentType, contentId)      
+    getDataHandler(contentType, contentId)      
   }, []);
 
   useEffect(()=>{     
-    isContentLiked(contentLiked, contentType, content)  
-    setTextDescriptionOverflowBehavior(description, descriptionTextRef.current)    
+    isContentLiked(contentLiked, contentType, content)          
   })
  
   return (
@@ -146,7 +151,7 @@ export const ContentDetails = () => {
                     target="_blank" 
                     rel="noopener noreferrer"
                     href={twitterHref}>
-                      <SlSocialTwitter className="twitterShareIconContentDetails" />
+                      <SlSocialTwitter className="twitterShareIconContentDetails" /> 
                   </a>
                 </div>              
               </div>   

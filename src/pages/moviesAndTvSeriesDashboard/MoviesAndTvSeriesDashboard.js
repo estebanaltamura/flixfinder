@@ -33,7 +33,7 @@ export const MoviesAndTvSeriesDashboard = () => {
 
   const getDataHandler = async(contentType)=>{      
     const dataResponse = await getData(contentType)
-    dataResponse.length === 0 && setIsLoading(false)    
+    dataResponse.length === 0 && setIsLoading(false)     
     setContent(dataResponse)          
   }
 
