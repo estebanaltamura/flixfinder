@@ -45,7 +45,7 @@ export const Footer = () => {
 
         <a
           className="footerContact  footerGit"
-          href="https://github.com/estebanaltamura?tab=repositories"
+          href="https://github.com/estebanaltamura/flixfinder"
           target="_blank"
         >
           <FiGithub className="footerGitIcon" />
