@@ -153,7 +153,7 @@ export const ContentDetails = () => {
           </div>     
         </div>
         
-        <div className="backButtonContainer" onClick={backButtonOnClick}>
+        <div className="backButtonContainer" onClick={backButtonOnClick}> 
           <HiOutlineChevronLeft className="backButtonIcon"/>
           <span className="backButtonText">go back</span>
         </div>

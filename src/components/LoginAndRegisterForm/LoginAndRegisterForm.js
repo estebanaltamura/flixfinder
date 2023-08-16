@@ -8,8 +8,10 @@ import { useLoginValidator } from "../../hooks/useLoginValidator";
 import { useLogin } from '../../services/internal/useLogin'
 import { useCreateAccount } from '../../services/internal/useCreateAccount';
 import { useFormElementsBehavior } from "../../hooks/useFormElementsBehavior";
-import mailIcon from '../../assets/mailIcon.svg'
-import passwordIcon from '../../assets/passwordIcon.svg'
+import mailIconGreen from '../../assets/mailIconGreen.svg'
+import passwordIconGreen from '../../assets/passwordIconGreen.svg'
+import mailIconBlue from '../../assets/mailIconBlue.svg'
+import passwordIconBlue from '../../assets/passwordIconBlue.svg'
 import userIcon from '../../assets/userIcon.svg'
 import { AiFillEye, AiFillEyeInvisible} from "react-icons/ai";
 import "./LoginAndRegisterForm.css";
@@ -143,7 +145,7 @@ export const LoginAndRegisterForm = () => {
               userNameAlert === "" ? "inputContainer" : "inputContainer shake"                 
             }>
               <div className="inputIconContainer">
-                <img src={mailIcon} className="inputIcon"/>                
+                <img src={section === "login" ? mailIconGreen : mailIconBlue} className="inputIcon"/>                
               </div>
               <input
                 type="text"
@@ -162,7 +164,7 @@ export const LoginAndRegisterForm = () => {
               passwordAlert === "" ? "inputContainer" : "inputContainer shake"
             }>
               <div className="inputIconContainer">
-                <img src={passwordIcon} className="inputIcon"/>              
+                <img src={section === "login" ? passwordIconGreen : passwordIconBlue} className="inputIcon"/>              
               </div>
               <input
                 type={showPassword ? "text" :  "password"}
