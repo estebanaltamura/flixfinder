@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 import { useEffect, useRef, useContext, useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { TokenContext } from '../../contexts/TokenContextProvider';
@@ -10,14 +8,12 @@ import { useGetDataContentDetails } from "../../services/external/useGetDataCont
 import { useLikeHandler } from '../../hooks/useLikeHandler'; 
 import { Spinner } from "../../components/spinner/Spinner";
 import { FcLikePlaceholder, FcLike } from "react-icons/fc";
-import { HiOutlineChevronLeft } from "react-icons/hi";
-import ratingIcon from '../../assets/ratingIcon.svg'
+import { WhatsappShareButton } from 'react-share';
 import { BsShareFill, BsWhatsapp } from "react-icons/bs";
 import { SlSocialTwitter } from "react-icons/sl";
-import { WhatsappShareButton } from 'react-share';
+import ratingIcon from '../../assets/ratingIcon.svg'
+import { HiOutlineChevronLeft } from "react-icons/hi";
 import "./ContentDetails.css";
-
-
 
 export const ContentDetails = () => {  
   const [ shareOptionsOpen, setIsShareOptionsOpen ] = useState(false)
@@ -50,8 +46,7 @@ export const ContentDetails = () => {
   const titleForTwitter = contentType === "movie" ? content.original_title : content.name
   const titleForTwitterHandled = typeof titleForTwitter === 'string' && encodeURIComponent(titleForTwitter)
   const twitterHref = `https://twitter.com/intent/tweet?text=Check%20this%20out!%20enjoy%20watching%20this%3A%20${titleForTwitterHandled}&url=https%3A%2F%2F${shareUrl}`
- 
-  
+   
   const imageErrorHandler = ()=> {   
     img.current.src = "https://i.postimg.cc/BZNQgg6T/noImage.jpg" 
     setIsLoading(false)   
@@ -81,8 +76,11 @@ export const ContentDetails = () => {
   
   const getDataHandler = async(contentType, contentId)=>{      
     const dataResponse = await getData(contentType, contentId)
-    dataResponse.length === 0 && setIsLoading(false)     
-    setContent(dataResponse)          
+    if(dataResponse){
+      dataResponse.length === 0 && setIsLoading(false)     
+      setContent(dataResponse) 
+    }
+    else setIsLoading(false)             
   }
 
   useEffect(() => {    
@@ -166,4 +164,3 @@ export const ContentDetails = () => {
     </>     
   )
 }
-

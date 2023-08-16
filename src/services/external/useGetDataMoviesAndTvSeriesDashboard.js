@@ -1,11 +1,8 @@
-import { useContext } from 'react'
-import { IsLoadingContext } from '../../contexts/IsLoadingContextProvider'
 import axios from 'axios'
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-export const useGetDataMoviesAndTvSeriesDashboard = ()=>{  
-  const { setIsLoading } = useContext(IsLoadingContext)
+export const useGetDataMoviesAndTvSeriesDashboard = ()=>{   
   const MySwal = withReactContent(Swal);  
 
   const getData = async (contentType)=>{     
@@ -25,8 +22,7 @@ export const useGetDataMoviesAndTvSeriesDashboard = ()=>{
         customClass: {
           "swal2-container": 'my-popup-class'         
         }        
-      });
-      setIsLoading(false)
+      });      
       console.log(error?.response?.data?.message)
       return false
     }     

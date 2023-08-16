@@ -30,15 +30,16 @@ export const SearchResults = () => {
     }    
   }
 
-  const getDataHandler = async(contentType, query)=>{   
-    console.log(contentType, query)   
+  const getDataHandler = async(contentType, query)=>{        
     const dataResponse = await getData(contentType, query) 
-    dataResponse.length === 0 && setIsLoading(false)    
-    setContent(dataResponse)         
+    if(dataResponse){
+      dataResponse.length === 0 && setIsLoading(false)    
+      setContent(dataResponse)
+    }
+    else setIsLoading(false)             
   }
  
-  useEffect(() => {        
-    window.scrollTo(0, 0);      
+  useEffect(() => {       
     setIsLoading(true)
     query !== null && getDataHandler(contentType, query)             
   }, [query]);

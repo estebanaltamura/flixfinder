@@ -3,7 +3,6 @@ import { ContentLikedContext } from "../contexts/ContentLikedContextProvider"
 import { useSetContentLiked } from "../services/internal/useSetContentLiked"
 
 
-//cambiar nombre por update
 export const useLikeHandler = ()=>{
   const [ isLiked, setIsLiked ] = useState(false)  
   const { setContentLiked } = useContext(ContentLikedContext)

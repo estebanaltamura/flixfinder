@@ -4,7 +4,6 @@ import { LoginAndRegisterForm } from '../../components/LoginAndRegisterForm/Logi
 import logo from '../../assets/logo.png'
 import './RegisterAccount.css'
 
-
 export const RegisterAccount = ()=>{
   const { setIsLoading } = useContext(IsLoadingContext)
   

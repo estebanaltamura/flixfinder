@@ -6,7 +6,6 @@ import { LoginAndRegisterForm } from "../../components/LoginAndRegisterForm/Logi
 import logo from '../../assets/logo.png'
 import './Login.css'
 
-
 export const Login = ()=>{  
   const { token } = useContext(TokenContext)
   const { setIsLoading } = useContext(IsLoadingContext)

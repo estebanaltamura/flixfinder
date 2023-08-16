@@ -2,8 +2,7 @@ import { useState } from "react";
 
 export const useLoginValidator = () => {  
   const [userNameAlert, setUserNameAlert] = useState("");
-  const [passwordAlert, setPasswordAlert] = useState("");
-  
+  const [passwordAlert, setPasswordAlert] = useState("");  
 
   const areValidEntries = (event) => {    
     const userName = event.target.username.value;

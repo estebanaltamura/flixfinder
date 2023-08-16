@@ -1,12 +1,8 @@
-import { useState, useContext } from 'react';
-import { IsLoadingContext } from '../../contexts/IsLoadingContextProvider';
+import axios from 'axios'
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import axios from 'axios'
 
-export const useGetDataContentDetails = ()=>{
-  const { setIsLoading } = useContext(IsLoadingContext)
-  const [ content, setContent ] = useState({})
+export const useGetDataContentDetails = ()=>{  
   const MySwal = withReactContent(Swal);  
 
   const getData = async (contentType, contentId)=>{
@@ -27,15 +23,13 @@ export const useGetDataContentDetails = ()=>{
           customClass: {
             "swal2-container": 'my-popup-class'         
           }        
-        });
-        setIsLoading(false)
+        });        
         console.log(error?.response?.data?.message)
         return false
     }
   }   
   
   return({
-    getData,
-    content
+    getData    
   })
 }

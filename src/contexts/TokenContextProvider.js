@@ -13,9 +13,7 @@ export const TokenContextProvider = (props) => {
   const initialContextsValue = async(token)=>{     
     const getContentLikedFromServerData = await getContentLikedServer(token)    
     localStorage.setItem("contentLiked", JSON.stringify(getContentLikedFromServerData)) 
-    setContentLiked(getContentLikedFromServerData)
-    console.log('setea liked context cuando existe token pero no contentLiked')
-    
+    setContentLiked(getContentLikedFromServerData)      
   }
 
   useEffect(()=>{
@@ -24,8 +22,7 @@ export const TokenContextProvider = (props) => {
 
     if(token !== null && contentLiked !== null){
       setToken(token)
-      setContentLiked(contentLiked)
-      console.log('setea token y liked context cuando esta logueado y refresca forzadamente')
+      setContentLiked(contentLiked)      
     }  
 
     if(token !== null && contentLiked === null){
@@ -34,8 +31,7 @@ export const TokenContextProvider = (props) => {
     } 
 
     if(token === null && contentLiked !== null){
-      localStorage.removeItem("contentLiked"); 
-      console.log('limpia el storage ya que hay una inconsistencia')
+      localStorage.removeItem("contentLiked");       
     } 
 
   },[])

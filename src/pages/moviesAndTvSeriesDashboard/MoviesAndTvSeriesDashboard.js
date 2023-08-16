@@ -33,8 +33,11 @@ export const MoviesAndTvSeriesDashboard = () => {
 
   const getDataHandler = async(contentType)=>{      
     const dataResponse = await getData(contentType)
-    dataResponse.length === 0 && setIsLoading(false)     
-    setContent(dataResponse)          
+    if(dataResponse){
+      dataResponse.length === 0 && setIsLoading(false)     
+      setContent(dataResponse)    
+    }
+    else setIsLoading(false)           
   }
 
   useEffect(()=>{
@@ -51,8 +54,6 @@ export const MoviesAndTvSeriesDashboard = () => {
 
     getDataHandler(contentType.current)    
   },[])   
-
-  
 
   return (    
     <div onLoad={imgItemLoadHandler} >

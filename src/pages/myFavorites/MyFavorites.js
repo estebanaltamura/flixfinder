@@ -1,14 +1,12 @@
-import { useEffect, useContext, useRef, useState } from "react";
+import { useEffect, useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
 import { ContentLikedContext } from "../../contexts/ContentLikedContextProvider";
 import { TokenContext } from "../../contexts/TokenContextProvider";
-import { v4 as randomId } from 'uuid'
 import { Card } from '../../components/card/Card'
 import { Spinner } from "../../components/spinner/Spinner";
 import "./MyFavorites.css";
  
-
 export const MyFavorites = () => {
   const { isLoading, setIsLoading } = useContext(IsLoadingContext) 
   const { contentLiked } = useContext(ContentLikedContext)  
