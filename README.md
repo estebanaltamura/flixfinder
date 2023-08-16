@@ -28,18 +28,17 @@ https://www.flixfinder.online
 
 
 ### Instalación y Uso 🚀
-Clonar el repositorio:  
-git clone https://github.com/estebanaltamura/flixfinder.git
+* Clonar el repositorio:  
+    git clone https://github.com/estebanaltamura/flixfinder.git
 
-Navegar al directorio del proyecto:  
-cd flixfinder
+* Navegar al directorio del proyecto:  
+    cd flixfinder
 
-Instalar las dependencias:  
-npm install
+* Instalar las dependencias:  
+    npm install
 
-Ejecutar en modo desarrollo:  
-npm start  
-La aplicación debería abrirse en tu navegador predeterminado en la dirección http://localhost:3000/
+* Ejecutar en modo desarrollo:  
+    npm start (La aplicación debería abrirse en tu navegador predeterminado en la dirección http://localhost:3000/)
 
 
 ### Licencia 📜 
