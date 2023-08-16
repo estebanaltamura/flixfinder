@@ -1,50 +1,48 @@
 import { useState } from "react";
 
-export const useLoginValidator = () => {  
+export const useLoginValidator = () => {
   const [userNameAlert, setUserNameAlert] = useState("");
-  const [passwordAlert, setPasswordAlert] = useState("");  
+  const [passwordAlert, setPasswordAlert] = useState("");
 
-  const areValidEntries = (event) => {    
+  const areValidEntries = (event) => {
     const userName = event.target.username.value;
     const password = event.target.password.value;
 
-    if (userName == "" && password == "") {      
+    if (userName == "" && password == "") {
       return false;
     }
 
-    if (userName == "") {      
+    if (userName == "") {
       return false;
     }
 
     const twoDotsRegExp = /\.{2,}/;
-    if (twoDotsRegExp.test(userName)) {     
+    if (twoDotsRegExp.test(userName)) {
       return false;
     }
 
     const dotAtStart = /^\.{1}/;
     const dotAtEnd = /\.{1}@{1}/;
-    if (dotAtStart.test(userName) || dotAtEnd.test(userName)) {     
+    if (dotAtStart.test(userName) || dotAtEnd.test(userName)) {
       return false;
     }
 
     const multiplesAt = /@.*@/;
-    if (multiplesAt.test(userName)) {     
+    if (multiplesAt.test(userName)) {
       return false;
     }
 
     const regExpUserName =
       /[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}/;
-    if (!regExpUserName.test(userName)) {      
+    if (!regExpUserName.test(userName)) {
       return false;
-    } 
+    }
 
-    if (password == "") {      
+    if (password == "") {
       return false;
-    }   
-    
-    else {      
+    } else {
       return true;
-    }   
+    }
   };
 
   const setAlerts = (event) => {
@@ -72,7 +70,7 @@ export const useLoginValidator = () => {
     const dotAtEnd = /\.{1}@{1}/;
     if (dotAtStart.test(userName) || dotAtEnd.test(userName)) {
       setUserNameAlert(
-        "La direccion no puede empezar ni preceder al @ con un punto (.)"
+        "La direccion no puede empezar ni preceder al @ con un punto (.)",
       );
       return;
     }
@@ -88,23 +86,27 @@ export const useLoginValidator = () => {
     if (!regExpUserName.test(userName)) {
       setUserNameAlert("Ingresar una direccion de email valida");
       return;
-    } 
+    }
 
     if (password == "") {
       setPasswordAlert("Ingrese su password");
       return;
-    }   
-    
-    else {
+    } else {
       setUserNameAlert("");
       return;
-    }    
-  };  
+    }
+  };
 
   const resetAlerts = () => {
     setUserNameAlert("");
     setPasswordAlert("");
   };
 
-  return { userNameAlert, passwordAlert, areValidEntries, setAlerts, resetAlerts };
+  return {
+    userNameAlert,
+    passwordAlert,
+    areValidEntries,
+    setAlerts,
+    resetAlerts,
+  };
 };

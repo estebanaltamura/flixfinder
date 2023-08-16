@@ -1,29 +1,29 @@
-.footerContainer{ 
-  position: relative;    
+.footerContainer {
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;  
+  justify-content: center;
   margin: 0 auto;
   width: 100%;
-  height: 160px;  
-  background-color: black;  
+  height: 160px;
+  background-color: black;
 }
 
-.line{
-  width: 100%;    
+.line {
+  width: 100%;
   border-top: 1px solid #cccccc;
 }
 
-.contactFooterGrid{
+.contactFooterGrid {
   display: grid;
   margin: auto;
   align-items: center;
   grid-template-columns: 254px;
   grid-template-rows: 35px 35px 35px 35px;
-  grid-template-areas: "mail" "git" "linkedin" "cv";    
+  grid-template-areas: "mail" "git" "linkedin" "cv";
 }
 
-.footerContact{
+.footerContact {
   background-color: black;
   border: none;
   display: flex;
@@ -33,75 +33,74 @@
   text-align: left;
   cursor: pointer;
   font-size: 14px;
-  border-left: 1px solid #d1d1d1;    
+  border-left: 1px solid #d1d1d1;
 }
 
-.footerMail{  
+.footerMail {
   grid-area: mail;
 }
 
-.footerMailIcon{
+.footerMailIcon {
   display: flex;
   width: 40px;
   height: 20px;
 }
 
-.copiedMessage{
+.copiedMessage {
   display: flex;
   font-size: 16px;
   margin: 0;
-  align-items:center ;
+  align-items: center;
   justify-content: center;
   color: #d1d1d1;
 }
 
-.footerDivider{
+.footerDivider {
   display: none;
 }
 
-.footerMailCopyIcon{
+.footerMailCopyIcon {
   display: none;
 }
 
-.footerGitIcon{
+.footerGitIcon {
   width: 40px;
   height: 20px;
 }
 
-.footerLinkedinIcon{
+.footerLinkedinIcon {
   width: 43px;
   height: 23px;
 }
 
-.footerCVIcon{
+.footerCVIcon {
   width: 40px;
   height: 20px;
 }
 
-
 @media screen and (min-width: 1050px) {
-  .footerContainer{  
+  .footerContainer {
     position: relative;
     display: flex;
     flex-direction: column;
-    bottom: 0;      
+    bottom: 0;
     margin: 0 auto;
     width: 100%;
-    height: 60px;       
-  } 
+    height: 60px;
+  }
 
-  .footerLoginRegister{
+  .footerLoginRegister {
     position: absolute;
     bottom: 0;
     display: flex;
     flex-direction: column;
-    bottom: 0;      
+    bottom: 0;
     margin: 0 auto;
     width: 100%;
-    height: 60px;       
+    height: 60px;
   }
 
-  .contactFooterGrid{
+  .contactFooterGrid {
     display: grid;
     margin: auto;
     align-items: center;
@@ -111,24 +110,23 @@
     overflow: hidden;
   }
 
-  .footerDivider{
+  .footerDivider {
     display: flex;
     margin: auto;
-    color:#d1d1d1;
+    color: #d1d1d1;
     font-size: 30px;
   }
 
-  .footerContact{
-    margin: auto;  
-    border-left: none;   
+  .footerContact {
+    margin: auto;
+    border-left: none;
   }
 
-  .footerMailCopyIcon{
+  .footerMailCopyIcon {
     display: flex;
   }
 
-  .footerMailIcon{
-    display: none;        
+  .footerMailIcon {
+    display: none;
   }
 }
-

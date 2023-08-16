@@ -1,12 +1,12 @@
-.desktopItemsMenuContainer{
-  display:grid;
+.desktopItemsMenuContainer {
+  display: grid;
   width: 100%;
   height: 100%;
   grid-template-columns: 100px 100px 100px 1fr;
-  grid-template-areas: "menuItem1 menuItem2 menuItem3 .";  
+  grid-template-areas: "menuItem1 menuItem2 menuItem3 .";
 }
 
-.logoContainer{
+.logoContainer {
   display: flex;
   position: absolute;
   width: 70px;
@@ -18,31 +18,31 @@
   grid-area: logo;
 }
 
-.logoDesktop{  
+.logoDesktop {
   width: 50px;
   height: 50px;
 }
 
-.menuOptionsDesktop{
+.menuOptionsDesktop {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #c2c2c2
+  color: #c2c2c2;
 }
 
-.menuItem1{
+.menuItem1 {
   grid-area: menuItem1;
 }
 
-.menuItem2{
+.menuItem2 {
   grid-area: menuItem2;
 }
 
-.menuItem3{
+.menuItem3 {
   grid-area: menuItem3;
 }
 
-.loginHeaderLabelDesktop{  
+.loginHeaderLabelDesktop {
   display: flex;
   position: absolute;
   height: 100%;

@@ -4,8 +4,8 @@
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #007A78;
-  grid-template-columns: 1fr 56px; 
+  background-color: #007a78;
+  grid-template-columns: 1fr 56px;
   grid-template-areas: "input icon";
   height: 56px;
   width: 100%;
@@ -20,7 +20,7 @@
   cursor: text;
   border: none;
   color: #c2c2c2;
-  background-color: #007A78;
+  background-color: #007a78;
   font-family: roboto;
   font-size: 18px;
   font-weight: 400;
@@ -36,7 +36,7 @@
   color: #c2c2c2;
 }
 
-.closeButtonSearchBarMobileContainer{
+.closeButtonSearchBarMobileContainer {
   display: flex;
   justify-content: center;
   align-items: center;

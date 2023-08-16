@@ -1,29 +1,29 @@
-.registerAccountContainer{  
+.registerAccountContainer {
   padding: 0 20px;
   width: 100%;
-  min-height: calc(100vh - 160px); 
-  height: fit-content; 
+  min-height: calc(100vh - 160px);
+  height: fit-content;
 }
 
-.brandingContainerRegisterAccount{
+.brandingContainerRegisterAccount {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: fit-content;  
+  height: fit-content;
   width: fit-content;
   margin: 0 auto;
   padding-top: 30px;
 }
 
-.brandingTitleRegisterAccount{
+.brandingTitleRegisterAccount {
   font-family: Montserrat;
   font-size: 36px;
-  color: #505050; 
+  color: #505050;
 }
 
 @media screen and (min-width: 1050px) {
-  .registerAccountContainer{    
+  .registerAccountContainer {
     height: calc(100vh - 60px);
-  }  
+  }
 }
