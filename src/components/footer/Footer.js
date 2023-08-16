@@ -67,7 +67,7 @@ export const Footer = () => {
 
         <a
           className="footerContact  footerCV"
-          href="https://drive.google.com/file/d/1mqALxOX5sEzCZvFaSaormUEwuzu_eV3z/view?usp=share_link"
+          href="https://drive.google.com/file/d/1mtmtr9O5xsUEh-rHeL2pf0NyAr5msYuc/view?usp=sharing"
           target="_blank"
         >
           <FiFileText className="footerCVIcon" />
