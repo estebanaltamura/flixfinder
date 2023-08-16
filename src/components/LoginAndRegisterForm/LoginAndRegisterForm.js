@@ -83,7 +83,7 @@ export const LoginAndRegisterForm = () => {
           );
           history("/movies");
         } else {
-          setStylesElementsLoginRejected(
+          setStylesElementsLoginRejected( 
             userNameInput.current,
             passwordInput.current,
             submitButton.current,
