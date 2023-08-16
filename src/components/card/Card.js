@@ -35,7 +35,7 @@ export const Card = ({ content, URLcontentType, index }) => {
 
   const linkToContentDetails = ()=>{
     setIsLoading(true)
-    history(`/contentDetails/${contentType}/${content.id}`)
+    history(`/contentDetails/${contentType}/${content.id}`) 
   }
 
   const linkToContentDetailsLink = ()=>{
