@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+Flix Finder 🎬
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Descripcion:
+Flix Finder es una aplicación web construida con React que permite a los usuarios explorar, buscar y marcar como favoritos contenido de cine y TV. Proporciona una experiencia personalizada con capacidades de autenticación y funcionalidades de compartición en redes sociales.
 
-## Available Scripts
+🌐 Visitar sitio web
 
-In the project directory, you can run:
 
-### `npm start`
+🛠️ Características Principales:
+Búsqueda de Contenido: Navega y busca entre una vasta colección de películas y series.
+Autenticación de Usuario: Regístrate y accede para personalizar tu experiencia.
+Contenido Favorito: Marca contenidos como favoritos y crea tu propia selección personalizada.
+Compartición en Redes Sociales: Comparte tus contenidos favoritos directamente en Twitter y WhatsApp.
+Tecnologías y Dependencias 📦
+React v18.2
+React Router DOM: Gestión del enrutamiento en la aplicación.
+Axios: Cliente HTTP basado en promesas.
+Lottie-React: Renderización de animaciones.
+Firebase: Autenticación y almacenamiento en la nube.
+Bootstrap: Framework de diseño responsivo.
+React-Icons: Conjunto de íconos para React.
+UUID: Generación de identificadores únicos.
+SweetAlert2: Alertas personalizadas y estilizadas.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+🚀 Instalación y Uso 
+Clonar el repositorio:
 
-### `npm test`
+git clone https://github.com/estebanaltamura/flixfinder.git
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Navegar al directorio del proyecto:
+cd flixfinder
 
-### `npm run build`
+Instalar las dependencias:
+npm install
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Ejecutar en modo desarrollo:
+npm start
+La aplicación debería abrirse en tu navegador predeterminado en la dirección http://localhost:3000/
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+📜 Licencia 
+Este proyecto se encuentra bajo la licencia MIT. Consulta LICENSE para obtener más detalles.
