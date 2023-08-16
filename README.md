@@ -24,18 +24,17 @@ Flix Finder es una aplicación web construida con React que permite a los usuari
 
 
 ### Instalación y Uso 🚀
-Clonar el repositorio:
-
+Clonar el repositorio:  
 git clone https://github.com/estebanaltamura/flixfinder.git
 
-Navegar al directorio del proyecto:/
+Navegar al directorio del proyecto:  
 cd flixfinder
 
-Instalar las dependencias:/
+Instalar las dependencias:  
 npm install
 
-Ejecutar en modo desarrollo:/
-npm start/
+Ejecutar en modo desarrollo:  
+npm start  
 La aplicación debería abrirse en tu navegador predeterminado en la dirección http://localhost:3000/
 
 
