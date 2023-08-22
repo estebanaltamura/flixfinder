@@ -56,7 +56,7 @@ export const Footer = () => {
 
         <a
           className="footerContact  footerLinkedin"
-          href="https://www.linkedin.com/in/andr%C3%A9s-altamura-51a55721b/"
+          href="https://www.linkedin.com/in/andres-altamura/"
           target="_blank"
         >
           <AiOutlineLinkedin className="footerLinkedinIcon" />
