@@ -66,10 +66,12 @@ export const Card = ({ content, URLcontentType, index }) => {
 
   useEffect(() => {
     content !== null && getContentType(content, URLcontentType);
+    // eslint-disable-next-line
   }, [content]);
 
   useEffect(() => {
     isContentLiked(contentLiked, URLcontentType, content);
+    // eslint-disable-next-line
   });
 
   return (

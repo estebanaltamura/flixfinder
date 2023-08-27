@@ -45,10 +45,12 @@ export const SearchBarMobile = () => {
       setContentType("movie");
       setPlaceholderText("Search movies");
     }
+    // eslint-disable-next-line
   }, [url]);
 
   useEffect(() => {
     inputElement.current.focus();
+    // eslint-disable-next-line
   }, []);
 
   return (

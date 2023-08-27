@@ -43,14 +43,17 @@ export const MyFavorites = () => {
       contentLiked.contentLiked.allFavorites.length === 0 &&
         setIsLoading(false);
     }
+    // eslint-disable-next-line
   }, [contentLiked]);
 
   useEffect(() => {
     token === null && history("/movies");
+    // eslint-disable-next-line
   }, [token]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    // eslint-disable-next-line
   }, []);
 
   return (

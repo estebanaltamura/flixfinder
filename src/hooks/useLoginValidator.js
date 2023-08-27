@@ -8,11 +8,11 @@ export const useLoginValidator = () => {
     const userName = event.target.username.value;
     const password = event.target.password.value;
 
-    if (userName == "" && password == "") {
+    if (userName === "" && password == "") {
       return false;
     }
 
-    if (userName == "") {
+    if (userName === "") {
       return false;
     }
 
@@ -38,7 +38,7 @@ export const useLoginValidator = () => {
       return false;
     }
 
-    if (password == "") {
+    if (password === "") {
       return false;
     } else {
       return true;
@@ -49,13 +49,13 @@ export const useLoginValidator = () => {
     const userName = event.target.username.value;
     const password = event.target.password.value;
 
-    if (userName == "" && password == "") {
+    if (userName === "" && password === "") {
       setUserNameAlert("Ingrese un correo electronico");
       setPasswordAlert("Ingrese su password");
       return;
     }
 
-    if (userName == "") {
+    if (userName === "") {
       setUserNameAlert("Ingrese un correo electronico");
       return;
     }
@@ -88,7 +88,7 @@ export const useLoginValidator = () => {
       return;
     }
 
-    if (password == "") {
+    if (password === "") {
       setPasswordAlert("Ingrese su password");
       return;
     } else {

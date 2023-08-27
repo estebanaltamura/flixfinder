@@ -40,6 +40,7 @@ export const Header = () => {
     ) {
       setShowHeader(false);
     } else setShowHeader(true);
+    // eslint-disable-next-line
   }, [url]);
 
   useEffect(() => {
@@ -50,6 +51,7 @@ export const Header = () => {
     window.addEventListener("resize", setWidth);
 
     return () => window.removeEventListener("resize", setWidth);
+    // eslint-disable-next-line
   }, []);
 
   return (

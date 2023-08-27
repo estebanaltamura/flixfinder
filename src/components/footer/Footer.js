@@ -47,6 +47,7 @@ export const Footer = () => {
           className="footerContact  footerGit"
           href="https://github.com/estebanaltamura/flixfinder"
           target="_blank"
+          rel="noopener noreferrer"
         >
           <FiGithub className="footerGitIcon" />
           GitHub
@@ -58,6 +59,7 @@ export const Footer = () => {
           className="footerContact  footerLinkedin"
           href="https://www.linkedin.com/in/andres-altamura/"
           target="_blank"
+          rel="noopener noreferrer"
         >
           <AiOutlineLinkedin className="footerLinkedinIcon" />
           Linkedin
@@ -69,6 +71,7 @@ export const Footer = () => {
           className="footerContact  footerCV"
           href="https://drive.google.com/file/d/19E5Ry7_NDwi5BBaT8rDytLdkAKF2rwyY/view?usp=sharing"
           target="_blank"
+          rel="noopener noreferrer"
         >
           <FiFileText className="footerCVIcon" />
           Curriculum Vitae

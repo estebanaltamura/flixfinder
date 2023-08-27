@@ -147,6 +147,7 @@ export const LoginAndRegisterForm = () => {
     if (urlInParts.includes("registerAccount")) {
       setSection("registerAccount");
     }
+    // eslint-disable-next-line
   }, [url]);
 
   return (
@@ -239,9 +240,9 @@ export const LoginAndRegisterForm = () => {
           {section === "login" ? "LOGIN" : "CREATE ACCOUNT"}
         </button>
       </form>
-      <a className="createAccountLink" onClick={redirectToLoginOrRegister}>
+      <p className="createAccountLink" onClick={redirectToLoginOrRegister}>
         {section === "login" ? "Create an account" : "Already have an account?"}
-      </a>
+      </p>
     </div>
   );
 };

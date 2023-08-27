@@ -35,6 +35,7 @@ export const TokenContextProvider = (props) => {
     if (token === null && contentLiked !== null) {
       localStorage.removeItem("contentLiked");
     }
+    // eslint-disable-next-line
   }, []);
 
   return (

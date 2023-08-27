@@ -47,10 +47,12 @@ export const SearchResults = () => {
   useEffect(() => {
     setIsLoading(true);
     query !== null && getDataHandler(contentType, query);
+    // eslint-disable-next-line
   }, [query]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    // eslint-disable-next-line
   }, []);
 
   return (

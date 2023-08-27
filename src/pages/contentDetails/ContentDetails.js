@@ -69,11 +69,7 @@ export const ContentDetails = () => {
   const shareOptionsClickHandler = () => {
     setIsShareOptionsOpen(!shareOptionsOpen);
   };
-
-  useEffect(() => {
-    content !== null && setCardContent(content, contentType);
-  }, [content]);
-
+  
   const getDataHandler = async (contentType, contentId) => {
     const dataResponse = await getData(contentType, contentId);
     if (dataResponse) {
@@ -83,12 +79,19 @@ export const ContentDetails = () => {
   };
 
   useEffect(() => {
+    content !== null && setCardContent(content, contentType);
+    // eslint-disable-next-line
+  }, [content]);
+
+  useEffect(() => {
     window.scrollTo(0, 0);
     getDataHandler(contentType, contentId);
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     isContentLiked(contentLiked, contentType, content);
+    // eslint-disable-next-line
   });
 
   return (

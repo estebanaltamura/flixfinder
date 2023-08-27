@@ -48,10 +48,12 @@ export const SearchBarDesktop = () => {
       setContentType("movie");
       setPlaceholderText("Search movies");
     }
+    // eslint-disable-next-line
   }, [url]);
 
   useEffect(() => {
     console.log(contentType);
+    // eslint-disable-next-line
   }, []);
 
   return (
