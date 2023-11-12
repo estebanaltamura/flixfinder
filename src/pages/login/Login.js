@@ -12,6 +12,7 @@ export const Login = () => {
 
   useEffect(() => {
     setIsLoading(false);
+    // eslint-disable-next-line
   }, []);
 
   return token ? (
