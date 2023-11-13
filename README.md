@@ -11,7 +11,7 @@ https://www.flixfinder.online
 * Búsqueda de Contenido: Navega y busca entre una vasta colección de películas y series.
 * Autenticación de Usuario: Permite el registro del usuario y su posterio autenticacion para personalizar su experiencia.
 * Contenido Favorito: Flixfinder ofrece la posibilidad de likear contenidos como favoritos y crea tu propia selección personalizada.
-* Compartición en Redes Sociales: Comparte tus contenidos favoritos directamente en Twitter y WhatsApp.
+* Compartir en Redes Sociales: Comparte tus contenidos favoritos directamente en Twitter y WhatsApp.
 
 
 ### Tecnologías y Dependencias 📦
