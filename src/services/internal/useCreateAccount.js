@@ -11,7 +11,7 @@ export const useCreateAccount = () => {
 
     try {
       await axios.post(
-        'https://internal-server-projects.xyz.online:3100/registerUser',
+        'https://www.internal-server-projects.xyz.online:3100/registerUser',
         req,
         { timeout: 5000 }
       );

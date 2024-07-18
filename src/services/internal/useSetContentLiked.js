@@ -7,7 +7,7 @@ export const useSetContentLiked = () => {
 
     try {
       await axios.post(
-        'https://internal-server-projects.xyz:3100/setContentLikedData',
+        'https://www.internal-server-projects.xyz:3100/setContentLikedData',
         req,
         { timeout: 5000 }
       );
