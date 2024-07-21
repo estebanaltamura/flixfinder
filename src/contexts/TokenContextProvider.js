@@ -1,6 +1,7 @@
-import { createContext, useState, useEffect, useContext } from "react";
-import { ContentLikedContext } from "./ContentLikedContextProvider";
-import { useGetContentLiked } from "../services/internal/useGetContentLiked";
+import { createContext, useState, useEffect, useContext } from 'react';
+
+import { useGetContentLiked } from '../services/internal/useGetContentLiked';
+import { ContentLikedContext } from './ContentLikedContextProvider';
 
 export const TokenContext = createContext();
 
@@ -12,15 +13,15 @@ export const TokenContextProvider = (props) => {
   const initialContextsValue = async (token) => {
     const getContentLikedFromServerData = await getContentLikedServer(token);
     localStorage.setItem(
-      "contentLiked",
-      JSON.stringify(getContentLikedFromServerData),
+      'contentLiked',
+      JSON.stringify(getContentLikedFromServerData)
     );
     setContentLiked(getContentLikedFromServerData);
   };
 
   useEffect(() => {
-    const token = JSON.parse(localStorage.getItem("token"));
-    const contentLiked = JSON.parse(localStorage.getItem("contentLiked"));
+    const token = JSON.parse(localStorage.getItem('token'));
+    const contentLiked = JSON.parse(localStorage.getItem('contentLiked'));
 
     if (token !== null && contentLiked !== null) {
       setToken(token);
@@ -33,7 +34,7 @@ export const TokenContextProvider = (props) => {
     }
 
     if (token === null && contentLiked !== null) {
-      localStorage.removeItem("contentLiked");
+      localStorage.removeItem('contentLiked');
     }
     // eslint-disable-next-line
   }, []);

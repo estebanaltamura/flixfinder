@@ -1,11 +1,13 @@
-import { useEffect, useContext, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
-import { ContentLikedContext } from "../../contexts/ContentLikedContextProvider";
-import { TokenContext } from "../../contexts/TokenContextProvider";
-import { Card } from "../../components/card/Card";
-import { Spinner } from "../../components/spinner/Spinner";
-import "./MyFavorites.css";
+import { useEffect, useContext, useRef } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
+import { Card } from '../../components/card/Card';
+import { Spinner } from '../../components/spinner/Spinner';
+import { ContentLikedContext } from '../../contexts/ContentLikedContextProvider';
+import { IsLoadingContext } from '../../contexts/IsLoadingContextProvider';
+import { TokenContext } from '../../contexts/TokenContextProvider';
+import './MyFavorites.css';
 
 export const MyFavorites = () => {
   const { isLoading, setIsLoading } = useContext(IsLoadingContext);
@@ -23,7 +25,7 @@ export const MyFavorites = () => {
       const imgClasses = event.target.classList.value;
 
       if (
-        imgClasses.includes("cardImg") &&
+        imgClasses.includes('cardImg') &&
         event.target.id <= quantityImgsToLoadBeforeIsLoadingFalse
       ) {
         imagesLoadedCounter.current += 1;
@@ -47,7 +49,7 @@ export const MyFavorites = () => {
   }, [contentLiked]);
 
   useEffect(() => {
-    token === null && history("/movies");
+    token === null && history('/movies');
     // eslint-disable-next-line
   }, [token]);
 
@@ -65,11 +67,11 @@ export const MyFavorites = () => {
             <div
               className={
                 isLoading === true
-                  ? "hidden"
-                  : "container containerMoviesAndTvSeriesDashboard"
+                  ? 'hidden'
+                  : 'container containerMoviesAndTvSeriesDashboard'
               }
             >
-              <h3 className="alertText">{`No results`}</h3>
+              <h3 className='alertText'>{`No results`}</h3>
             </div>
           )}
 
@@ -77,19 +79,19 @@ export const MyFavorites = () => {
             <div
               className={
                 isLoading === true
-                  ? "hidden"
-                  : "container containerMoviesAndTvSeriesDashboard"
+                  ? 'hidden'
+                  : 'container containerMoviesAndTvSeriesDashboard'
               }
               onLoad={imgItemLoadHandler}
             >
-              <div className="row rowStyles">
+              <div className='row rowStyles'>
                 {[...contentLiked.contentLiked.allFavorites]
                   .reverse()
                   .map((content, index) => {
                     return (
                       <Card
                         content={content}
-                        URLcontentType={"favorites"}
+                        URLcontentType={'favorites'}
                         key={index}
                         index={index + 1}
                       />

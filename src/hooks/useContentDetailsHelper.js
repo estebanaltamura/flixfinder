@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export const useContentDetailsHelper = () => {
   const [titleText, setTitleText] = useState(null);
@@ -10,7 +10,7 @@ export const useContentDetailsHelper = () => {
 
   const setCardContent = (content, contentType) => {
     if (content.original_title !== undefined || content.name !== undefined) {
-      contentType === "movie"
+      contentType === 'movie'
         ? setTitleText(content.original_title)
         : setTitleText(content.name);
     }
@@ -20,12 +20,12 @@ export const useContentDetailsHelper = () => {
       content.first_air_date !== undefined
     ) {
       const releaseDatehandled =
-        contentType === "movie"
+        contentType === 'movie'
           ? content.release_date.slice(0, 4)
           : content.first_air_date.slice(0, 4);
       releaseDatehandled > 1890
         ? setReleaseYear(releaseDatehandled)
-        : setReleaseYear("N/D");
+        : setReleaseYear('N/D');
     }
 
     if (content.vote_average !== undefined) {
@@ -36,7 +36,7 @@ export const useContentDetailsHelper = () => {
       const genresText = content.genres
         .slice(0, 3)
         .map((genre) => genre.name)
-        .join(" - ");
+        .join(' - ');
       setGenresText(genresText);
     }
 

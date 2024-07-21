@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { MobileMenu } from "./menus/MobileMenu";
-import { SearchBarMobile } from "./searchBars/SearchBarMobile";
-import { DesktopMenu } from "./menus/DesktopMenu";
-import "./Header.css";
+import { useState, useEffect } from 'react';
+
+import { useLocation } from 'react-router-dom';
+
+import { DesktopMenu } from './menus/DesktopMenu';
+import { MobileMenu } from './menus/MobileMenu';
+import { SearchBarMobile } from './searchBars/SearchBarMobile';
+import './Header.css';
 
 export const Header = () => {
   const [currentWidth, setCurrentWidth] = useState(window.innerWidth);
@@ -13,16 +15,16 @@ export const Header = () => {
 
   const searchModeHandler = (event) => {
     if (
-      event.target.id === "searchIcon" ||
-      event.target.parentElement.id === "searchIcon"
+      event.target.id === 'searchIcon' ||
+      event.target.parentElement.id === 'searchIcon'
     ) {
       setIsHeaderSearchMode(true);
     }
 
     if (
-      event.target.id === "closeSearchIconMobile" ||
-      event.target.parentElement.id === "closeSearchIconMobile" ||
-      event.target.id === "closeButtonSearchBarMobileContainer"
+      event.target.id === 'closeSearchIconMobile' ||
+      event.target.parentElement.id === 'closeSearchIconMobile' ||
+      event.target.id === 'closeButtonSearchBarMobileContainer'
     ) {
       setIsHeaderSearchMode(false);
     }
@@ -33,10 +35,10 @@ export const Header = () => {
   };
 
   useEffect(() => {
-    const urlInParts = url.pathname.split("/");
+    const urlInParts = url.pathname.split('/');
     if (
-      urlInParts.includes("login") ||
-      urlInParts.includes("registerAccount")
+      urlInParts.includes('login') ||
+      urlInParts.includes('registerAccount')
     ) {
       setShowHeader(false);
     } else setShowHeader(true);
@@ -48,9 +50,9 @@ export const Header = () => {
       setCurrentWidth(window.innerWidth);
     };
 
-    window.addEventListener("resize", setWidth);
+    window.addEventListener('resize', setWidth);
 
-    return () => window.removeEventListener("resize", setWidth);
+    return () => window.removeEventListener('resize', setWidth);
     // eslint-disable-next-line
   }, []);
 

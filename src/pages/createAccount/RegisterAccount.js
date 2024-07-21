@@ -1,8 +1,9 @@
-import { useEffect, useContext } from "react";
-import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
-import { LoginAndRegisterForm } from "../../components/LoginAndRegisterForm/LoginAndRegisterForm";
-import logo from "../../assets/logo.png";
-import "./RegisterAccount.css";
+import { useEffect, useContext } from 'react';
+
+import logo from '../../assets/logo.png';
+import { LoginAndRegisterForm } from '../../components/LoginAndRegisterForm/LoginAndRegisterForm';
+import { IsLoadingContext } from '../../contexts/IsLoadingContextProvider';
+import './RegisterAccount.css';
 
 export const RegisterAccount = () => {
   const { setIsLoading } = useContext(IsLoadingContext);
@@ -12,10 +13,10 @@ export const RegisterAccount = () => {
   }, []);
 
   return (
-    <div className="registerAccountContainer">
-      <div className="brandingContainerRegisterAccount">
-        <img src={logo} />
-        <h1 className="brandingTitleRegisterAccount">FlixFinder</h1>
+    <div className='registerAccountContainer'>
+      <div className='brandingContainerRegisterAccount'>
+        <img src={logo} alt='logo' />
+        <h1 className='brandingTitleRegisterAccount'>FlixFinder</h1>
       </div>
       <LoginAndRegisterForm />
     </div>

@@ -1,10 +1,12 @@
-import { useEffect, useState, useContext, useRef } from "react";
-import { useLocation } from "react-router-dom";
-import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
-import { useGetDataMoviesAndTvSeriesDashboard } from "../../services/external/useGetDataMoviesAndTvSeriesDashboard";
-import { Card } from "../../components/card/Card";
-import { Spinner } from "../../components/spinner/Spinner";
-import "./MoviesAndTvSeriesDashboard.css";
+import { useEffect, useState, useContext, useRef } from 'react';
+
+import { useLocation } from 'react-router-dom';
+
+import { Card } from '../../components/card/Card';
+import { Spinner } from '../../components/spinner/Spinner';
+import { IsLoadingContext } from '../../contexts/IsLoadingContextProvider';
+import { useGetDataMoviesAndTvSeriesDashboard } from '../../services/external/useGetDataMoviesAndTvSeriesDashboard';
+import './MoviesAndTvSeriesDashboard.css';
 
 export const MoviesAndTvSeriesDashboard = () => {
   const [content, setContent] = useState([]);
@@ -22,7 +24,7 @@ export const MoviesAndTvSeriesDashboard = () => {
       const imgClasses = event.target.classList.value;
 
       if (
-        imgClasses.includes("cardImg") &&
+        imgClasses.includes('cardImg') &&
         event.target.id <= quantityImgsToLoadBeforeIsLoadingFalse
       ) {
         imagesLoadedCounter.current += 1;
@@ -49,12 +51,12 @@ export const MoviesAndTvSeriesDashboard = () => {
     window.scrollTo(0, 0);
     setIsLoading(true);
 
-    const urlInParts = url.pathname.split("/");
-    if (urlInParts.includes("movies")) {
-      contentType.current = "movie";
+    const urlInParts = url.pathname.split('/');
+    if (urlInParts.includes('movies')) {
+      contentType.current = 'movie';
     }
-    if (urlInParts.includes("tvSeries")) {
-      contentType.current = "tv";
+    if (urlInParts.includes('tvSeries')) {
+      contentType.current = 'tv';
     }
 
     getDataHandler(contentType.current);
@@ -68,12 +70,12 @@ export const MoviesAndTvSeriesDashboard = () => {
         <div
           className={
             isLoading === true
-              ? "hidden"
-              : "container containerMoviesAndTvSeriesDashboard"
+              ? 'hidden'
+              : 'container containerMoviesAndTvSeriesDashboard'
           }
-          id="containerMoviesAndTvSeriesDashboard"
+          id='containerMoviesAndTvSeriesDashboard'
         >
-          <h3 className="alertText">{`No results`}</h3>
+          <h3 className='alertText'>{`No results`}</h3>
         </div>
       )}
 
@@ -81,12 +83,12 @@ export const MoviesAndTvSeriesDashboard = () => {
         <div
           className={
             isLoading === true
-              ? "hidden"
-              : "container containerMoviesAndTvSeriesDashboard"
+              ? 'hidden'
+              : 'container containerMoviesAndTvSeriesDashboard'
           }
-          id="containerMoviesAndTvSeriesDashboard"
+          id='containerMoviesAndTvSeriesDashboard'
         >
-          <div className="row rowStyles">
+          <div className='row rowStyles'>
             {content.map((content, index) => {
               return (
                 <Card

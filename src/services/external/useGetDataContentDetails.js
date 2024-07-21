@@ -1,6 +1,6 @@
-import axios from "axios";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 export const useGetDataContentDetails = () => {
   const MySwal = withReactContent(Swal);
@@ -14,12 +14,12 @@ export const useGetDataContentDetails = () => {
       return content;
     } catch (error) {
       MySwal.fire({
-        title: "ERROR",
+        title: 'ERROR',
         text: error?.response?.data?.message,
-        icon: "success",
+        icon: 'success',
         heightAuto: false,
         customClass: {
-          "swal2-container": "my-popup-class",
+          'swal2-container': 'my-popup-class',
         },
       });
       console.log(error?.response?.data?.message);

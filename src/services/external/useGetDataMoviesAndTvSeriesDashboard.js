@@ -1,6 +1,6 @@
-import axios from "axios";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 export const useGetDataMoviesAndTvSeriesDashboard = () => {
   const MySwal = withReactContent(Swal);
@@ -11,17 +11,17 @@ export const useGetDataMoviesAndTvSeriesDashboard = () => {
       const res = await axios(endPoint);
       const data = res.data;
       const onlyContentWithPoster = data.results.filter(
-        (content) => content.poster_path !== null && content,
+        (content) => content.poster_path !== null && content
       );
       return onlyContentWithPoster;
     } catch (error) {
       MySwal.fire({
-        title: "ERROR",
+        title: 'ERROR',
         text: error?.response?.data?.message,
-        icon: "success",
+        icon: 'success',
         heightAuto: false,
         customClass: {
-          "swal2-container": "my-popup-class",
+          'swal2-container': 'my-popup-class',
         },
       });
       console.log(error?.response?.data?.message);

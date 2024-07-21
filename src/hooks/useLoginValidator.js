@@ -1,18 +1,18 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export const useLoginValidator = () => {
-  const [userNameAlert, setUserNameAlert] = useState("");
-  const [passwordAlert, setPasswordAlert] = useState("");
+  const [userNameAlert, setUserNameAlert] = useState('');
+  const [passwordAlert, setPasswordAlert] = useState('');
 
   const areValidEntries = (event) => {
     const userName = event.target.username.value;
     const password = event.target.password.value;
 
-    if (userName === "" && password == "") {
+    if (userName === '' && password === '') {
       return false;
     }
 
-    if (userName === "") {
+    if (userName === '') {
       return false;
     }
 
@@ -38,7 +38,7 @@ export const useLoginValidator = () => {
       return false;
     }
 
-    if (password === "") {
+    if (password === '') {
       return false;
     } else {
       return true;
@@ -49,20 +49,20 @@ export const useLoginValidator = () => {
     const userName = event.target.username.value;
     const password = event.target.password.value;
 
-    if (userName === "" && password === "") {
-      setUserNameAlert("Ingrese un correo electronico");
-      setPasswordAlert("Ingrese su password");
+    if (userName === '' && password === '') {
+      setUserNameAlert('Ingrese un correo electronico');
+      setPasswordAlert('Ingrese su password');
       return;
     }
 
-    if (userName === "") {
-      setUserNameAlert("Ingrese un correo electronico");
+    if (userName === '') {
+      setUserNameAlert('Ingrese un correo electronico');
       return;
     }
 
     const twoDotsRegExp = /\.{2,}/;
     if (twoDotsRegExp.test(userName)) {
-      setUserNameAlert("No puede haber dos puntos (..) seguidos");
+      setUserNameAlert('No puede haber dos puntos (..) seguidos');
       return;
     }
 
@@ -70,36 +70,36 @@ export const useLoginValidator = () => {
     const dotAtEnd = /\.{1}@{1}/;
     if (dotAtStart.test(userName) || dotAtEnd.test(userName)) {
       setUserNameAlert(
-        "La direccion no puede empezar ni preceder al @ con un punto (.)",
+        'La direccion no puede empezar ni preceder al @ con un punto (.)'
       );
       return;
     }
 
     const multiplesAt = /@.*@/;
     if (multiplesAt.test(userName)) {
-      setUserNameAlert("No puede haber mas de un @");
+      setUserNameAlert('No puede haber mas de un @');
       return;
     }
 
     const regExpUserName =
       /[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}/;
     if (!regExpUserName.test(userName)) {
-      setUserNameAlert("Ingresar una direccion de email valida");
+      setUserNameAlert('Ingresar una direccion de email valida');
       return;
     }
 
-    if (password === "") {
-      setPasswordAlert("Ingrese su password");
+    if (password === '') {
+      setPasswordAlert('Ingrese su password');
       return;
     } else {
-      setUserNameAlert("");
+      setUserNameAlert('');
       return;
     }
   };
 
   const resetAlerts = () => {
-    setUserNameAlert("");
-    setPasswordAlert("");
+    setUserNameAlert('');
+    setPasswordAlert('');
   };
 
   return {

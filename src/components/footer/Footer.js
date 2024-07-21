@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import { FiMail, FiGithub } from "react-icons/fi";
-import { AiFillCopy } from "react-icons/ai";
-import { AiOutlineLinkedin } from "react-icons/ai";
-import { FiFileText } from "react-icons/fi";
-import "./Footer.css";
+import { useState } from 'react';
+
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { AiFillCopy, AiOutlineLinkedin } from 'react-icons/ai';
+import { FiMail, FiGithub, FiFileText } from 'react-icons/fi';
+
+import './Footer.css';
 
 export const Footer = () => {
   const [isCopyingEmailFooter, setIsCopyingEmailFooter] = useState(false);
@@ -23,57 +23,57 @@ export const Footer = () => {
   };
 
   return (
-    <div className="footerContainer">
-      <div className="line"></div>
-      <div className="contactFooterGrid">
-        {isCopyingEmailFooter == false ? (
-          <CopyToClipboard text="esteban.altamura@gmail.com">
+    <div className='footerContainer'>
+      <div className='line'></div>
+      <div className='contactFooterGrid'>
+        {isCopyingEmailFooter === false ? (
+          <CopyToClipboard text='esteban.altamura@gmail.com'>
             <button
-              className="footerContact footerMail"
+              className='footerContact footerMail'
               onClick={copyEmailAddressClickHandler}
             >
-              <FiMail className="footerMailIcon" />
+              <FiMail className='footerMailIcon' />
               esteban.altamura@gmail.com
-              <AiFillCopy className="footerMailCopyIcon" />
+              <AiFillCopy className='footerMailCopyIcon' />
             </button>
           </CopyToClipboard>
         ) : (
-          <p className="copiedMessage">Copied!</p>
+          <p className='copiedMessage'>Copied!</p>
         )}
 
-        <span className="footerDivider">|</span>
+        <span className='footerDivider'>|</span>
 
         <a
-          className="footerContact  footerGit"
-          href="https://github.com/estebanaltamura/flixfinder"
-          target="_blank"
-          rel="noopener noreferrer"
+          className='footerContact  footerGit'
+          href='https://github.com/estebanaltamura/flixfinder'
+          target='_blank'
+          rel='noopener noreferrer'
         >
-          <FiGithub className="footerGitIcon" />
+          <FiGithub className='footerGitIcon' />
           GitHub
         </a>
 
-        <span className="footerDivider">|</span>
+        <span className='footerDivider'>|</span>
 
         <a
-          className="footerContact  footerLinkedin"
-          href="https://www.linkedin.com/in/andres-altamura/"
-          target="_blank"
-          rel="noopener noreferrer"
+          className='footerContact  footerLinkedin'
+          href='https://www.linkedin.com/in/andres-altamura/'
+          target='_blank'
+          rel='noopener noreferrer'
         >
-          <AiOutlineLinkedin className="footerLinkedinIcon" />
+          <AiOutlineLinkedin className='footerLinkedinIcon' />
           Linkedin
         </a>
 
-        <span className="footerDivider">|</span>
+        <span className='footerDivider'>|</span>
 
         <a
-          className="footerContact  footerCV"
-          href="https://drive.google.com/file/d/19E5Ry7_NDwi5BBaT8rDytLdkAKF2rwyY/view?usp=sharing"
-          target="_blank"
-          rel="noopener noreferrer"
+          className='footerContact  footerCV'
+          href='https://drive.google.com/file/d/19E5Ry7_NDwi5BBaT8rDytLdkAKF2rwyY/view?usp=sharing'
+          target='_blank'
+          rel='noopener noreferrer'
         >
-          <FiFileText className="footerCVIcon" />
+          <FiFileText className='footerCVIcon' />
           Curriculum Vitae
         </a>
       </div>

@@ -1,20 +1,22 @@
-import { useContext, useEffect, useState, useRef } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { TokenContext } from "../../contexts/TokenContextProvider";
-import { ContentLikedContext } from "../../contexts/ContentLikedContextProvider";
-import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
-import { useGetContentLiked } from "../../services/internal/useGetContentLiked";
-import { useLoginValidator } from "../../hooks/useLoginValidator";
-import { useLogin } from "../../services/internal/useLogin";
-import { useCreateAccount } from "../../services/internal/useCreateAccount";
-import { useFormElementsBehavior } from "../../hooks/useFormElementsBehavior";
-import mailIconGreen from "../../assets/mailIconGreen.svg";
-import passwordIconGreen from "../../assets/passwordIconGreen.svg";
-import mailIconBlue from "../../assets/mailIconBlue.svg";
-import passwordIconBlue from "../../assets/passwordIconBlue.svg";
-import userIcon from "../../assets/userIcon.svg";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import "./LoginAndRegisterForm.css";
+import { useContext, useEffect, useState, useRef } from 'react';
+
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { useNavigate, useLocation } from 'react-router-dom';
+
+import mailIconBlue from '../../assets/mailIconBlue.svg';
+import mailIconGreen from '../../assets/mailIconGreen.svg';
+import passwordIconBlue from '../../assets/passwordIconBlue.svg';
+import passwordIconGreen from '../../assets/passwordIconGreen.svg';
+import userIcon from '../../assets/userIcon.svg';
+import { ContentLikedContext } from '../../contexts/ContentLikedContextProvider';
+import { IsLoadingContext } from '../../contexts/IsLoadingContextProvider';
+import { TokenContext } from '../../contexts/TokenContextProvider';
+import { useFormElementsBehavior } from '../../hooks/useFormElementsBehavior';
+import { useLoginValidator } from '../../hooks/useLoginValidator';
+import { useCreateAccount } from '../../services/internal/useCreateAccount';
+import { useGetContentLiked } from '../../services/internal/useGetContentLiked';
+import { useLogin } from '../../services/internal/useLogin';
+import './LoginAndRegisterForm.css';
 
 export const LoginAndRegisterForm = () => {
   const { setToken } = useContext(TokenContext);
@@ -50,7 +52,7 @@ export const LoginAndRegisterForm = () => {
 
   const loginRegisterFormSubmitClickHandler = async (event) => {
     event.preventDefault();
-    const urlInParts = url.pathname.split("/");
+    const urlInParts = url.pathname.split('/');
 
     const userName = event.target.username.value;
     const userNameHandled = userName.trim().toLowerCase();
@@ -58,79 +60,80 @@ export const LoginAndRegisterForm = () => {
 
     if (!areValidEntries(event)) {
       setAlerts(event);
-    } else if (urlInParts.includes("login")) {
+    } else if (urlInParts.includes('login')) {
       setStylesElementsWaiting(
         userNameInput.current,
         passwordInput.current,
-        submitButton.current,
+        submitButton.current
       );
 
       const getTokenData = await getToken(userNameHandled, password);
       if (getTokenData) {
-        const getContentLikedServerData =
-          await getContentLikedServer(getTokenData);
+        const getContentLikedServerData = await getContentLikedServer(
+          getTokenData
+        );
         if (getTokenData && getContentLikedServerData) {
           setIsLoading(true);
           setToken(getTokenData);
           setContentLiked(getContentLikedServerData);
-          localStorage.setItem("token", JSON.stringify(getTokenData));
+          localStorage.setItem('token', JSON.stringify(getTokenData));
           localStorage.setItem(
-            "contentLiked",
-            JSON.stringify(getContentLikedServerData),
+            'contentLiked',
+            JSON.stringify(getContentLikedServerData)
           );
           console.log(
-            "setea token en contexto y local storage, setea liked context desde login",
+            'setea token en contexto y local storage, setea liked context desde login'
           );
-          history("/movies");
+          history('/movies');
         } else {
-          setStylesElementsLoginRejected( 
+          setStylesElementsLoginRejected(
             userNameInput.current,
             passwordInput.current,
-            submitButton.current,
+            submitButton.current
           );
         }
       } else
         setStylesElementsLoginRejected(
           userNameInput.current,
           passwordInput.current,
-          submitButton.current,
+          submitButton.current
         );
-    } else if (urlInParts.includes("registerAccount")) {
+    } else if (urlInParts.includes('registerAccount')) {
       setStylesElementsWaiting(
         userNameInput.current,
         passwordInput.current,
-        submitButton.current,
+        submitButton.current
       );
 
       const wasSuccessfulCreateAccount = await createAccount(
         userNameHandled,
-        password,
+        password
       );
       if (wasSuccessfulCreateAccount) {
-        history("/login");
+        history('/login');
       } else {
         setStylesElementsRegisterRejected(
           userNameInput.current,
           passwordInput.current,
-          submitButton.current,
+          submitButton.current
         );
       }
     }
   };
 
   const redirectToLoginOrRegister = () => {
-    const urlInParts = url.pathname.split("/");
+    const urlInParts = url.pathname.split('/');
 
-    if (urlInParts.includes("login")) {
-      history("/registerAccount");
+    if (urlInParts.includes('login')) {
+      history('/registerAccount');
     }
-    if (urlInParts.includes("registerAccount")) {
-      history("/login");
+    if (urlInParts.includes('registerAccount')) {
+      history('/login');
     }
   };
 
   const resetAlertWhenFocusInInput = (event) => {
-    event.target.nodeName === "INPUT" && resetAlerts();
+    event.target.nodeName === 'INPUT' && resetAlerts();
   };
 
   const showpasswordClickHandler = () => {
@@ -138,110 +141,112 @@ export const LoginAndRegisterForm = () => {
   };
 
   useEffect(() => {
-    const urlInParts = url.pathname.split("/");
+    const urlInParts = url.pathname.split('/');
 
-    if (urlInParts.includes("login")) {
-      setSection("login");
+    if (urlInParts.includes('login')) {
+      setSection('login');
     }
 
-    if (urlInParts.includes("registerAccount")) {
-      setSection("registerAccount");
+    if (urlInParts.includes('registerAccount')) {
+      setSection('registerAccount');
     }
     // eslint-disable-next-line
   }, [url]);
 
   return (
-    <div className="form-container" onClick={resetAlertWhenFocusInInput}>
+    <div className='form-container' onClick={resetAlertWhenFocusInInput}>
       <div
         className={
-          section === "login"
-            ? "formMainIconContainer"
-            : "formMainIconContainer formMainIconContainerRegisterAccount"
+          section === 'login'
+            ? 'formMainIconContainer'
+            : 'formMainIconContainer formMainIconContainerRegisterAccount'
         }
       >
-        <img src={userIcon} />
+        <img src={userIcon} alt='user icon' />
       </div>
-      <h3 className="formTitle">
-        {section === "login" ? "Good to see you again!" : "Create your account"}
+      <h3 className='formTitle'>
+        {section === 'login' ? 'Good to see you again!' : 'Create your account'}
       </h3>
       <form
-        action="/action_page.php"
+        action='/action_page.php'
         onSubmit={loginRegisterFormSubmitClickHandler}
-        className="loginAndRegisterForm"
+        className='loginAndRegisterForm'
       >
         <div
           className={
-            userNameAlert === "" ? "inputContainer" : "inputContainer shake"
+            userNameAlert === '' ? 'inputContainer' : 'inputContainer shake'
           }
         >
-          <div className="inputIconContainer">
+          <div className='inputIconContainer'>
             <img
-              src={section === "login" ? mailIconGreen : mailIconBlue}
-              className="inputIcon"
+              src={section === 'login' ? mailIconGreen : mailIconBlue}
+              className='inputIcon'
+              alt='mail icon'
             />
           </div>
           <input
-            type="text"
-            name="username"
+            type='text'
+            name='username'
             ref={userNameInput}
-            className="inputForm inputFormUserName"
-            autoComplete="off"
-            autoCorrect="off"
-            autoCapitalize="none"
-            placeholder="E-mail"
+            className='inputForm inputFormUserName'
+            autoComplete='off'
+            autoCorrect='off'
+            autoCapitalize='none'
+            placeholder='E-mail'
           />
         </div>
-        <span className="inputAlerts">{userNameAlert}</span>
+        <span className='inputAlerts'>{userNameAlert}</span>
 
         <div
           className={
-            passwordAlert === "" ? "inputContainer" : "inputContainer shake"
+            passwordAlert === '' ? 'inputContainer' : 'inputContainer shake'
           }
         >
-          <div className="inputIconContainer">
+          <div className='inputIconContainer'>
             <img
-              src={section === "login" ? passwordIconGreen : passwordIconBlue}
-              className="inputIcon"
+              src={section === 'login' ? passwordIconGreen : passwordIconBlue}
+              className='inputIcon'
+              alt='password icon'
             />
           </div>
           <input
-            type={showPassword ? "text" : "password"}
-            name="password"
+            type={showPassword ? 'text' : 'password'}
+            name='password'
             ref={passwordInput}
-            className="inputForm"
-            autoComplete="off"
-            placeholder="Password"
+            className='inputForm'
+            autoComplete='off'
+            placeholder='Password'
           />
           <>
             {showPassword ? (
               <AiFillEyeInvisible
-                className="showPasswordIcon"
+                className='showPasswordIcon'
                 onClick={showpasswordClickHandler}
               />
             ) : (
               <AiFillEye
-                className="showPasswordIcon"
+                className='showPasswordIcon'
                 onClick={showpasswordClickHandler}
               />
             )}
           </>
         </div>
-        <span className="inputAlerts">{passwordAlert}</span>
+        <span className='inputAlerts'>{passwordAlert}</span>
 
         <button
-          type="submit"
+          type='submit'
           className={
-            section === "login"
-              ? "submitButton"
-              : "submitButton submitButtonRegisterAccount"
+            section === 'login'
+              ? 'submitButton'
+              : 'submitButton submitButtonRegisterAccount'
           }
           ref={submitButton}
         >
-          {section === "login" ? "LOGIN" : "CREATE ACCOUNT"}
+          {section === 'login' ? 'LOGIN' : 'CREATE ACCOUNT'}
         </button>
       </form>
-      <p className="createAccountLink" onClick={redirectToLoginOrRegister}>
-        {section === "login" ? "Create an account" : "Already have an account?"}
+      <p className='createAccountLink' onClick={redirectToLoginOrRegister}>
+        {section === 'login' ? 'Create an account' : 'Already have an account?'}
       </p>
     </div>
   );

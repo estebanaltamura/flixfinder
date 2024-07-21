@@ -1,10 +1,12 @@
-import { useEffect, useState, useContext, useRef } from "react";
-import { useParams } from "react-router-dom";
-import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
-import { useGetDataSearchResults } from "../../services/external/useGetDataSearchResults";
-import { Card } from "../../components/card/Card";
-import { Spinner } from "../../components/spinner/Spinner";
-import "./SearchResults.css";
+import { useEffect, useState, useContext, useRef } from 'react';
+
+import { useParams } from 'react-router-dom';
+
+import { Card } from '../../components/card/Card';
+import { Spinner } from '../../components/spinner/Spinner';
+import { IsLoadingContext } from '../../contexts/IsLoadingContextProvider';
+import { useGetDataSearchResults } from '../../services/external/useGetDataSearchResults';
+import './SearchResults.css';
 
 export const SearchResults = () => {
   const [content, setContent] = useState([]);
@@ -21,7 +23,7 @@ export const SearchResults = () => {
       const imgClasses = event.target.classList.value;
 
       if (
-        imgClasses.includes("cardImg") &&
+        imgClasses.includes('cardImg') &&
         event.target.id <= quantityImgsToLoadBeforeIsLoadingFalse
       ) {
         imagesLoadedCounter.current += 1;
@@ -62,21 +64,21 @@ export const SearchResults = () => {
       {content.length === 0 && (
         <div
           className={
-            isLoading === true ? "hidden" : "container containerStyles"
+            isLoading === true ? 'hidden' : 'container containerStyles'
           }
         >
-          <h3 className="alertText">{`No results for ${query}`}</h3>
+          <h3 className='alertText'>{`No results for ${query}`}</h3>
         </div>
       )}
 
       {content.length > 0 && (
         <div
           className={
-            isLoading === true ? "hidden" : "container containerStyles"
+            isLoading === true ? 'hidden' : 'container containerStyles'
           }
           onLoad={imgItemLoadHandler}
         >
-          <div className="row rowStyles">
+          <div className='row rowStyles'>
             {content.map((content, index) => {
               return (
                 <Card

@@ -1,19 +1,22 @@
-import { useEffect, useRef, useContext, useState } from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { TokenContext } from "../../contexts/TokenContextProvider";
-import { IsLoadingContext } from "../../contexts/IsLoadingContextProvider";
-import { ContentLikedContext } from "../../contexts/ContentLikedContextProvider";
-import { useContentDetailsHelper } from "../../hooks/useContentDetailsHelper";
-import { useGetDataContentDetails } from "../../services/external/useGetDataContentDetails";
-import { useLikeHandler } from "../../hooks/useLikeHandler";
-import { Spinner } from "../../components/spinner/Spinner";
-import { FcLikePlaceholder, FcLike } from "react-icons/fc";
-import { WhatsappShareButton } from "react-share";
-import { BsShareFill, BsWhatsapp } from "react-icons/bs";
-import { SlSocialTwitter } from "react-icons/sl";
-import ratingIcon from "../../assets/ratingIcon.svg";
-import { HiOutlineChevronLeft } from "react-icons/hi";
-import "./ContentDetails.css";
+import { useEffect, useRef, useContext, useState } from 'react';
+
+import { BsShareFill, BsWhatsapp } from 'react-icons/bs';
+import { FcLikePlaceholder, FcLike } from 'react-icons/fc';
+import { HiOutlineChevronLeft } from 'react-icons/hi';
+import { SlSocialTwitter } from 'react-icons/sl';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { WhatsappShareButton } from 'react-share';
+
+import ratingIcon from '../../assets/ratingIcon.svg';
+import { Spinner } from '../../components/spinner/Spinner';
+import { ContentLikedContext } from '../../contexts/ContentLikedContextProvider';
+import { IsLoadingContext } from '../../contexts/IsLoadingContextProvider';
+import { TokenContext } from '../../contexts/TokenContextProvider';
+import { useContentDetailsHelper } from '../../hooks/useContentDetailsHelper';
+import { useLikeHandler } from '../../hooks/useLikeHandler';
+import { useGetDataContentDetails } from '../../services/external/useGetDataContentDetails';
+
+import './ContentDetails.css';
 
 export const ContentDetails = () => {
   const [shareOptionsOpen, setIsShareOptionsOpen] = useState(false);
@@ -42,13 +45,13 @@ export const ContentDetails = () => {
 
   const shareUrl = `www.flixfinder.online/contentDetails/${contentType}/${contentId}`;
   const titleForTwitter =
-    contentType === "movie" ? content.original_title : content.name;
+    contentType === 'movie' ? content.original_title : content.name;
   const titleForTwitterHandled =
-    typeof titleForTwitter === "string" && encodeURIComponent(titleForTwitter);
+    typeof titleForTwitter === 'string' && encodeURIComponent(titleForTwitter);
   const twitterHref = `https://twitter.com/intent/tweet?text=Check%20this%20out!%20enjoy%20watching%20this%3A%20${titleForTwitterHandled}&url=https%3A%2F%2F${shareUrl}`;
 
   const imageErrorHandler = () => {
-    img.current.src = "https://i.postimg.cc/BZNQgg6T/noImage.jpg";
+    img.current.src = 'https://i.postimg.cc/BZNQgg6T/noImage.jpg';
     setIsLoading(false);
   };
 
@@ -57,9 +60,9 @@ export const ContentDetails = () => {
   };
 
   const backButtonOnClick = () => {
-    const urlInParts = url.pathname.split("/");
-    urlInParts.includes("movie") && history("/movies");
-    urlInParts.includes("tv") && history("/tvSeries");
+    const urlInParts = url.pathname.split('/');
+    urlInParts.includes('movie') && history('/movies');
+    urlInParts.includes('tv') && history('/tvSeries');
   };
 
   const likeClick = () => {
@@ -69,7 +72,7 @@ export const ContentDetails = () => {
   const shareOptionsClickHandler = () => {
     setIsShareOptionsOpen(!shareOptionsOpen);
   };
-  
+
   const getDataHandler = async (contentType, contentId) => {
     const dataResponse = await getData(contentType, contentId);
     if (dataResponse) {
@@ -99,11 +102,11 @@ export const ContentDetails = () => {
       <Spinner />
 
       <div
-        className={isLoading === true ? "hidden" : "contentDetailsContainer"}
+        className={isLoading === true ? 'hidden' : 'contentDetailsContainer'}
       >
-        <div className="contentDetailsGrid">
+        <div className='contentDetailsGrid'>
           <img
-            className="poster"
+            className='poster'
             ref={img}
             src={imgSrc}
             alt={`Poster of ${titleText}`}
@@ -111,41 +114,41 @@ export const ContentDetails = () => {
             onLoad={onLoadImgHandler}
           />
 
-          <h2 className="title">{titleText}</h2>
+          <h2 className='title'>{titleText}</h2>
 
-          <div className="yearReleaseAndRating">
-            <p className="yearReleaseText">{releaseYear}</p>
-            <img src={ratingIcon} className="ratingIcon" />
-            <p className="ratingText">{rating}</p>
+          <div className='yearReleaseAndRating'>
+            <p className='yearReleaseText'>{releaseYear}</p>
+            <img src={ratingIcon} className='ratingIcon' alt='ratingIcon' />
+            <p className='ratingText'>{rating}</p>
           </div>
 
-          <p className="genres">{genresText}</p>
+          <p className='genres'>{genresText}</p>
 
-          <h4 className="overview">Overview</h4>
+          <h4 className='overview'>Overview</h4>
 
-          <p className="descriptionText" ref={descriptionTextRef}>
+          <p className='descriptionText' ref={descriptionTextRef}>
             {description}
           </p>
 
           {token && (
             <>
               {isLiked ? (
-                <FcLike className="likeContentDetails" onClick={likeClick} />
+                <FcLike className='likeContentDetails' onClick={likeClick} />
               ) : (
                 <FcLikePlaceholder
-                  className="likeContentDetails"
+                  className='likeContentDetails'
                   onClick={likeClick}
                 />
               )}
             </>
           )}
 
-          <div className="shareCardContainerContentDetails">
+          <div className='shareCardContainerContentDetails'>
             <BsShareFill
               className={
                 shareOptionsOpen
-                  ? "shareCardIconContentDetais shareCardIconActiveContentDetais"
-                  : "shareCardIconContentDetais"
+                  ? 'shareCardIconContentDetais shareCardIconActiveContentDetais'
+                  : 'shareCardIconContentDetais'
               }
               onClick={shareOptionsClickHandler}
             />
@@ -153,41 +156,41 @@ export const ContentDetails = () => {
             <div
               className={
                 shareOptionsOpen
-                  ? "shareOptionsContainerContentDetails shareOptionsContainerOpenContentDetails"
-                  : "shareOptionsContainerContentDetails"
+                  ? 'shareOptionsContainerContentDetails shareOptionsContainerOpenContentDetails'
+                  : 'shareOptionsContainerContentDetails'
               }
             >
-              <div className="shareOptionContainerContentDetails">
+              <div className='shareOptionContainerContentDetails'>
                 <WhatsappShareButton
-                  className="shareIcons"
+                  className='shareIcons'
                   url={shareUrl}
                   title={`Check this out! enjoy watching this:\n${
-                    contentType === "movie"
+                    contentType === 'movie'
                       ? content.original_title
                       : content.name
                   }\n`}
                 >
-                  <BsWhatsapp className="whastappShareIconContentDetails" />
+                  <BsWhatsapp className='whastappShareIconContentDetails' />
                 </WhatsappShareButton>
               </div>
 
-              <div className="shareOptionContainerContentDetails">
+              <div className='shareOptionContainerContentDetails'>
                 <a
-                  className="shareIcons"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  className='shareIcons'
+                  target='_blank'
+                  rel='noopener noreferrer'
                   href={twitterHref}
                 >
-                  <SlSocialTwitter className="twitterShareIconContentDetails" />
+                  <SlSocialTwitter className='twitterShareIconContentDetails' />
                 </a>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="backButtonContainer" onClick={backButtonOnClick}>
-          <HiOutlineChevronLeft className="backButtonIcon" />
-          <span className="backButtonText">go back</span>
+        <div className='backButtonContainer' onClick={backButtonOnClick}>
+          <HiOutlineChevronLeft className='backButtonIcon' />
+          <span className='backButtonText'>go back</span>
         </div>
       </div>
     </>
