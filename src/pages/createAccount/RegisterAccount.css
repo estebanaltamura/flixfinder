@@ -1,8 +1,15 @@
 .registerAccountContainer {
-  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px 55px 20px;
   width: 100%;
-  min-height: calc(100vh - 160px);
+  min-height: 100vh;
   height: fit-content;
+  background-image: url('/public/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .brandingContainerRegisterAccount {
@@ -20,10 +27,4 @@
   font-family: Montserrat;
   font-size: 36px;
   color: #505050;
-}
-
-@media screen and (min-width: 1050px) {
-  .registerAccountContainer {
-    height: calc(100vh - 60px);
-  }
 }

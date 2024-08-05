@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { useLocation } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { AiFillCopy, AiOutlineLinkedin } from 'react-icons/ai';
 import { FiMail, FiGithub, FiFileText } from 'react-icons/fi';
@@ -8,6 +8,7 @@ import './Footer.css';
 
 export const Footer = () => {
   const [isCopyingEmailFooter, setIsCopyingEmailFooter] = useState(false);
+  const location = useLocation();
 
   const copyEmailAddressClickHandler = () => {
     setIsCopyingEmailFooter(true);
@@ -21,6 +22,14 @@ export const Footer = () => {
       clearInterval(intervalToClear);
     };
   };
+
+  // No mostrar el footer en las rutas /login y /registerAccount
+  if (
+    location.pathname === '/login' ||
+    location.pathname === '/registerAccount'
+  ) {
+    return null;
+  }
 
   return (
     <div className='footerContainer'>
@@ -69,7 +78,7 @@ export const Footer = () => {
 
         <a
           className='footerContact  footerCV'
-          href='https://drive.google.com/file/d/19E5Ry7_NDwi5BBaT8rDytLdkAKF2rwyY/view?usp=sharing'
+          href='https://drive.google.com/file/d/1X7VTxJ9HQAAyqZxnQPZNpxsI3RsJtpG7/view?usp=drive_link'
           target='_blank'
           rel='noopener noreferrer'
         >

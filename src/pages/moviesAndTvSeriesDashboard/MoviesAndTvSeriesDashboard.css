@@ -1,6 +1,6 @@
 .containerMoviesAndTvSeriesDashboard {
   padding: 86px 0 50px 0;
-  min-height: 100vh;
+  min-height: calc(100vh - 160px);
   width: 100%;
 }
 
@@ -11,4 +11,10 @@
 
 .rowStyles {
   margin: 0;
+}
+
+@media screen and (min-width: 1050px) {
+  .containerMoviesAndTvSeriesDashboard {
+    min-height: calc(100vh - 60px);
+  }
 }

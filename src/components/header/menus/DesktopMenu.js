@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { Container } from 'react-bootstrap';
 import { useNavigate, NavLink } from 'react-router-dom';
 
-import logo from '../../../assets/logo.png';
+import logo from '../../../assets/logo.svg';
 import { ContentLikedContext } from '../../../contexts/ContentLikedContextProvider';
 import { TokenContext } from '../../../contexts/TokenContextProvider';
 import { SearchBarDesktop } from '../searchBars/SearchBarDesktop';

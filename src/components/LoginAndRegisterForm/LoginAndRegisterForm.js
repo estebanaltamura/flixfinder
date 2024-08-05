@@ -3,11 +3,6 @@ import { useContext, useEffect, useState, useRef } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import mailIconBlue from '../../assets/mailIconBlue.svg';
-import mailIconGreen from '../../assets/mailIconGreen.svg';
-import passwordIconBlue from '../../assets/passwordIconBlue.svg';
-import passwordIconGreen from '../../assets/passwordIconGreen.svg';
-import userIcon from '../../assets/userIcon.svg';
 import { ContentLikedContext } from '../../contexts/ContentLikedContextProvider';
 import { IsLoadingContext } from '../../contexts/IsLoadingContextProvider';
 import { TokenContext } from '../../contexts/TokenContextProvider';
@@ -16,6 +11,7 @@ import { useLoginValidator } from '../../hooks/useLoginValidator';
 import { useCreateAccount } from '../../services/internal/useCreateAccount';
 import { useGetContentLiked } from '../../services/internal/useGetContentLiked';
 import { useLogin } from '../../services/internal/useLogin';
+import logo from '../../assets/logo.svg';
 import './LoginAndRegisterForm.css';
 
 export const LoginAndRegisterForm = () => {
@@ -155,18 +151,14 @@ export const LoginAndRegisterForm = () => {
 
   return (
     <div className='form-container' onClick={resetAlertWhenFocusInInput}>
-      <div
-        className={
-          section === 'login'
-            ? 'formMainIconContainer'
-            : 'formMainIconContainer formMainIconContainerRegisterAccount'
-        }
-      >
-        <img src={userIcon} alt='user icon' />
+      <div className='iconAndTitleContainer'>
+        <img src={logo} alt='logo' style={{ width: '50px' }} />
+        <h3 className='formTitle'>
+          {section === 'login'
+            ? 'Good to see you again!'
+            : 'Create your account'}
+        </h3>
       </div>
-      <h3 className='formTitle'>
-        {section === 'login' ? 'Good to see you again!' : 'Create your account'}
-      </h3>
       <form
         action='/action_page.php'
         onSubmit={loginRegisterFormSubmitClickHandler}
@@ -177,13 +169,6 @@ export const LoginAndRegisterForm = () => {
             userNameAlert === '' ? 'inputContainer' : 'inputContainer shake'
           }
         >
-          <div className='inputIconContainer'>
-            <img
-              src={section === 'login' ? mailIconGreen : mailIconBlue}
-              className='inputIcon'
-              alt='mail icon'
-            />
-          </div>
           <input
             type='text'
             name='username'
@@ -202,13 +187,6 @@ export const LoginAndRegisterForm = () => {
             passwordAlert === '' ? 'inputContainer' : 'inputContainer shake'
           }
         >
-          <div className='inputIconContainer'>
-            <img
-              src={section === 'login' ? passwordIconGreen : passwordIconBlue}
-              className='inputIcon'
-              alt='password icon'
-            />
-          </div>
           <input
             type={showPassword ? 'text' : 'password'}
             name='password'
@@ -233,15 +211,7 @@ export const LoginAndRegisterForm = () => {
         </div>
         <span className='inputAlerts'>{passwordAlert}</span>
 
-        <button
-          type='submit'
-          className={
-            section === 'login'
-              ? 'submitButton'
-              : 'submitButton submitButtonRegisterAccount'
-          }
-          ref={submitButton}
-        >
+        <button type='submit' className='submitButton' ref={submitButton}>
           {section === 'login' ? 'LOGIN' : 'CREATE ACCOUNT'}
         </button>
       </form>
