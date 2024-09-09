@@ -34,7 +34,9 @@ body {
     145deg,
     rgba(96, 78, 129, 1) 24%,
     rgba(76, 26, 129, 1) 43%,
-    rgba(17, 37, 71, 1) 59%
+    rgb(62, 133, 255) 79%
   );
   background-blend-mode: multiply;
+  background-attachment: fixed; /* Fija el fondo */
+  will-change: background; /* Optimiza el renderizado */
 }
